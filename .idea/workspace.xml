@@ -4,16 +4,7 @@
     <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="Show only selected application" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d14d9354-eb72-453f-b024-33d19455dc97" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_support_annotations_27_1_0_jar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_orhanobut_logger_2_2_0_aar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/caches/gradle_models.ser" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/caches/gradle_models.ser" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/app.iml" beforeDir="false" afterPath="$PROJECT_DIR$/app/app.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/app/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/vueltap/Activity/RegistrarDatosPersonales.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/vueltap/Activity/RegistrarDatosPersonales.java" afterDir="false" />
-    </list>
+    <list default="true" id="d14d9354-eb72-453f-b024-33d19455dc97" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -78,8 +69,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/vueltap/Activity/RegistrarDatosPersonales.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="219">
-              <caret line="364" column="17" selection-start-line="364" selection-start-column="17" selection-end-line="364" selection-end-column="17" />
+            <state relative-caret-position="151">
+              <caret line="295" column="25" lean-forward="true" selection-start-line="295" selection-start-column="25" selection-end-line="295" selection-end-column="26" />
               <folding>
                 <element signature="e#16401#16674#0" expanded="true" />
                 <element signature="e#16673#16674#0" expanded="true" />
@@ -449,8 +440,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/vueltap/Activity/RegistrarDatosPersonales.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="219">
-          <caret line="364" column="17" selection-start-line="364" selection-start-column="17" selection-end-line="364" selection-end-column="17" />
+        <state relative-caret-position="151">
+          <caret line="295" column="25" lean-forward="true" selection-start-line="295" selection-start-column="25" selection-end-line="295" selection-end-column="26" />
           <folding>
             <element signature="e#16401#16674#0" expanded="true" />
             <element signature="e#16673#16674#0" expanded="true" />
