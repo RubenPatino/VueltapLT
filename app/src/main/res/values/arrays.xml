@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="transporte">
+        <item>Moto</item>
+        <item>Cicla</item>
+    </string-array>
+</resources>

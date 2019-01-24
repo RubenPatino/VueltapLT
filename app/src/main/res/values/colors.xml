@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#232424</color>
+    <color name="colorPrimaryDark">#000000</color>
+    <color name="colorAccent">#D81B60</color>
+
+    <color name="colorPrimary2">#AAAAAA</color>
+    <color name="colorPrimaryDark2">#FFFFFF</color>
+
+    //vueltap colors
+    <color name="botons">#06A9F9</color>
+    <color name="button_enable_false">#DEDEDF</color>
+    <color name="blanco">#FFFFFF</color>
+    <color name= "colorMessage">#330033</color>
+    <color name= "colorDetails">#FFFFFF</color>
+    <color name="logo">#FAA61A</color>
+    <color name="logo2">#CBF7B0</color>
+</resources>

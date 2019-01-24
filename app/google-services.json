@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "649813896900",
+    "firebase_url": "https://vueltap-lite.firebaseio.com",
+    "project_id": "vueltap-lite",
+    "storage_bucket": "vueltap-lite.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:649813896900:android:986c926095ae7752",
+        "android_client_info": {
+          "package_name": "com.vueltap"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "649813896900-qp1u87c8oc010q3h6bd1ohilejq0at93.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.vueltap",
+            "certificate_hash": "6ab5e7f356aca02767ec88d58ef5f5fd11606aec"
+          }
+        },
+        {
+          "client_id": "649813896900-qrt4ov9of171f7ija88k109r6a1ledkn.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAIudDiNGzUM62cMTq9fzIpksQWBHRbIOI"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "649813896900-qrt4ov9of171f7ija88k109r6a1ledkn.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

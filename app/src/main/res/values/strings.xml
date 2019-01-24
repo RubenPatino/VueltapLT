@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">Vueltap Lite</string>
+    <string name="vueltap">Vueltap</string>
+    <string name="iniciar_sesion">Iniciar sesión</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="saved">Guardando...</string>
+    <string name="cuenta_nueva">Crear una nueva cuenta</string>
+
+    <string name="email">Correo electrónico</string>
+    <string name="pass">Contraseña</string>
+    <string name="ingresar">Ingresar</string>
+    <string name="olvidado_pass">¿Has olvidado la contraseña?</string>
+    <string name="registrate">Regístrate</string>
+    <string name="no_cuenta">¿Aun no tienes cuenta?</string>
+    <string name="aceptar">Aceptar y crear cuenta</string>
+</resources>
