@@ -1,11 +1,12 @@
 package com.vueltap.Activity;
 
-import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
+import android.os.Handler;
+import android.os.Looper;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
@@ -14,7 +15,6 @@ import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -24,19 +24,26 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import com.vueltap.Api.ApiAdapter;
+import com.vueltap.Models.UploadImageJsonResponse;
+import com.vueltap.util.JsonUtils;
 import com.vueltap.Models.JsonResponse;
 import com.vueltap.R;
 
+import org.codehaus.jackson.map.ObjectMapper;
+
 import java.io.ByteArrayOutputStream;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Random;
 
 import cn.pedant.SweetAlert.SweetAlertDialog;
+import id.zelory.compressor.Compressor;
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
 import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -56,6 +63,9 @@ public class RegistrarDatosPersonales extends AppCompatActivity {
     private Bitmap bitmap;
     private String email;
     private StorageReference storageRef;
+    private OkHttpClient clientHttp = new OkHttpClient();
+    private ObjectMapper mapper = new ObjectMapper();
+    private Handler mHandler = new Handler(Looper.getMainLooper());
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -290,7 +300,9 @@ public class RegistrarDatosPersonales extends AppCompatActivity {
                     fos.write(byteArray);
                     fos.flush();
                     fos.close();
-                    RequestBody reqFile = RequestBody.create(MediaType.parse("image/*"), f);
+
+                    /*RequestBody reqFile = RequestBody.create(MediaType.parse("image/*"), f);
+
                     MultipartBody.Part body = MultipartBody.Part.createFormData("upload","image", reqFile);
                     Call<Void> call=ApiAdapter.getApiService().USER_UPLOAD_IMAGE(reqFile,body);
                     call.enqueue(new Callback<Void>() {
@@ -305,7 +317,11 @@ public class RegistrarDatosPersonales extends AppCompatActivity {
                         public void onFailure(Call<Void> call, Throwable t) {
                             Log.e("Error",""+t);
                         }
-                    });
+                    });*/
+
+                    uploadImage(f, email, "DNI_FRONT");
+
+
                    // bitmap.compress(Bitmap.CompressFormat.JPEG,90,out);
                     //getImageData(bitmap);
                     //SaveImage(bitmap);
@@ -335,5 +351,151 @@ public class RegistrarDatosPersonales extends AppCompatActivity {
         }
 
         super.onActivityResult(requestCode, resultCode, data);
+    }
+
+
+    private void uploadImage(File file, String email, String imageType){
+
+        try{
+
+
+
+            String attachmentName, attachmentFileName, extension;
+
+            attachmentName = file.getName();
+            extension = file.getAbsolutePath().substring(file.getAbsolutePath().lastIndexOf("."));
+            attachmentFileName = attachmentName + extension;
+
+            File compressedImageFile = null;
+
+            try {
+                compressedImageFile = new Compressor(this).compressToFile(file);
+            }catch (Exception ex){
+                ex.printStackTrace();
+            }
+
+            MultipartBody requestBody = new MultipartBody.Builder()
+                    .setType(MultipartBody.FORM)
+                    .addFormDataPart("image", attachmentFileName, RequestBody.create(MediaType.parse("image/png"), compressedImageFile != null ?  compressedImageFile : file))
+                    .build();
+
+            Request request = new Request.Builder()
+                    .header("Accept", "application/json")
+                    /*.header("Authorization", basicAuth)
+                    .header(WebConstants.Companion.getTYPE(), AppConstants.INSTANCE.getMESSENGER())
+                    .header(WebConstants.Companion.getTOKEN(), messenger.getSession().getToken())*/
+                    .url("http://msau.vueltap.com.co/api_1.0/Messengers/Add/Image/"+email+"/"+imageType)
+                    .put(requestBody)
+                    .build();
+
+
+                    clientHttp.newCall(request).enqueue(new okhttp3.Callback(){
+
+                        @Override
+                        public void onFailure(okhttp3.Call call, IOException e) {
+
+                            e.printStackTrace();
+
+                            mHandler.post(new Runnable() {
+                                @Override
+                                public void run() {
+
+                                    //TODO
+                                    //UI show dialogs
+
+                                }
+                            });
+
+                        }
+
+                        @Override
+                        public void onResponse(okhttp3.Call call, okhttp3.Response response) throws IOException {
+
+
+                            if(response.isSuccessful()){
+
+                                String responseBodyString = response.body().string();
+
+                                if(JsonUtils.isJSON(responseBodyString)){
+
+
+                                    try{
+
+                                        UploadImageJsonResponse uploadImageResponse = mapper.readValue(responseBodyString, UploadImageJsonResponse.class);
+
+                                        if(uploadImageResponse.getStatus()){
+
+                                            mHandler.post(new Runnable() {
+                                                @Override
+                                                public void run() {
+
+                                                    //TODO
+                                                    //UI show dialogs
+
+                                                }
+                                            });
+
+                                        }else{
+                                            mHandler.post(new Runnable() {
+                                                @Override
+                                                public void run() {
+
+                                                    //TODO
+                                                    //UI show dialogs
+
+                                                }
+                                            });
+                                        }
+
+                                    }catch(Exception e){
+                                        e.printStackTrace();
+                                        mHandler.post(new Runnable() {
+                                            @Override
+                                            public void run() {
+
+                                                //TODO
+                                                //UI show dialogs
+
+                                            }
+                                        });
+                                    }
+
+
+                                }else{
+                                    mHandler.post(new Runnable() {
+                                        @Override
+                                        public void run() {
+
+                                            //TODO
+                                            //UI show dialogs
+
+                                        }
+                                    });
+                                }
+
+
+                            }else{
+                                mHandler.post(new Runnable() {
+                                    @Override
+                                    public void run() {
+
+                                        //TODO
+                                        //UI show dialogs
+
+                                    }
+                                });
+                            }
+
+                        }
+                    });
+
+
+
+        }catch(Exception ex){
+            ex.printStackTrace();
+            //TODO
+            //UI show dialogs
+        }
+
     }
 }
