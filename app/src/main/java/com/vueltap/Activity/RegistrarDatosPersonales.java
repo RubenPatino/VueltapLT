@@ -23,6 +23,8 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
+import com.orhanobut.logger.AndroidLogAdapter;
+import com.orhanobut.logger.Logger;
 import com.vueltap.Api.ApiAdapter;
 import com.vueltap.Models.UploadImageJsonResponse;
 import com.vueltap.util.JsonUtils;
@@ -73,6 +75,8 @@ public class RegistrarDatosPersonales extends AppCompatActivity {
         setContentView(R.layout.activity_registrar_datos_personales);
         setTitle("Formulario de registro");
         loadControls();
+
+        Logger.addLogAdapter(new AndroidLogAdapter());
     }
 
     private void loadControls() {
@@ -289,14 +293,18 @@ public class RegistrarDatosPersonales extends AppCompatActivity {
                 try {
                     //Uri uri=data.getData().;
                    // File file = new File ("cedula.jpeg");
-                    File f = new File(this.getCacheDir(), "img");
+                    File f = new File(getApplicationContext().getCacheDir(), "img");
                     f.createNewFile();
+
                     bitmap = (Bitmap) data.getExtras().get("data");
                     imgCedula.setImageBitmap(bitmap);
+
                     ByteArrayOutputStream stream = new ByteArrayOutputStream();
                     bitmap.compress(Bitmap.CompressFormat.JPEG, 100, stream);
+
                     byte[] byteArray = stream.toByteArray();
                     FileOutputStream fos = new FileOutputStream(f);
+
                     fos.write(byteArray);
                     fos.flush();
                     fos.close();
@@ -415,6 +423,9 @@ public class RegistrarDatosPersonales extends AppCompatActivity {
                             if(response.isSuccessful()){
 
                                 String responseBodyString = response.body().string();
+
+
+                                Logger.json(responseBodyString);
 
                                 if(JsonUtils.isJSON(responseBodyString)){
 

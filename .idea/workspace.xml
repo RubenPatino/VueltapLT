@@ -5,7 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d14d9354-eb72-453f-b024-33d19455dc97" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_support_annotations_27_1_0_jar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_orhanobut_logger_2_2_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/caches/gradle_models.ser" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/caches/gradle_models.ser" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/app.iml" beforeDir="false" afterPath="$PROJECT_DIR$/app/app.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/app/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/vueltap/Activity/RegistrarDatosPersonales.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/vueltap/Activity/RegistrarDatosPersonales.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -30,14 +37,14 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="gradle" value="11" />
-          <entry key="java" value="824" />
+          <entry key="gradle" value="13" />
+          <entry key="java" value="861" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="Groovy" value="11" />
-          <entry key="JAVA" value="824" />
+          <entry key="Groovy" value="13" />
+          <entry key="JAVA" value="861" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
@@ -59,20 +66,20 @@
           <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/build.gradle">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="561">
-              <caret line="33" column="5" selection-start-line="33" selection-start-column="5" selection-end-line="33" selection-end-column="5" />
+            <state relative-caret-position="521">
+              <caret line="63" column="40" selection-start-line="63" selection-start-column="34" selection-end-line="63" selection-end-column="40" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/vueltap/Activity/RegistrarDatosPersonales.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="99">
-              <caret line="438" selection-start-line="438" selection-end-line="438" />
+            <state relative-caret-position="219">
+              <caret line="364" column="17" selection-start-line="364" selection-start-column="17" selection-end-line="364" selection-end-column="17" />
               <folding>
                 <element signature="e#16401#16674#0" expanded="true" />
                 <element signature="e#16673#16674#0" expanded="true" />
@@ -169,8 +176,8 @@
         <option value="$PROJECT_DIR$/app/src/main/java/com/vueltap/JsonUtils.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/vueltap/Models/JsonResponse.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/vueltap/Models/UploadImageJsonResponse.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/vueltap/Activity/RegistrarDatosPersonales.java" />
         <option value="$PROJECT_DIR$/app/build.gradle" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/vueltap/Activity/RegistrarDatosPersonales.java" />
       </list>
     </option>
   </component>
@@ -276,7 +283,7 @@
         <option name="Android.Gradle.BeforeRunTask" enabled="true" />
       </method>
     </configuration>
-    <configuration name="app" type="AndroidRunConfigurationType" factoryName="Android App">
+    <configuration name="app" type="AndroidRunConfigurationType" factoryName="Android App" activateToolWindowBeforeRun="false">
       <module name="app" />
       <option name="DEPLOY" value="true" />
       <option name="DEPLOY_APK_FROM_BUNDLE" value="false" />
@@ -359,7 +366,7 @@
       <window_info anchor="bottom" id="Logcat" weight="0.71347517" />
       <window_info anchor="bottom" id="Version Control" />
       <window_info anchor="bottom" id="TODO" />
-      <window_info anchor="bottom" id="Android Profiler" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Android Profiler" />
       <window_info anchor="bottom" id="Debug" />
       <window_info anchor="bottom" id="Terminal" />
       <window_info anchor="bottom" id="Event Log" side_tool="true" />
@@ -433,10 +440,17 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/build.gradle">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="521">
+          <caret line="63" column="40" selection-start-line="63" selection-start-column="34" selection-end-line="63" selection-end-column="40" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/vueltap/Activity/RegistrarDatosPersonales.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="99">
-          <caret line="438" selection-start-line="438" selection-end-line="438" />
+        <state relative-caret-position="219">
+          <caret line="364" column="17" selection-start-line="364" selection-start-column="17" selection-end-line="364" selection-end-column="17" />
           <folding>
             <element signature="e#16401#16674#0" expanded="true" />
             <element signature="e#16673#16674#0" expanded="true" />
@@ -451,13 +465,6 @@
             <element signature="e#19393#19690#0" expanded="true" />
             <element signature="e#19689#19690#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/build.gradle">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="561">
-          <caret line="33" column="5" selection-start-line="33" selection-start-column="5" selection-end-line="33" selection-end-column="5" />
         </state>
       </provider>
     </entry>
