@@ -432,6 +432,8 @@ public class RegistrarDatosPersonales extends AppCompatActivity {
                                                     //TODO
                                                     //UI show dialogs
 
+                                                    //SUCCESS
+
                                                 }
                                             });
 
@@ -442,6 +444,8 @@ public class RegistrarDatosPersonales extends AppCompatActivity {
 
                                                     //TODO
                                                     //UI show dialogs
+
+                                                    //ERROR
 
                                                 }
                                             });
