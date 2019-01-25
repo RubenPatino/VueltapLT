@@ -193,18 +193,13 @@ public class RegistrarDatosPersonales extends AppCompatActivity {
     }
 
     public void OnClickDniFront(View view) {
-
-
         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         startActivityForResult(intent, IDENTIFY_REQUEST_CODE_FRONT);
-
     }
     public void OnClickDniBack(View view) {
         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         startActivityForResult(intent, IDENTIFY_REQUEST_CODE_BACK);
     }
-
-
 
     public void OnClickDniHelpFront(View view) {
         dialog = new SweetAlertDialog(this, SweetAlertDialog.WARNING_TYPE);
@@ -223,7 +218,6 @@ public class RegistrarDatosPersonales extends AppCompatActivity {
     public void OnClickDomicilie(View view) {
         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         startActivityForResult(intent, DOMICILE_REQUEST_CODE);
-
     }
 
     public void helpDireccion(View view) {
@@ -235,35 +229,8 @@ public class RegistrarDatosPersonales extends AppCompatActivity {
         dialog.show();
     }
 
-    private File SaveImage(Bitmap finalBitmap, String type) {
-
-        String root = Environment.getExternalStorageDirectory().toString();
-        File myDir = new File(root + "/saved_images");
-        Log.d("Location : ", root);
-        myDir.mkdirs();
-        Random generator = new Random();
-        int n = 10000;
-        n = generator.nextInt(n);
-        String fname = type + n + ".jpg";
-
-        File file = new File(myDir, fname);
-        if (file.exists()) file.delete();
-        try {
-            FileOutputStream out = new FileOutputStream(file);
-            finalBitmap.compress(Bitmap.CompressFormat.JPEG, 90, out);
-            out.flush();
-            out.close();
-            return file;
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return myDir;
-    }
-
     public File getFile(Bitmap bmp, String prefix) {
-
-    //Uri uri = null;
-
+        //Uri uri = null;
         try {
             File tempDir = Environment.getExternalStorageDirectory();
             tempDir = new File(tempDir.getAbsolutePath() + "/.temp/");
@@ -277,10 +244,11 @@ public class RegistrarDatosPersonales extends AppCompatActivity {
             fos.write(bitmapData);
             fos.flush();
             fos.close();
+            return tempFile;
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return tempFile;
+        return null;
     }
 
     @Override
@@ -289,21 +257,50 @@ public class RegistrarDatosPersonales extends AppCompatActivity {
             case IDENTIFY_REQUEST_CODE_FRONT:
                 bitmap = (Bitmap) data.getExtras().get("data");
                 imgCedula.setImageBitmap(bitmap);
-                uploadImage(getFile(bitmap,"DNI"),"rap@gmail.com","DNI_FRONT");
+                if(getFile(bitmap,"DNI_FRONT")!=null){
+                    uploadImage(getFile(bitmap,"DNI"),"rap@gmail.com","DNI_FRONT");
+                }
                 break;
             case IDENTIFY_REQUEST_CODE_BACK:
                 bitmap = (Bitmap) data.getExtras().get("data");
                 imgCedula.setImageBitmap(bitmap);
-                uploadImage(getFile(bitmap,"DNI"),"rap@gmail.com","DNI_FRONT");
+                if(getFile(bitmap,"DNI_BACK")!=null) {
+                    uploadImage(getFile(bitmap, "DNI_BACK"), "rap@gmail.com", "DNI_FRONT");
+                }
                 break;
             case DOMICILE_REQUEST_CODE:
                 bitmap = (Bitmap) data.getExtras().get("data");
                 imgDireccion.setImageBitmap(bitmap);
-                uploadImage(getFile(bitmap,"DOMICILE"),"rap@gmail.com","SERVICE_BILL_PAYMENT");
+                uploadImageRetrofit(getFile(bitmap,"DNI_FRONT"),"rapa@gmail.com");
+//                if(getFile(bitmap,"DOMICILE")!=null) {
+//                    uploadImage(getFile(bitmap, "DOMICILE"), "rap@gmail.com", "SERVICE_BILL_PAYMENT");
+//                }
                 break;
         }
 
         super.onActivityResult(requestCode, resultCode, data);
+    }
+
+    public void uploadImageRetrofit(File imageFile,String email){
+
+        RequestBody emailBody = RequestBody.create(MultipartBody.FORM, email);
+        RequestBody imageBody = RequestBody.create(MediaType.parse("image/*"), imageFile);
+        MultipartBody.Part imagePart = MultipartBody.Part.createFormData("image",imageFile.getName(),imageBody);
+        Call<Void> call=ApiAdapter.getApiService().USER_UPLOAD_IMAGE(emailBody,imagePart);
+        call.enqueue(new Callback<Void>() {
+            @Override
+            public void onResponse(Call<Void> call, Response<Void> response) {
+                if(response.isSuccessful()){
+                    Log.d("OK","ok");
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Void> call, Throwable t) {
+                t.printStackTrace();
+            }
+        });
+
     }
 
 
