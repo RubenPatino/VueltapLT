@@ -33,10 +33,12 @@ public interface ApiService {
     );
 
     @Multipart
-    @POST("user/upload/cedula")
+    @POST("user/upload/cedula/{email}")
     Call<Void> USER_UPLOAD_IMAGE(
             @Part("email") RequestBody email,
             @Part MultipartBody.Part image
     );
 }
+
+
 

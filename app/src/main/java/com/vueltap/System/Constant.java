@@ -3,8 +3,9 @@ package com.vueltap.System;
 public class Constant {
     public static final String UID = "UID";
     public static final String EMAIL = "EMAIL";
-    public static final int IDENTIFY_REQUEST_CODE = 0;
-    public static final int DOMICILE_REQUEST_CODE = 1;
+    public static final int IDENTIFY_REQUEST_CODE_FRONT = 0;
+    public static final int IDENTIFY_REQUEST_CODE_BACK = 1;
+    public static final int DOMICILE_REQUEST_CODE = 2;
 
     public static final String _IP = "DATA_IP";
     public static final String SYSTEM_IP = "SYSTEM_IP";

@@ -108,12 +108,77 @@
                     android:orientation="horizontal"
                     android:weightSum="100">
 
-                    <ImageView
-                        android:id="@+id/imageViewCedula"
+                    <LinearLayout
+                        android:layout_width="157dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="50"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/textView9"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Foto cara delantera" />
+
+                        <ImageView
+                            android:id="@+id/imageViewCedula"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            app:srcCompat="@android:drawable/ic_menu_gallery" />
+                    </LinearLayout>
+
+                    <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
+                        android:layout_weight="50"
+                        android:orientation="vertical"
+                        android:weightSum="2">
+
+                        <Button
+                            android:id="@+id/buttonCedula"
+                            android:layout_width="40dp"
+                            android:layout_height="45dp"
+                            android:background="@drawable/ic_camera_black"
+                            android:onClick="OnClickDniFront" />
+
+                        <Button
+                            android:id="@+id/button3"
+                            android:layout_width="40dp"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/success_circle"
+                            android:onClick="OnClickDniHelpFront"
+                            android:text="?" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="200dp"
+                    android:layout_height="100dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_weight="95"
+                    android:orientation="horizontal"
+                    android:weightSum="100">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
                         android:layout_weight="95"
-                        app:srcCompat="@android:drawable/ic_menu_gallery" />
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/textView12"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Foto cara trasera" />
+
+                        <ImageView
+                            android:id="@+id/imageViewDniBack"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            app:srcCompat="@android:drawable/ic_menu_gallery" />
+                    </LinearLayout>
 
                     <LinearLayout
                         android:layout_width="wrap_content"
@@ -123,20 +188,18 @@
                         android:weightSum="2">
 
                         <Button
-                            android:id="@+id/buttonCedula"
+                            android:id="@+id/buttonDniBack"
                             android:layout_width="40dp"
                             android:layout_height="45dp"
-                            android:layout_weight="1"
                             android:background="@drawable/ic_camera_black"
-                            android:onClick="OnClickFotoCedula" />
+                            android:onClick="OnClickDniBack" />
 
                         <Button
-                            android:id="@+id/button3"
+                            android:id="@+id/buttonHelpDniBack"
                             android:layout_width="40dp"
                             android:layout_height="wrap_content"
-                            android:layout_weight="1"
                             android:background="@drawable/success_circle"
-                            android:onClick="helpCedula"
+                            android:onClick="OnClickDniHelpBack"
                             android:text="?" />
 
                     </LinearLayout>
@@ -191,7 +254,7 @@
                             android:layout_height="45dp"
                             android:layout_weight="1"
                             android:background="@drawable/ic_camera_black"
-                            android:onClick="OnClickFotoDomicilio" />
+                            android:onClick="OnClickDomicilie" />
 
                         <Button
                             android:id="@+id/button4"
