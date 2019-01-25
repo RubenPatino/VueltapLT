@@ -199,14 +199,14 @@ public class RegistrarDatosPersonales extends AppCompatActivity {
     public void OnClickFotoCedula(View view) {
 
 
-        Intent intento1 = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-        startActivityForResult(intento1, IDENTIFY_REQUEST_CODE);
+        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        startActivityForResult(intent, IDENTIFY_REQUEST_CODE);
 
     }
 
     public void OnClickFotoDomicilio(View view) {
-        Intent intento1 = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-        startActivityForResult(intento1, DOMICILE_REQUEST_CODE);
+        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        startActivityForResult(intent, DOMICILE_REQUEST_CODE);
 
     }
 
