@@ -1,4 +1,4 @@
-package com.vueltap.Api;
+package com.vueltap.Api.ApiService;
 
 import com.vueltap.Models.JsonResponse;
 
@@ -13,9 +13,7 @@ import retrofit2.http.POST;
 import retrofit2.http.Part;
 import retrofit2.http.Path;
 
-public interface ApiService {
-    //LOGIN
-//Listar
+public interface ApiUser {
     @GET("user/check/{email}")
     Call<JsonResponse> EMAIL_CHECK(
             @Path("email") String email
@@ -34,11 +32,8 @@ public interface ApiService {
 
     @Multipart
     @POST("user/upload/cedula")
-    Call<Void> USER_UPLOAD_IMAGE(
+    Call<JsonResponse> USER_UPLOAD_IMAGE(
             @Part("email") RequestBody email,
             @Part MultipartBody.Part image
     );
 }
-
-
-

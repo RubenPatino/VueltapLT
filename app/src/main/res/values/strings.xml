@@ -15,4 +15,11 @@
     <string name="registrate">Regístrate</string>
     <string name="no_cuenta">¿Aun no tienes cuenta?</string>
     <string name="aceptar">Aceptar y crear cuenta</string>
+    <string name="next">Siguiente</string>
+    <string name="names">Nombres *</string>
+    <string name="lastname">Apellidos *</string>
+    <string name="phone">Teléfono *</string>
+    <string name="dni_number">Número de cédula *</string>
+    <string name="address">Dirección *</string>
+    <string name="msg_isempty">Por favor complete este campo.</string>
 </resources>

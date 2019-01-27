@@ -1,8 +1,13 @@
 package com.vueltap.System;
 
 public class Constant {
-    public static final String UID = "UID";
-    public static final String EMAIL = "EMAIL";
+    public static final String UID = "uid";
+    public static final String EMAIL = "email";
+    public static final String NAMES = "names";
+    public static final String PHONE = "phone";
+    public static final String LAST_NAME = "lastname";
+    public static final String DNI_NUMBER = "dninumbre";
+    public static final String ADDRESS = "address";
     public static final int IDENTIFY_REQUEST_CODE_FRONT = 0;
     public static final int IDENTIFY_REQUEST_CODE_BACK = 1;
     public static final int DOMICILE_REQUEST_CODE = 2;

@@ -137,14 +137,6 @@ public class LoginActivity extends AppCompatActivity {
                         intent.putExtra(UID, user.getUid());
                         startActivity(intent);
                     }
- /*
-                }else{
-                    dialog.dismissWithAnimation();
-                    finish();
-                    Intent intent = new Intent(getApplicationContext(), RegisterOneActivity.class);
-
-        startActivity(intent);
-                    }*/
                 }else{
                     dialog.changeAlertType(SweetAlertDialog.ERROR_TYPE);
                     dialog.setContentText(response.body().getMessage());
