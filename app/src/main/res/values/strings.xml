@@ -22,4 +22,5 @@
     <string name="dni_number">Número de cédula *</string>
     <string name="address">Dirección *</string>
     <string name="msg_isempty">Por favor complete este campo.</string>
+    <string name="help">\?\</string>
 </resources>

@@ -45,9 +45,9 @@ import static com.vueltap.System.Constant.PHONE;
 public class ImageUploadActivity extends AppCompatActivity {
 
     private SweetAlertDialog dialog;
-    private ImageView imgDniFront, imgDniBack,imgAddress;
+    private ImageView imgDniFront, imgDniBack, imgAddress;
     private Bitmap bitmap;
-    private String email,names, lastName, address, phone, dniNumber;
+    private String email, names, lastName, address, phone, dniNumber;
     private FirebaseAuth firebaseAuth;
     private FirebaseUser user;
 
@@ -58,19 +58,19 @@ public class ImageUploadActivity extends AppCompatActivity {
         loadControls();
     }
 
-    public void loadControls(){
-        imgDniFront=findViewById(R.id.imageViewDniFront);
-        // imgCedula = findViewById(R.id.imageViewCedula);
-        // imgDireccion = findViewById(R.id.imageViewDireccion);
+    public void loadControls() {
+        imgDniFront = findViewById(R.id.imageViewDniFront);
+        imgDniBack = findViewById(R.id.imageViewDniBack);
+        imgAddress = findViewById(R.id.imageViewAdress);
         loadData();
     }
 
-    public void loadData(){
-        names=getIntent().getStringExtra(NAMES);
-        lastName=getIntent().getStringExtra(LAST_NAME);
-        address=getIntent().getStringExtra(ADDRESS);
-        phone=getIntent().getStringExtra(PHONE);
-        dniNumber=getIntent().getStringExtra(DNI_NUMBER);
+    public void loadData() {
+        names = getIntent().getStringExtra(NAMES);
+        lastName = getIntent().getStringExtra(LAST_NAME);
+        address = getIntent().getStringExtra(ADDRESS);
+        phone = getIntent().getStringExtra(PHONE);
+        dniNumber = getIntent().getStringExtra(DNI_NUMBER);
 
     }
 
@@ -78,6 +78,7 @@ public class ImageUploadActivity extends AppCompatActivity {
         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         startActivityForResult(intent, IDENTIFY_REQUEST_CODE_FRONT);
     }
+
     public void OnClickDniHelpFront(View view) {
         dialog = new SweetAlertDialog(this, SweetAlertDialog.WARNING_TYPE);
         dialog.setContentText("Tomale una foto a tu cédula de ciudadanía,(Parte frontal).<b>Si partes de" +
@@ -91,6 +92,7 @@ public class ImageUploadActivity extends AppCompatActivity {
         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         startActivityForResult(intent, IDENTIFY_REQUEST_CODE_BACK);
     }
+
     public void OnClickDniHelpBack(View view) {
         dialog = new SweetAlertDialog(this, SweetAlertDialog.WARNING_TYPE);
         dialog.setContentText("Tomale una foto a tu cédula de ciudadanía,(Parte trasera).<b>Si partes " +
@@ -100,11 +102,12 @@ public class ImageUploadActivity extends AppCompatActivity {
         dialog.show();
     }
 
-    public void OnClickDomicilie(View view) {
+    public void OnClickDomiciled(View view) {
         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         startActivityForResult(intent, DOMICILE_REQUEST_CODE);
     }
-    public void helpDireccion(View view) {
+
+    public void OnClickDomicileHelp(View view) {
         dialog = new SweetAlertDialog(this, SweetAlertDialog.WARNING_TYPE);
         dialog.setContentText("Tomale una foto a tu comprobante de domicilio ya sea Agua,Luz " +
                 "o Teléfono,(No mayor a tres meses)." +
@@ -114,7 +117,7 @@ public class ImageUploadActivity extends AppCompatActivity {
         dialog.show();
     }
 
-    public void OnClickRegister(View view){
+    public void OnClickRegister(View view) {
         Call<JsonResponse> call = ApiAdapter.getApiService().USER_ADD(email, names, lastName, address, phone, dniNumber);
         call.enqueue(new Callback<JsonResponse>() {
             @Override
@@ -150,8 +153,9 @@ public class ImageUploadActivity extends AppCompatActivity {
         });
 
     }
+
     public File getFile(Bitmap bmp, String prefix) {
-        File tempFile=null;
+        File tempFile = null;
         //Uri uri = null;
         try {
             File tempDir = Environment.getExternalStorageDirectory();
@@ -171,19 +175,20 @@ public class ImageUploadActivity extends AppCompatActivity {
         }
         return tempFile;
     }
-    public void uploadImageRetrofit(File imageFile,String email){
-        dialog=new SweetAlertDialog(this,SweetAlertDialog.PROGRESS_TYPE);
+
+    public void uploadImageRetrofit(File imageFile, String email) {
+        dialog = new SweetAlertDialog(this, SweetAlertDialog.PROGRESS_TYPE);
         dialog.setTitleText("Subiendo...");
         dialog.setContentText("Por favor espere.");
         RequestBody emailBody = RequestBody.create(MultipartBody.FORM, email);
         RequestBody imageBody = RequestBody.create(MediaType.parse("image/*"), imageFile);
-        MultipartBody.Part imagePart = MultipartBody.Part.createFormData("image",imageFile.getName(),imageBody);
-        Call<JsonResponse> call= ApiAdapter.getApiUser().USER_UPLOAD_IMAGE(emailBody,imagePart);
+        MultipartBody.Part imagePart = MultipartBody.Part.createFormData("image", imageFile.getName(), imageBody);
+        Call<JsonResponse> call = ApiAdapter.getApiUser().USER_UPLOAD_IMAGE(emailBody, imagePart);
         call.enqueue(new Callback<JsonResponse>() {
             @Override
             public void onResponse(Call<JsonResponse> call, Response<JsonResponse> response) {
-                if(response.isSuccessful()){
-                    if(response.body().getStatus()){
+                if (response.isSuccessful()) {
+                    if (response.body().getStatus()) {
                         dialog.dismissWithAnimation();
                     }
                 }
@@ -199,29 +204,33 @@ public class ImageUploadActivity extends AppCompatActivity {
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        switch (requestCode) {
-            case IDENTIFY_REQUEST_CODE_FRONT:
-                bitmap = (Bitmap) data.getExtras().get("data");
-                imgDniFront.setImageBitmap(bitmap);
-                if(getFile(bitmap,"DNI_FRONT")!=null){
-                   // uploadImage(getFile(bitmap,"DNI"),"rap@gmail.com","DNI_FRONT");
-                }
-                break;
-            case IDENTIFY_REQUEST_CODE_BACK:
-                bitmap = (Bitmap) data.getExtras().get("data");
-                imgDniBack.setImageBitmap(bitmap);
-                if(getFile(bitmap,"DNI_BACK")!=null) {
-                  //  uploadImage(getFile(bitmap, "DNI_BACK"), "rap@gmail.com", "DNI_FRONT");
-                }
-                break;
-            case DOMICILE_REQUEST_CODE:
-                bitmap = (Bitmap) data.getExtras().get("data");
-                imgAddress.setImageBitmap(bitmap);
-                uploadImageRetrofit(getFile(bitmap,"DNI_FRONT"),"rr@gmail.com");
+        if (data != null) {
+            switch (requestCode) {
+                case IDENTIFY_REQUEST_CODE_FRONT:
+                    if (data != null) {
+                        bitmap = (Bitmap) data.getExtras().get("data");
+                        imgDniFront.setImageBitmap(bitmap);
+                        if (getFile(bitmap, "DNI_FRONT") != null) {
+                            // uploadImage(getFile(bitmap,"DNI"),"rap@gmail.com","DNI_FRONT");
+                        }
+                    }
+                    break;
+                case IDENTIFY_REQUEST_CODE_BACK:
+                    bitmap = (Bitmap) data.getExtras().get("data");
+                    imgDniBack.setImageBitmap(bitmap);
+                    if (getFile(bitmap, "DNI_BACK") != null) {
+                        //  uploadImage(getFile(bitmap, "DNI_BACK"), "rap@gmail.com", "DNI_FRONT");
+                    }
+                    break;
+                case DOMICILE_REQUEST_CODE:
+                    bitmap = (Bitmap) data.getExtras().get("data");
+                    imgAddress.setImageBitmap(bitmap);
+                    uploadImageRetrofit(getFile(bitmap, "DNI_FRONT"), "rr@gmail.com");
 //                if(getFile(bitmap,"DOMICILE")!=null) {
 //                    uploadImage(getFile(bitmap, "DOMICILE"), "rap@gmail.com", "SERVICE_BILL_PAYMENT");
 //                }
-                break;
+                    break;
+            }
         }
 
         super.onActivityResult(requestCode, resultCode, data);
