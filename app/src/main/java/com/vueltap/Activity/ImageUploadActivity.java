@@ -181,7 +181,7 @@ public class ImageUploadActivity extends AppCompatActivity {
         }
     }
 
-        public File getFile (Bitmap bmp){
+    public File getFile (Bitmap bmp){
             //File tempFile = null;
             //Uri uri = null;
             try {

@@ -61,7 +61,6 @@ public class LoginActivity extends AppCompatActivity {
         etPass = findViewById(R.id.etPass);
         loadPermission();
         loadAuthState();
-
     }
 
     private void loadPermission() {
