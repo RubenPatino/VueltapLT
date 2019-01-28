@@ -1,6 +1,5 @@
 package com.vueltap.Activity;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -31,12 +30,14 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 import static com.vueltap.System.Constant.EMAIL;
-import static com.vueltap.System.Constant.MESSENGER_ID;
-import static com.vueltap.System.Constant.UID;
+import static com.vueltap.System.Constant.ID_USER;
+import static com.vueltap.System.Constant.VALIDATE_FINISHED;
+import static com.vueltap.System.Constant.VALIDATE_INFORMATION;
+import static com.vueltap.System.Constant.VALIDATE_TRAINING;
+import static com.vueltap.System.Constant.VALIDATE_TRANSPORT;
 
 
 public class LoginActivity extends AppCompatActivity {
-    private PermissionManager permissionManager;
     private TextInputEditText etEmail;
     private TextInputEditText etPass;
     private FirebaseAuth firebaseAuth;
@@ -64,7 +65,8 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void loadPermission() {
-        permissionManager=new PermissionManager(){};
+        PermissionManager permissionManager = new PermissionManager() {
+        };
         permissionManager.checkAndRequestPermissions(this);
     }
 
@@ -75,7 +77,7 @@ public class LoginActivity extends AppCompatActivity {
                 user = firebaseAuth.getCurrentUser();
                 if (user != null) {
                     if (user.isEmailVerified()) {
-                        if(dialog!=null) {
+                        if (dialog != null) {
                             dialog.dismissWithAnimation();
                         }
                         checkEmail(user.getEmail());
@@ -90,51 +92,75 @@ public class LoginActivity extends AppCompatActivity {
 
     // Verificamos si el correo ya esta registrado
     private void checkEmail(String email) {
-     dialog = new SweetAlertDialog(this, SweetAlertDialog.PROGRESS_TYPE);
-      dialog.setContentText("Procesando, por favor espere.");
-      dialog.show();
+        dialog = new SweetAlertDialog(this, SweetAlertDialog.PROGRESS_TYPE);
+        dialog.setContentText("Procesando, por favor espere.");
+        dialog.show();
         Call<JsonResponse> call = ApiAdapter.getApiService().EMAIL_CHECK(email);
         call.enqueue(new Callback<JsonResponse>() {
             @Override
             public void onResponse(Call<JsonResponse> call, Response<JsonResponse> response) {
                 if (response.isSuccessful()) {
                     if (response.body().getStatus()) {
-                       if(!response.body().getUser().getCheckInfo()){
-                            dialog.changeAlertType(SweetAlertDialog.WARNING_TYPE);
-                            dialog.setContentText("Se esta revisando la información suministrada, este proceso" +
-                                    " pude durar hasta una semana aproximadamente. Gracias por su compresión.");
-                            dialog.setConfirmText("Aceptar");
-                           firebaseAuth.signOut();
-                        }else if(!response.body().getUser().getCheckTraining()){
-                           dialog.changeAlertType(SweetAlertDialog.SUCCESS_TYPE);
-                           dialog.setContentText("Toda la información suministrada se ha revisado correctamente, lo " +
-                                   "invitamos a que se capacite en nuestras instalaciones ubicada en Bogota el " +
-                                   "día 31 de diciembre del 2019.");
-                           dialog.setConfirmText("Aceptar");
-                           firebaseAuth.signOut();
-                       }else if(!response.body().getUser().getState()){
-                           dialog.changeAlertType(SweetAlertDialog.WARNING_TYPE);
-                           dialog.setContentText("Lo sentimos esta cuenta esta bloqueada, lo invitamos a comunicarse con nosotros" +
-                                   " al tel. (031)432 5760, para aclarar las dudas.  ");
-                           dialog.setConfirmText("Aceptar");
-                           firebaseAuth.signOut();
-                       }else{
-                           dialog.dismissWithAnimation();
-                           finish();
-                           Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
-                           intent.putExtra(MESSENGER_ID, response.body().getUser().getId());
-                           startActivity(intent);
-                       }
+                        if (response.body().getUser().getState()) {
+                            String checkIn = response.body().getUser().getCheckIn();
+                            if (checkIn.equals(VALIDATE_INFORMATION)) {
+                                dialog.changeAlertType(SweetAlertDialog.WARNING_TYPE);
+                                dialog.setContentText("Se esta revisando la información suministrada, este proceso" +
+                                        " pude durar hasta una semana aproximadamente. Gracias por su compresión.");
+                                dialog.setConfirmText("Aceptar");
+                                firebaseAuth.signOut();
+                            } else if (checkIn.equals(VALIDATE_TRANSPORT)) {
+                                final String id = response.body().getUser().getId();
+                                dialog.changeAlertType(SweetAlertDialog.SUCCESS_TYPE);
+                                dialog.setContentText("Muy bien, toda la información suministrada se ha revisado correctamente, lo " +
+                                        "invitamos a que seleccione tu tipo de transporte");
+                                dialog.setConfirmButton("Aceptar", new SweetAlertDialog.OnSweetClickListener() {
+                                    @Override
+                                    public void onClick(SweetAlertDialog sweetAlertDialog) {
+                                        Intent intent = new Intent(getApplicationContext(), TransprtActivity.class);
+                                        intent.putExtra(ID_USER, id);
+                                        startActivity(intent);
+                                    }
+                                });
+                            } else if (checkIn.equals(VALIDATE_TRAINING)) {
+                                dialog.changeAlertType(SweetAlertDialog.SUCCESS_TYPE);
+                                dialog.setContentText("¡Excelente!, Ya estamos listos para empezar a trabajar. Te esperamos por nuestras" +
+                                        " instalaciones para una capacitación de manejo del programa y entrega de material. Recuerda que nos encontramos en bogota" +
+                                        " en la direccion xxx, tel xxx");
+                                dialog.setConfirmButton("Aceptar", new SweetAlertDialog.OnSweetClickListener() {
+                                    @Override
+                                    public void onClick(SweetAlertDialog sweetAlertDialog) {
+                                        firebaseAuth.signOut();
+                                        dialog.dismissWithAnimation();
+                                      }
+                                });
 
-                    } else{
+                            } else if (checkIn.equals(VALIDATE_FINISHED)) {
+                                dialog.dismissWithAnimation();
+                                finish();
+                                Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
+                                intent.putExtra(ID_USER, response.body().getUser().getId());
+                                startActivity(intent);
+                            }
+
+
+                        } else {
+                            dialog.changeAlertType(SweetAlertDialog.WARNING_TYPE);
+                            dialog.setContentText("Lo sentimos esta cuenta esta bloqueada, lo invitamos a comunicarse con nosotros" +
+                                    " al tel. (031)432 5760, para aclarar las dudas.  ");
+                            dialog.setConfirmText("Aceptar");
+                            firebaseAuth.signOut();
+                        }
+
+
+                    } else {
                         dialog.dismissWithAnimation();
                         finish();
                         Intent intent = new Intent(getApplicationContext(), RegisterOneActivity.class);
                         intent.putExtra(EMAIL, user.getEmail());
-                        intent.putExtra(UID, user.getUid());
                         startActivity(intent);
                     }
-                }else{
+                } else {
                     dialog.changeAlertType(SweetAlertDialog.ERROR_TYPE);
                     dialog.setContentText(response.body().getMessage());
                 }
@@ -176,7 +202,6 @@ public class LoginActivity extends AppCompatActivity {
 
     public void onClickLogIn(View view) {
         email = etEmail.getText().toString().trim();
-        // checkEmail(email);
         pass = etPass.getText().toString().trim();
         if (verifyMail(email, etEmail) && verifyPass(pass, etPass)) {
             dialog = new SweetAlertDialog(this, SweetAlertDialog.PROGRESS_TYPE);
@@ -341,4 +366,3 @@ public class LoginActivity extends AppCompatActivity {
         }
     }
 }
-

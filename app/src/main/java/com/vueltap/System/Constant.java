@@ -5,12 +5,18 @@ public class Constant {
     public static final String EMAIL = "email";
     public static final String NAMES = "names";
     public static final String PHONE = "phone";
-    public static final String LAST_NAME = "lastname";
-    public static final String DNI_NUMBER = "dninumbre";
+    public static final String LAST_NAME = "last_name";
+    public static final String DNI_NUMBER = "dni_number";
     public static final String ADDRESS = "address";
     public static final int IDENTIFY_REQUEST_CODE_FRONT = 0;
     public static final int IDENTIFY_REQUEST_CODE_BACK = 1;
     public static final int DOMICILE_REQUEST_CODE = 2;
+    public static final String VALIDATE_INFORMATION="validateInformation";
+    public static final String VALIDATE_TRANSPORT="validateTransport";
+    public static final String VALIDATE_TRAINING="validateTraining";
+    public static final String VALIDATE_FINISHED="validateFinished";
+    public static final String ID_USER="idUser";
+
 
     public static final String _IP = "DATA_IP";
     public static final String SYSTEM_IP = "SYSTEM_IP";

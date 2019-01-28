@@ -3,7 +3,7 @@ package com.vueltap.Models;
 public class JsonResponse {
    private Boolean status;
    private String message;
-   private User user;
+   private JsonUser user;
 
 
     public String getMessage() {
@@ -14,7 +14,7 @@ public class JsonResponse {
         return status;
     }
 
-    public User getUser() {
+    public JsonUser getUser() {
         return user;
     }
 }

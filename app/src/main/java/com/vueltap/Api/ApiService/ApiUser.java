@@ -26,8 +26,11 @@ public interface ApiUser {
             @Field("name") String name,
             @Field("lastName") String lastName,
             @Field("address") String address,
+            @Field("urlAddress") String urlAddress,
             @Field("phone") String phone,
-            @Field("identificationNumber") String identificationNumber
+            @Field("dniNumber") String dniNumber,
+            @Field("urlDniFront") String urlDniFront,
+            @Field("urlDniBack") String urlDniBack
     );
 
     @Multipart

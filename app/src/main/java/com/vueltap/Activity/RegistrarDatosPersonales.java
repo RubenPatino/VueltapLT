@@ -54,8 +54,6 @@ import static com.vueltap.System.Constant.PHONE;
 
 public class RegistrarDatosPersonales extends AppCompatActivity {
 
-    private ArrayList<JsonResponse> arrayList;
-    private SweetAlertDialog dialog;
     private FirebaseAuth firebaseAuth;
     private FirebaseUser user;
     private EditText etEmail, etNames, etLastNames, etAddress, etPhone, etDniNumber;
@@ -74,8 +72,8 @@ public class RegistrarDatosPersonales extends AppCompatActivity {
 
     private void loadControls() {
 //        storageRef = FirebaseStorage.getInstance().getReference();
-        //firebaseAuth = FirebaseAuth.getInstance();
-        //user = firebaseAuth.getCurrentUser();
+        firebaseAuth = FirebaseAuth.getInstance();
+        user = firebaseAuth.getCurrentUser();
         etEmail = findViewById(R.id.etEmail);
         etNames = findViewById(R.id.etNames);
         etLastNames = findViewById(R.id.etLastNames);
@@ -87,8 +85,8 @@ public class RegistrarDatosPersonales extends AppCompatActivity {
     }
 
     private void loadData() {
-        // email = user.getEmail();
-        email = "prueba@gmail.com";
+         email = user.getEmail();
+       // email = "prueba@gmail.com";
         etEmail.setText(email);
     }
 
@@ -117,7 +115,6 @@ public class RegistrarDatosPersonales extends AppCompatActivity {
             etPhone.requestFocus();
         } else {
             Intent intent = new Intent(this, ImageUploadActivity.class);
-            intent.putExtra(EMAIL, email);
             intent.putExtra(DNI_NUMBER, dniNumber);
             intent.putExtra(NAMES, names);
             intent.putExtra(LAST_NAME, lastName);

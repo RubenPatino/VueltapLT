@@ -133,7 +133,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:background="@drawable/border"
         android:baselineAligned="false"
         android:orientation="horizontal"
@@ -142,8 +142,9 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="20"
-            android:orientation="horizontal">
+            android:layout_weight="40"
+            android:gravity="center"
+            android:orientation="vertical">
 
             <ImageView
                 android:id="@+id/imageViewCheckBack"
@@ -153,18 +154,26 @@
                 android:visibility="invisible"
                 app:srcCompat="@drawable/ic_check"
                 tools:ignore="VectorDrawableCompat" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="20"
+            android:orientation="horizontal">
 
             <ImageView
                 android:id="@+id/imageViewDniBack"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:scaleType="fitXY"
                 tools:srcCompat="@android:drawable/ic_menu_gallery" />
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="80"
+            android:layout_weight="40"
             android:orientation="vertical"
             android:padding="5dp">
 
@@ -206,7 +215,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:background="@drawable/border"
         android:baselineAligned="false"
         android:orientation="horizontal"
@@ -215,8 +224,9 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="20"
-            android:orientation="horizontal">
+            android:layout_weight="40"
+            android:gravity="center"
+            android:orientation="vertical">
 
             <ImageView
                 android:id="@+id/imageViewCheckDomicile"
@@ -226,18 +236,26 @@
                 android:visibility="invisible"
                 app:srcCompat="@drawable/ic_check"
                 tools:ignore="VectorDrawableCompat" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="20"
+            android:orientation="horizontal">
 
             <ImageView
                 android:id="@+id/imageViewAdress"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:scaleType="fitXY"
                 tools:srcCompat="@android:drawable/ic_menu_gallery" />
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="80"
+            android:layout_weight="40"
             android:orientation="vertical"
             android:padding="5dp">
 
