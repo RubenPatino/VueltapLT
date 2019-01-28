@@ -31,8 +31,20 @@ public interface ApiUser {
     );
 
     @Multipart
-    @POST("user/upload/cedula")
-    Call<JsonResponse> USER_UPLOAD_IMAGE(
+    @POST("user/upload/dni/front")
+    Call<JsonResponse> UPLOAD_DNI_FRONT(
+            @Part("email") RequestBody email,
+            @Part MultipartBody.Part image
+    );
+    @Multipart
+    @POST("user/upload/dni/back")
+    Call<JsonResponse> UPLOAD_DNI_BACK(
+            @Part("email") RequestBody email,
+            @Part MultipartBody.Part image
+    );
+    @Multipart
+    @POST("user/upload/domicile")
+    Call<JsonResponse> UPLOAD_DOMICILE(
             @Part("email") RequestBody email,
             @Part MultipartBody.Part image
     );

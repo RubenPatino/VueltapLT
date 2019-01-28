@@ -79,9 +79,6 @@ public class LoginActivity extends AppCompatActivity {
                             dialog.dismissWithAnimation();
                         }
                         checkEmail(user.getEmail());
-                        // Toast.makeText(getApplicationContext(),"hola",Toast.LENGTH_LONG).show();
-                        // System.out.print("Hola mundo");
-                        //(user.getPhotoUrl());
                     } else {
                         dialog.dismissWithAnimation();
                         emailVerified();
