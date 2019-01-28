@@ -207,12 +207,11 @@ public class ImageUploadActivity extends AppCompatActivity {
         if (data != null) {
             switch (requestCode) {
                 case IDENTIFY_REQUEST_CODE_FRONT:
-                    if (data != null) {
-                        bitmap = (Bitmap) data.getExtras().get("data");
-                        imgDniFront.setImageBitmap(bitmap);
-                        if (getFile(bitmap, "DNI_FRONT") != null) {
-                            // uploadImage(getFile(bitmap,"DNI"),"rap@gmail.com","DNI_FRONT");
-                        }
+                    bitmap = (Bitmap) data.getExtras().get("data");
+                    imgDniFront.setImageBitmap(bitmap);
+                    if (getFile(bitmap, "DNI_FRONT") != null) {
+                        // uploadImage(getFile(bitmap,"DNI"),"rap@gmail.com","DNI_FRONT");
+
                     }
                     break;
                 case IDENTIFY_REQUEST_CODE_BACK:
