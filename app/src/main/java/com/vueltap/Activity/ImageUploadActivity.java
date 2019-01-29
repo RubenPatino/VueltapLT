@@ -215,7 +215,7 @@ public class ImageUploadActivity extends AppCompatActivity {
                         urlDniFront = response.body().getMessage();
                         imgCheckFront.setVisibility(View.VISIBLE);
                         dialog.dismissWithAnimation();
-                        imageFile.delete();
+                       // imageFile.delete();
                     }
                 }
             }
