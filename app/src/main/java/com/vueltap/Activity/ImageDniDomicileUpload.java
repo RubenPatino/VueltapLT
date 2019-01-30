@@ -55,6 +55,7 @@ public class ImageDniDomicileUpload extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_image_dni_domicile_upload);
+        setTitle("Validar información");
         loadControls();
     }
 
