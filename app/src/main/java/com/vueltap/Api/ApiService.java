@@ -1,6 +1,7 @@
-package com.vueltap.Api.ApiService;
+package com.vueltap.Api;
 
 import com.vueltap.Models.JsonResponse;
+import com.vueltap.Transport.Model.ModelTransport;
 
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
@@ -13,7 +14,8 @@ import retrofit2.http.POST;
 import retrofit2.http.Part;
 import retrofit2.http.Path;
 
-public interface ApiUser {
+public interface ApiService {
+    //user
     @GET("user/check/{email}")
     Call<JsonResponse> EMAIL_CHECK(
             @Path("email") String email
@@ -51,4 +53,35 @@ public interface ApiUser {
             @Part("email") RequestBody email,
             @Part MultipartBody.Part image
     );
+
+    @GET("type/transport")
+    Call<ModelTransport> GET_TRANSPORT();
+
+  /*  //LOGIN
+//Listar
+    @GET("user/check/{email}")
+    Call<JsonResponse> EMAIL_CHECK(
+            @Path("email") String email
+    );
+
+    @POST("user/add")
+    @FormUrlEncoded
+    Call<JsonResponse>USER_ADD(
+            @Field("email") String email,
+            @Field("name") String name,
+            @Field("lastName") String lastName,
+            @Field("address") String address,
+            @Field("phone") String phone,
+            @Field("identificationNumber") String identificationNumber
+    );
+
+    @Multipart
+    @POST("user/upload/cedula")
+    Call<Void> USER_UPLOAD_IMAGE(
+            @Part("email") RequestBody email,
+            @Part MultipartBody.Part image
+    );*/
 }
+
+
+

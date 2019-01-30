@@ -15,6 +15,7 @@ import com.karan.churi.PermissionManager.PermissionManager;
 import com.vueltap.Api.ApiAdapter;
 import com.vueltap.Models.JsonResponse;
 import com.vueltap.R;
+import com.vueltap.Transport.View.ViewTransport;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -144,7 +145,7 @@ public class ImageDniDomicileUpload extends AppCompatActivity {
             OnClickDomicileHelp(view);
         } else {
 
-            startActivity(new Intent().setClass(getApplicationContext(), TypeTransport.class));
+            startActivity(new Intent().setClass(getApplicationContext(), ViewTransport.class));
            /* dialog=new SweetAlertDialog(this,SweetAlertDialog.PROGRESS_TYPE);
             dialog.setTitleText("Creando la cuenta");
             dialog.setContentText("Por favor espere.");
@@ -210,7 +211,7 @@ public class ImageDniDomicileUpload extends AppCompatActivity {
 
 
     public void uploadDniFront(RequestBody emailBody, MultipartBody.Part imagePart, final File imageFile) {
-        Call<JsonResponse> call = ApiAdapter.getApiUser().UPLOAD_DNI_FRONT(emailBody, imagePart);
+        Call<JsonResponse> call = ApiAdapter.getApiService().UPLOAD_DNI_FRONT(emailBody, imagePart);
         call.enqueue(new Callback<JsonResponse>() {
             @Override
             public void onResponse(Call<JsonResponse> call, Response<JsonResponse> response) {
@@ -234,7 +235,7 @@ public class ImageDniDomicileUpload extends AppCompatActivity {
     }
 
     public void uploadDniBack(RequestBody emailBody, MultipartBody.Part imagePart, final File imageFile) {
-        Call<JsonResponse> call = ApiAdapter.getApiUser().UPLOAD_DNI_BACK(emailBody, imagePart);
+        Call<JsonResponse> call = ApiAdapter.getApiService().UPLOAD_DNI_BACK(emailBody, imagePart);
         call.enqueue(new Callback<JsonResponse>() {
             @Override
             public void onResponse(Call<JsonResponse> call, Response<JsonResponse> response) {
@@ -258,7 +259,7 @@ public class ImageDniDomicileUpload extends AppCompatActivity {
     }
 
     public void uploadDomicile(RequestBody emailBody, MultipartBody.Part imagePart, final File imageFile) {
-        Call<JsonResponse> call = ApiAdapter.getApiUser().UPLOAD_DOMICILE(emailBody, imagePart);
+        Call<JsonResponse> call = ApiAdapter.getApiService().UPLOAD_DOMICILE(emailBody, imagePart);
         call.enqueue(new Callback<JsonResponse>() {
             @Override
             public void onResponse(Call<JsonResponse> call, Response<JsonResponse> response) {

@@ -23,6 +23,7 @@ import com.karan.churi.PermissionManager.PermissionManager;
 import com.vueltap.Api.ApiAdapter;
 import com.vueltap.Models.JsonResponse;
 import com.vueltap.R;
+import com.vueltap.Transport.View.ViewTransport;
 
 import cn.pedant.SweetAlert.SweetAlertDialog;
 import retrofit2.Call;
@@ -117,7 +118,7 @@ public class LoginActivity extends AppCompatActivity {
                                 dialog.setConfirmButton("Aceptar", new SweetAlertDialog.OnSweetClickListener() {
                                     @Override
                                     public void onClick(SweetAlertDialog sweetAlertDialog) {
-                                        Intent intent = new Intent(getApplicationContext(), TypeTransport.class);
+                                        Intent intent = new Intent(getApplicationContext(), ViewTransport.class);
                                         intent.putExtra(ID_USER, id);
                                         startActivity(intent);
                                     }

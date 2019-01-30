@@ -62,4 +62,5 @@ dependencies {
     implementation 'org.codehaus.jackson:jackson-mapper-lgpl:1.9.13'
 
     implementation 'com.orhanobut:logger:2.2.0'
+    implementation 'com.android.support:recyclerview-v7:26.1.0'
 }
