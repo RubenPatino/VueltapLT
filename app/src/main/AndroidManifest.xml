@@ -24,14 +24,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity
-            android:name=".MainBasicActivity"
-            android:label="@string/title_activity_main_basic"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity
-            android:name=".MainTableActivity"
-            android:label="@string/title_activity_main_table"
-            android:theme="@style/AppTheme.NoActionBar" />
+
         <activity android:name=".Transport.View.ViewTransport">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

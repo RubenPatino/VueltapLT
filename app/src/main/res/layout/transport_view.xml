@@ -97,7 +97,9 @@
             android:background="@drawable/border"
             android:orientation="vertical"
             android:paddingLeft="8dp"
+            android:paddingTop="8dp"
             android:paddingRight="8dp"
+            android:paddingBottom="8dp"
             android:visibility="visible"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -145,7 +147,7 @@
                     android:orientation="vertical">
 
                     <ImageView
-                        android:id="@+id/imageViewCheckFront"
+                        android:id="@+id/imageViewCheckLicence"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:visibility="invisible"
@@ -182,7 +184,6 @@
                         android:id="@+id/imageButton3"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:onClick="OnClickDniFront"
                         app:srcCompat="@drawable/ic_camera_black"
                         tools:ignore="VectorDrawableCompat" />
 
@@ -191,7 +192,6 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="@drawable/success_circle"
-                        android:onClick="OnClickDniHelpFront"
                         android:text="@string/help" />
 
                 </LinearLayout>
@@ -220,7 +220,7 @@
                     android:orientation="vertical">
 
                     <ImageView
-                        android:id="@+id/imageViewCheckFront"
+                        android:id="@+id/imageViewCheckProperty"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:visibility="invisible"
@@ -254,19 +254,17 @@
                     android:padding="5dp">
 
                     <ImageButton
-                        android:id="@+id/imageButton336"
+                        android:id="@+id/imageButtonProperty"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:onClick="OnClickDniFront"
                         app:srcCompat="@drawable/ic_camera_black"
                         tools:ignore="VectorDrawableCompat" />
 
                     <Button
-                        android:id="@+id/button509"
+                        android:id="@+id/buttonHelpProperty"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="@drawable/success_circle"
-                        android:onClick="OnClickDniHelpFront"
                         android:text="@string/help" />
 
                 </LinearLayout>
@@ -295,7 +293,7 @@
                     android:orientation="vertical">
 
                     <ImageView
-                        android:id="@+id/imageViewCheckFront"
+                        android:id="@+id/imageViewCheckSoat"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:visibility="invisible"
@@ -332,7 +330,6 @@
                         android:id="@+id/imageButton336"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:onClick="OnClickDniFront"
                         app:srcCompat="@drawable/ic_camera_black"
                         tools:ignore="VectorDrawableCompat" />
 
@@ -341,7 +338,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="@drawable/success_circle"
-                        android:onClick="OnClickDniHelpFront"
+                        android:onClick="OnClickHelpSoat"
                         android:text="@string/help" />
 
                 </LinearLayout>
@@ -355,6 +352,7 @@
             android:id="@+id/button7"
             android:layout_width="200dp"
             android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
             android:layout_marginTop="24dp"
             android:layout_marginEnd="16dp"
             android:layout_marginBottom="16dp"
@@ -365,6 +363,7 @@
             android:textSize="18sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/LinearLayoutTransport" />
 
 

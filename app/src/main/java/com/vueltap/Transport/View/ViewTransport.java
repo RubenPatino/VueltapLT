@@ -2,10 +2,8 @@ package com.vueltap.Transport.View;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.LinearLayout;
@@ -13,17 +11,20 @@ import android.widget.LinearLayout;
 import com.vueltap.Transport.Adapter.AdapterTransport;
 import com.vueltap.R;
 
+import cn.pedant.SweetAlert.SweetAlertDialog;
+
 public class ViewTransport extends AppCompatActivity {
 
     private RecyclerView recyclerView;
     private AdapterTransport adapter;
     private LinearLayout linearLayout;
     private CheckBox cbClicla,cbMoto;
+    private SweetAlertDialog dialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_type_transport);
+        setContentView(R.layout.transport_view);
         setTitle("Transporte");
         loadControls();
     }
@@ -77,7 +78,11 @@ public class ViewTransport extends AppCompatActivity {
 
     }
 
-    public void OnClickHelpSoat(View view){}
+    public void OnClickHelpSoat(View view){
+        dialog=new SweetAlertDialog(this,SweetAlertDialog.CUSTOM_IMAGE_TYPE);
+        dialog.setContentText("Tomale una foto a tu SOAP");
+        dialog.show();
+    }
     public void OnClickHelpLicence(View view){}
     public void OnClickHelpProperty(View view){}
 }
