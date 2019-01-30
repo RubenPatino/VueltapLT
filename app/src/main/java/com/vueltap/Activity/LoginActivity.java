@@ -59,6 +59,7 @@ public class LoginActivity extends AppCompatActivity {
         user = firebaseAuth.getCurrentUser();
         etEmail = findViewById(R.id.etEmail);
         etPass = findViewById(R.id.etPass);
+        etEmail.requestFocus();
         loadPermission();
         loadAuthState();
     }
@@ -116,7 +117,7 @@ public class LoginActivity extends AppCompatActivity {
                                 dialog.setConfirmButton("Aceptar", new SweetAlertDialog.OnSweetClickListener() {
                                     @Override
                                     public void onClick(SweetAlertDialog sweetAlertDialog) {
-                                        Intent intent = new Intent(getApplicationContext(), TransprtActivity.class);
+                                        Intent intent = new Intent(getApplicationContext(), TypeTransport.class);
                                         intent.putExtra(ID_USER, id);
                                         startActivity(intent);
                                     }
@@ -155,7 +156,7 @@ public class LoginActivity extends AppCompatActivity {
                     } else {
                         dialog.dismissWithAnimation();
                         finish();
-                        Intent intent = new Intent(getApplicationContext(), RegisterOneActivity.class);
+                        Intent intent = new Intent(getApplicationContext(), RegisterWelcome.class);
                         intent.putExtra(EMAIL, user.getEmail());
                         startActivity(intent);
                     }

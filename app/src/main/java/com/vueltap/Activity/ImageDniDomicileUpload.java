@@ -20,6 +20,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.Objects;
 
 import cn.pedant.SweetAlert.SweetAlertDialog;
 import okhttp3.MediaType;
@@ -38,7 +39,7 @@ import static com.vueltap.System.Constant.LAST_NAME;
 import static com.vueltap.System.Constant.NAMES;
 import static com.vueltap.System.Constant.PHONE;
 
-public class ImageUploadActivity extends AppCompatActivity {
+public class ImageDniDomicileUpload extends AppCompatActivity {
 
     private SweetAlertDialog dialog;
     private ImageView imgDniFront, imgDniBack, imgAddress, imgCheckFront, imgCheckBack, imgCheckDomicile;
@@ -52,11 +53,12 @@ public class ImageUploadActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_image_upload);
+        setContentView(R.layout.activity_image_dni_domicile_upload);
         loadControls();
     }
 
     public void loadControls() {
+        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
         firebaseAuth = FirebaseAuth.getInstance();
         user = firebaseAuth.getCurrentUser();
         imgDniFront = findViewById(R.id.imageViewDniFront);
@@ -141,7 +143,9 @@ public class ImageUploadActivity extends AppCompatActivity {
         } else if (urlAddress.isEmpty()) {
             OnClickDomicileHelp(view);
         } else {
-            dialog=new SweetAlertDialog(this,SweetAlertDialog.PROGRESS_TYPE);
+
+            startActivity(new Intent().setClass(getApplicationContext(), TypeTransport.class));
+           /* dialog=new SweetAlertDialog(this,SweetAlertDialog.PROGRESS_TYPE);
             dialog.setTitleText("Creando la cuenta");
             dialog.setContentText("Por favor espere.");
             dialog.show();
@@ -177,7 +181,7 @@ public class ImageUploadActivity extends AppCompatActivity {
                     dialog.changeAlertType(SweetAlertDialog.ERROR_TYPE);
                     dialog.setContentText(t.getMessage());
                 }
-            });
+            });*/
         }
     }
 

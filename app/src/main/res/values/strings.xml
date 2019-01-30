@@ -23,4 +23,8 @@
     <string name="address">Dirección *</string>
     <string name="msg_isempty">Por favor complete este campo.</string>
     <string name="help">\?\</string>
+    <string name="title_activity_main_table">MainTableActivity</string>
+    <string name="action_settings">Settings</string>
+    <string name="section_format">Hello World from section: %1$d</string>
+    <string name="title_activity_main_basic">MainBasicActivity</string>
 </resources>

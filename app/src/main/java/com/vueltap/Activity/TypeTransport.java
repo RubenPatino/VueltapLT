@@ -5,11 +5,11 @@ import android.os.Bundle;
 
 import com.vueltap.R;
 
-public class TransprtActivity extends AppCompatActivity {
+public class TypeTransport extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_transprt);
+        setContentView(R.layout.activity_type_transport);
     }
 }

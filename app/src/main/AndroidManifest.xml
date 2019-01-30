@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.vueltap">
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -21,23 +22,43 @@
         android:label="@string/app_name"
         android:roundIcon="@drawable/logo"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
-        <activity android:name=".Activity.TransprtActivity"></activity>
-        <activity android:name=".Activity.ImageUploadActivity">
+        android:theme="@style/AppTheme"
+        tools:ignore="GoogleAppIndexingWarning">
+        <activity
+            android:name=".MainBasicActivity"
+            android:label="@string/title_activity_main_basic"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".MainTableActivity"
+            android:label="@string/title_activity_main_table"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".Activity.TypeTransport">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".Activity.ImageDniDomicileUpload"
+            android:parentActivityName=".Activity.RegisterFormData">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
+            <meta-data android:name="android.support.PARENT_ACTIVITY"
+                android:value=".Activity.RegisterFormData">
+            </meta-data>
         </activity>
         <activity android:name=".Activity.HomeActivity" />
         <activity android:name=".Activity.RegistroFinal" />
-        <activity android:name=".Activity.RegistrarDatosPersonales">
+        <activity android:name=".Activity.RegisterFormData"
+            android:parentActivityName=".Activity.RegisterConditions">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
+                <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
+            <meta-data android:name="android.support.PARENT_ACTIVITY"
+                android:value=".Activity.RegisterConditions">
+            </meta-data>
         </activity>
         <activity
             android:name=".Activity.splash_screen"
@@ -46,11 +67,17 @@
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
+                <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity android:name=".Activity.RegisterTwoActivity" />
-        <activity android:name=".Activity.RegisterOneActivity" />
+        <activity android:name=".Activity.RegisterConditions"
+            android:parentActivityName=".Activity.RegisterWelcome">
+            <meta-data android:name="android.support.PARENT_ACTIVITY"
+                android:value=".Activity.RegisterWelcome">
+            </meta-data>
+
+        </activity>
+        <activity android:name=".Activity.RegisterWelcome" />
         <activity android:name=".Activity.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
