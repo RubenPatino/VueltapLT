@@ -16,7 +16,10 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.karan.churi.PermissionManager.PermissionManager;
+import com.vueltap.Activity.LoginActivity;
 import com.vueltap.Api.ApiAdapter;
 import com.vueltap.Models.JsonResponse;
 import com.vueltap.R;
@@ -26,6 +29,9 @@ import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.Objects;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import cn.pedant.SweetAlert.SweetAlertDialog;
 import okhttp3.MediaType;
@@ -34,6 +40,15 @@ import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+
+import static com.vueltap.System.Constant.ADDRESS;
+import static com.vueltap.System.Constant.DNI_NUMBER;
+import static com.vueltap.System.Constant.LAST_NAME;
+import static com.vueltap.System.Constant.NAMES;
+import static com.vueltap.System.Constant.PHONE;
+import static com.vueltap.System.Constant.URL_DNI_BACK;
+import static com.vueltap.System.Constant.URL_DNI_FRONT;
+import static com.vueltap.System.Constant.URL_DOMICILE;
 
 public class ViewTransport extends AppCompatActivity {
 
@@ -46,6 +61,7 @@ public class ViewTransport extends AppCompatActivity {
     private CheckBox cbClicla, cbMoto;
     private SweetAlertDialog dialog;
     private String urlProperty = "", urlSOAT = "", urlLicence = "", numPlaca = "",email;
+    private String names, lastName, address, phone, dniNumber,urlDniFront,urlDniBack, urlAddress;
     private EditText etPlaca;
     private final int PICTURE_RESULT=1;
     private Uri imageUri;
@@ -53,6 +69,8 @@ public class ViewTransport extends AppCompatActivity {
     private Bitmap bitmap;
     private PermissionManager permissionManager;
     private ImageView checkProperty,checkLicence,checkSoat;
+    private FirebaseAuth firebaseAuth;
+    private FirebaseUser user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,7 +81,10 @@ public class ViewTransport extends AppCompatActivity {
     }
 
     private void loadControls() {
-        email="rpm8530@gmail.com";
+        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
+        firebaseAuth = FirebaseAuth.getInstance();
+        user = firebaseAuth.getCurrentUser();
+        //email="rpm8530@gmail.com";
         permissionManager = new PermissionManager() {};
         etPlaca = findViewById(R.id.TextInputPlaca);
         ivLicence=findViewById(R.id.imageViewLicence);
@@ -109,6 +130,20 @@ public class ViewTransport extends AppCompatActivity {
             }
         });
 
+        loadData();
+
+    }
+
+    private void loadData() {
+        email=user.getEmail();
+        dniNumber = getIntent().getStringExtra(DNI_NUMBER);
+        names = getIntent().getStringExtra(NAMES);
+        lastName = getIntent().getStringExtra(LAST_NAME);
+        address = getIntent().getStringExtra(ADDRESS);
+        phone = getIntent().getStringExtra(PHONE);
+        urlDniFront=getIntent().getStringExtra(URL_DNI_FRONT);
+        urlDniBack=getIntent().getStringExtra(URL_DNI_BACK);
+        urlAddress =getIntent().getStringExtra(URL_DOMICILE);
     }
 
     private Boolean validateMoto(View view) {
@@ -139,8 +174,6 @@ public class ViewTransport extends AppCompatActivity {
         }
 
     }
-
-
 
     public void OnclickPhotoSoat(View view) {
         if (permissionManager.checkAndRequestPermissions(this)) {
@@ -183,20 +216,72 @@ public class ViewTransport extends AppCompatActivity {
     }
 
     public void OnClickRegister(View view) {
-        if (cbMoto.isChecked()) {
-            if (validateMoto(view)) {
-                Log.d("TAG", "moto, todo OK");
+
+        if(cbClicla.isChecked()&&cbMoto.isChecked()){
+            if(validateMoto(view)){
+                savedUser();
             }
-        }
-        if (cbClicla.isChecked()) {
-            Log.d("TAG", "cicla, todo OK");
-        }
-        if(!cbMoto.isChecked() && !cbClicla.isChecked()){
+        }else if(cbClicla.isChecked()){
+            savedUser();
+        }else if(cbMoto.isChecked()){
+            if(validateMoto(view)){
+                savedUser();
+            }
+        }else{
             dialog=new SweetAlertDialog(this,SweetAlertDialog.ERROR_TYPE);
             dialog.setContentText("Por favor selecciona una opción.");
             dialog.setConfirmText("Aceptar");
             dialog.show();
         }
+    }
+
+    public void savedUser(){
+            dialog=new SweetAlertDialog(this,SweetAlertDialog.PROGRESS_TYPE);
+            dialog.setTitleText("Creando la cuenta");
+            dialog.setContentText("Por favor espere.");
+            dialog.show();
+            Log.d("Datos",email+"_"+dniNumber+"_"+names+"_"+lastName+"_"+address+"_"+phone+"_"+urlDniFront+
+                    "_"+urlDniBack+"_"+urlAddress+"_"+urlProperty+"_"+urlLicence+"_"+urlSOAT);
+        new Timer().schedule(new TimerTask() {
+            @Override
+            public void run() {
+                dialog.changeAlertType(SweetAlertDialog.SUCCESS_TYPE);
+                dialog.setContentText("Felicitaciones has finalizado tu proceso de registro exitosamente.  Procederemos con un chequeo de seguridad de toda la información suministrada. Si eres seleccionado te llegará un mensaje de texto invitándote a una capacitación. Este proceso tardará una semana aproximadamente.");
+            }
+        }, 2000);
+            /*Call<JsonResponse> call = ApiAdapter.getApiService().USER_ADD(email,dniNumber, names, lastName, address,phone,urlDniBack,urlDniFront,urlAddress);
+            call.enqueue(new Callback<JsonResponse>() {
+                @Override
+                public void onResponse(Call<JsonResponse> call, Response<JsonResponse> response) {
+                    if (response.isSuccessful()) {
+                        if (response.body().getStatus()) {
+                            dialog.changeAlertType(SweetAlertDialog.SUCCESS_TYPE);
+                            dialog.setContentText(response.body().getMessage());
+                            dialog.setConfirmButton("Aceptar", new SweetAlertDialog.OnSweetClickListener() {
+                                @Override
+                                public void onClick(SweetAlertDialog sweetAlertDialog) {
+                                    dialog.dismissWithAnimation();
+                                    firebaseAuth.signOut();
+                                    finish();
+                                    startActivity(new Intent().setClass(getApplicationContext(), LoginActivity.class));
+                                }
+                            });
+                        } else {
+                            dialog.changeAlertType(SweetAlertDialog.ERROR_TYPE);
+                            dialog.setContentText(response.body().getMessage());
+                        }
+                    } else {
+                        dialog.changeAlertType(SweetAlertDialog.ERROR_TYPE);
+                        dialog.setContentText(response.body().getMessage());
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<JsonResponse> call, Throwable t) {
+                    dialog.changeAlertType(SweetAlertDialog.ERROR_TYPE);
+                    dialog.setContentText(t.getMessage());
+                }
+            });*/
     }
 
     public File getFile (Bitmap bmp){
@@ -235,7 +320,7 @@ public class ViewTransport extends AppCompatActivity {
                 uploadpProperty(emailBody, imagePart, imageFile);
                 break;
             case _LYCENCE:
-                uploadLycence(emailBody, imagePart, imageFile);
+                uploadLicence(emailBody, imagePart, imageFile);
                 break;
             case _SOAT:
                 uploadSoat(emailBody, imagePart, imageFile);
@@ -266,7 +351,8 @@ public class ViewTransport extends AppCompatActivity {
             }
         });
     }
-    public void uploadLycence(RequestBody emailBody, MultipartBody.Part imagePart, final File imageFile) {
+
+    public void uploadLicence(RequestBody emailBody, MultipartBody.Part imagePart, final File imageFile) {
         Call<JsonResponse> call = ApiAdapter.getApiService().UPLOAD_LICENCE(emailBody, imagePart);
         call.enqueue(new Callback<JsonResponse>() {
             @Override
@@ -314,10 +400,6 @@ public class ViewTransport extends AppCompatActivity {
         });
     }
 
-
-
-
-
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -328,22 +410,22 @@ public class ViewTransport extends AppCompatActivity {
                     ivProperty.setImageBitmap(bitmap);
                     File property = getFile(bitmap);
                     if (property != null) {
-                       // getMultipart(dniFront, requestCode);
+                       getMultipart(property, requestCode);
                     }
                     break;
                 case _LYCENCE:
                     ivLicence.setImageBitmap(bitmap);
                     File licence = getFile(bitmap);
                     if (licence != null) {
-                       // getMultipart(dniBack, requestCode);
+                        getMultipart(licence, requestCode);
                     }
                     break;
                 case _SOAT:
 
                     ivSoat.setImageBitmap(bitmap);
-                    File domicile = getFile(bitmap);
-                    if (domicile != null) {
-                      //  getMultipart(domicile, requestCode);
+                    File soat = getFile(bitmap);
+                    if (soat != null) {
+                        getMultipart(soat, requestCode);
                     }
                     break;
             }

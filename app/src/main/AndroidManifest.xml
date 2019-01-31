@@ -25,11 +25,15 @@
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
 
-        <activity android:name=".Transport.View.ViewTransport">
+        <activity android:name=".Transport.View.ViewTransport"
+            android:parentActivityName=".Activity.ImageDniDomicileUpload">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
+                <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
+            <meta-data android:name="android.support.PARENT_ACTIVITY"
+                android:value=".Activity.ImageDniDomicileUpload">
+            </meta-data>
         </activity>
         <activity android:name=".Activity.ImageDniDomicileUpload"
             android:parentActivityName=".Activity.RegisterFormData">
@@ -60,7 +64,7 @@
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity android:name=".Activity.RegisterConditions"

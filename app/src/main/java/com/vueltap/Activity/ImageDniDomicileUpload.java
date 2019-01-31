@@ -39,6 +39,9 @@ import static com.vueltap.System.Constant.IDENTIFY_REQUEST_CODE_FRONT;
 import static com.vueltap.System.Constant.LAST_NAME;
 import static com.vueltap.System.Constant.NAMES;
 import static com.vueltap.System.Constant.PHONE;
+import static com.vueltap.System.Constant.URL_DNI_BACK;
+import static com.vueltap.System.Constant.URL_DNI_FRONT;
+import static com.vueltap.System.Constant.URL_DOMICILE;
 
 public class ImageDniDomicileUpload extends AppCompatActivity {
 
@@ -61,8 +64,8 @@ public class ImageDniDomicileUpload extends AppCompatActivity {
 
     public void loadControls() {
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
-       // firebaseAuth = FirebaseAuth.getInstance();
-        //user = firebaseAuth.getCurrentUser();
+        firebaseAuth = FirebaseAuth.getInstance();
+        user = firebaseAuth.getCurrentUser();
         imgDniFront = findViewById(R.id.imageViewDniFront);
         imgDniBack = findViewById(R.id.imageViewDniBack);
         imgAddress = findViewById(R.id.imageViewAdress);
@@ -74,18 +77,12 @@ public class ImageDniDomicileUpload extends AppCompatActivity {
     }
 
     public void loadData() {
-       email = "rr@gmail.com";
-        names="Rapa";
-        lastName="Full";
-        address="cll 4 #2-13";
-        phone="4777558650";
-        dniNumber="1234567890";
-        /* email=user.getEmail();
+        email=user.getEmail();
         names = getIntent().getStringExtra(NAMES);
         lastName = getIntent().getStringExtra(LAST_NAME);
         address = getIntent().getStringExtra(ADDRESS);
         phone = getIntent().getStringExtra(PHONE);
-        dniNumber = getIntent().getStringExtra(DNI_NUMBER);*/
+        dniNumber = getIntent().getStringExtra(DNI_NUMBER);
     }
 
     public void OnClickDniFront(View view) {
@@ -145,45 +142,16 @@ public class ImageDniDomicileUpload extends AppCompatActivity {
         } else if (urlAddress.isEmpty()) {
             OnClickDomicileHelp(view);
         } else {
-
+            Intent intent=new Intent(this,ViewTransport.class);
+            intent.putExtra(DNI_NUMBER,dniNumber);
+            intent.putExtra(NAMES,names);
+            intent.putExtra(LAST_NAME,lastName);
+            intent.putExtra(ADDRESS,address);
+            intent.putExtra(PHONE,phone);
+            intent.putExtra(URL_DNI_FRONT,urlDniFront);
+            intent.putExtra(URL_DNI_BACK,urlDniFront);
+            intent.putExtra(URL_DOMICILE,urlDniFront);
             startActivity(new Intent().setClass(getApplicationContext(), ViewTransport.class));
-           /* dialog=new SweetAlertDialog(this,SweetAlertDialog.PROGRESS_TYPE);
-            dialog.setTitleText("Creando la cuenta");
-            dialog.setContentText("Por favor espere.");
-            dialog.show();
-            Call<JsonResponse> call = ApiAdapter.getApiUser().USER_ADD(email, names, lastName, address, urlAddress, phone, dniNumber,urlDniFront,urlDniBack);
-            call.enqueue(new Callback<JsonResponse>() {
-                @Override
-                public void onResponse(Call<JsonResponse> call, Response<JsonResponse> response) {
-                    if (response.isSuccessful()) {
-                        if (response.body().getStatus()) {
-                            dialog.changeAlertType(SweetAlertDialog.SUCCESS_TYPE);
-                            dialog.setContentText(response.body().getMessage());
-                            dialog.setConfirmButton("Aceptar", new SweetAlertDialog.OnSweetClickListener() {
-                                @Override
-                                public void onClick(SweetAlertDialog sweetAlertDialog) {
-                                    dialog.dismissWithAnimation();
-                                    firebaseAuth.signOut();
-                                    finish();
-                                    startActivity(new Intent().setClass(getApplicationContext(), LoginActivity.class));
-                                }
-                            });
-                        } else {
-                            dialog.changeAlertType(SweetAlertDialog.ERROR_TYPE);
-                            dialog.setContentText(response.body().getMessage());
-                        }
-                    } else {
-                        dialog.changeAlertType(SweetAlertDialog.ERROR_TYPE);
-                        dialog.setContentText(response.body().getMessage());
-                    }
-                }
-
-                @Override
-                public void onFailure(Call<JsonResponse> call, Throwable t) {
-                    dialog.changeAlertType(SweetAlertDialog.ERROR_TYPE);
-                    dialog.setContentText(t.getMessage());
-                }
-            });*/
         }
     }
 
@@ -221,7 +189,7 @@ public class ImageDniDomicileUpload extends AppCompatActivity {
                         urlDniFront = response.body().getMessage();
                         imgCheckFront.setVisibility(View.VISIBLE);
                         dialog.dismissWithAnimation();
-                       // imageFile.delete();
+                        imageFile.delete();
                     }
                 }
             }

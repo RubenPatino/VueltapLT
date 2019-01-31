@@ -24,8 +24,6 @@ public class RegisterWelcome extends AppCompatActivity {
 
     public void OnClickNext(View view){
         startActivity(new Intent().setClass(getApplicationContext(), RegisterConditions.class));
-       // startActivity(new Intent().setClass(getApplicationContext(), MainTableActivity.class));
-      //  startActivity(new Intent().setClass(getApplicationContext(), MainBasicActivity.class));
     }
     public void OnClickExit(View view){
          finish();

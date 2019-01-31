@@ -56,6 +56,20 @@ public class RegisterFormData extends AppCompatActivity {
         etEmail.setText(email);
     }
 
+    private boolean validateDniNumer(String pass, EditText editText) {
+        if (pass.isEmpty()) {
+            editText.setError("Introduce la contraseña.");
+            editText.requestFocus();
+            return false;
+        } else if (pass.length() < 5) {
+            editText.setError("Por favor introduzca una contraseña  mayor de 5 caracteres (números y letras) solamente.");
+            editText.requestFocus();
+            return false;
+        } else {
+            return true;
+        }
+    }
+
     public void OnClickNext(View view) {
         String names, lastName, address, phone, dniNumber;
         dniNumber = etDniNumber.getText().toString().trim();
@@ -67,7 +81,10 @@ public class RegisterFormData extends AppCompatActivity {
         if (dniNumber.isEmpty()) {
             etDniNumber.setError(getString(R.string.msg_isempty));
             etDniNumber.requestFocus();
-        } else if (names.isEmpty()) {
+        }else if(dniNumber.length()<7){
+            etDniNumber.setError("Por favor introduzca una número de cedula valido.");
+            etDniNumber.requestFocus();
+        }else if (names.isEmpty()) {
             etNames.setError(getString(R.string.msg_isempty));
             etNames.requestFocus();
         } else if (lastName.isEmpty()) {
@@ -79,7 +96,10 @@ public class RegisterFormData extends AppCompatActivity {
         } else if (phone.isEmpty()) {
             etPhone.setError(getString(R.string.msg_isempty));
             etPhone.requestFocus();
-        } else {
+        } else if(phone.length()<10){
+            etPhone.setError("Por favor digita un número de teléfono valido.");
+            etPhone.requestFocus();
+        }else {
             Intent intent = new Intent(this, ImageDniDomicileUpload.class);
             intent.putExtra(DNI_NUMBER, dniNumber);
             intent.putExtra(NAMES, names);

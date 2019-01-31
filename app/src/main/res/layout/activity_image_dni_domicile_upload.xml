@@ -30,7 +30,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="start|left"
-                android:text="Para terminar el proceso de registro por favor toma una foto a tu identificación  (parte frontal y trasera)  y una foto a tu comprobante de domicilio no mayor a 3 meses, esto con el fin de validar la informacion suministrada."
+                android:text="Por favor toma una foto a tu identificación  (parte frontal y trasera)  y una foto a tu comprobante de domicilio no mayor a 3 meses, esto con el fin de validar la informacion suministrada."
                 android:textColor="@color/colorPrimary" />
         </LinearLayout>
 

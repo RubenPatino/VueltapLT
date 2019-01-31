@@ -25,15 +25,15 @@ public interface ApiService {
     @FormUrlEncoded
     Call<JsonResponse>USER_ADD(
             @Field("email") String email,
+            @Field("dniNumber") String dniNumber,
             @Field("name") String name,
             @Field("lastName") String lastName,
             @Field("address") String address,
-            @Field("urlAddress") String urlAddress,
             @Field("phone") String phone,
-            @Field("dniNumber") String dniNumber,
             @Field("urlDniFront") String urlDniFront,
-            @Field("urlDniBack") String urlDniBack
-    );
+            @Field("urlDniBack") String urlDniBack,
+            @Field("urlAddress") String urlAddress
+            );
 
     @Multipart
     @POST("user/upload/dni/front")

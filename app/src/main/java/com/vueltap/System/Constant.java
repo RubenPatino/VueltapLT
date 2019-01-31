@@ -19,6 +19,10 @@ public class Constant {
     private static final int _PPROPERTY = 0;
     private static final int _LYCENCE = 1;
     private static final int _SOAT = 2;
+    public static final String URL_DNI_FRONT="urldnifront";
+    public static final String URL_DNI_BACK="urldniback";
+    public static final String URL_DOMICILE="urldomicile";
+
 
 
     public static final String _IP = "DATA_IP";
