@@ -100,7 +100,7 @@
             android:paddingTop="8dp"
             android:paddingRight="8dp"
             android:paddingBottom="8dp"
-            android:visibility="visible"
+            android:visibility="gone"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/checkBoxMoto">
@@ -351,6 +351,7 @@
                 </LinearLayout>
 
             </LinearLayout>
+
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -410,7 +411,7 @@
                         android:id="@+id/imageButton3366"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:onClick="OnclickPhotoSoat"
+                        android:onClick="OnclickPhotoTecno"
                         app:srcCompat="@drawable/ic_camera_black"
                         tools:ignore="VectorDrawableCompat" />
 
@@ -419,7 +420,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="@drawable/success_circle"
-                        android:onClick="OnClickHelpSoat"
+                        android:onClick="OnClickHelpTecno"
                         android:text="@string/help" />
 
                 </LinearLayout>

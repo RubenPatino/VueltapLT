@@ -72,6 +72,22 @@ public interface ApiService {
             @Part("email") RequestBody email,
             @Part MultipartBody.Part image
     );
+
+    @Multipart
+    @POST("user/upload/img/tecno")
+    Call<JsonResponse> UPLOAD_TECNO(
+            @Part("email") RequestBody email,
+            @Part MultipartBody.Part image
+    );
+
+
+
+
+
+
+
+
+
     @GET("type/transport")
     Call<ModelTransport> GET_TRANSPORT();
 

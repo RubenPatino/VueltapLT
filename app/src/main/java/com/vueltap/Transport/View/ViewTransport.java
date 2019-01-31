@@ -55,22 +55,24 @@ public class ViewTransport extends AppCompatActivity {
     private static final int _PPROPERTY = 0;
     private static final int _LYCENCE = 1;
     private static final int _SOAT = 2;
+    private static final int _TECNO=3;
     private RecyclerView recyclerView;
     private AdapterTransport adapter;
     private LinearLayout linearLayout;
     private CheckBox cbClicla, cbMoto;
     private SweetAlertDialog dialog;
-    private String urlProperty = "", urlSOAT = "", urlLicence = "", numPlaca = "",email;
-    private String names, lastName, address, phone, dniNumber,urlDniFront,urlDniBack, urlAddress;
+    private String urlProperty = "", urlSOAT = "", urlLicence = "", numPlaca = "",urlTecno="";
+    private String email,names, lastName, address, phone, dniNumber,urlDniFront,urlDniBack, urlAddress;
     private EditText etPlaca;
     private final int PICTURE_RESULT=1;
     private Uri imageUri;
-    private ImageView ivLicence,ivProperty,ivSoat;
+    private ImageView ivLicence,ivProperty,ivSoat,ivTecno;
     private Bitmap bitmap;
     private PermissionManager permissionManager;
-    private ImageView checkProperty,checkLicence,checkSoat;
+    private ImageView checkProperty,checkLicence,checkSoat,checkTecno;
     private FirebaseAuth firebaseAuth;
     private FirebaseUser user;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -90,9 +92,11 @@ public class ViewTransport extends AppCompatActivity {
         ivLicence=findViewById(R.id.imageViewLicence);
         ivProperty=findViewById(R.id.imageViewProperty);
         ivSoat=findViewById(R.id.imageViewSoat);
+        ivTecno=findViewById(R.id.imageViewTecno);
         checkProperty=findViewById(R.id.imageViewCheckProperty);
         checkLicence=findViewById(R.id.imageViewCheckLicence);
         checkSoat=findViewById(R.id.imageViewCheckSoat);
+        checkSoat=findViewById(R.id.imageViewCheckTecno);
        /* recyclerView=findViewById(R.id.rvTypeTransport);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -161,7 +165,10 @@ public class ViewTransport extends AppCompatActivity {
         } else if (urlSOAT.isEmpty()) {
             OnClickHelpSoat(view);
             return false;
-        } else {
+        }else if(urlTecno.isEmpty()){
+           OnClickHelpTecno(view);
+            return false;
+        }else {
             return true;
         }
     }
@@ -181,6 +188,13 @@ public class ViewTransport extends AppCompatActivity {
             startActivityForResult(intent,_SOAT);
         }
     }
+    public void OnclickPhotoTecno(View view) {
+        if (permissionManager.checkAndRequestPermissions(this)) {
+            Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+            startActivityForResult(intent,_TECNO);
+        }
+    }
+
 
     public void OnclickPhotoLicence(View view) throws IOException {
         if (permissionManager.checkAndRequestPermissions(this)) {
@@ -214,6 +228,12 @@ public class ViewTransport extends AppCompatActivity {
         dialog.setContentText("Tomale una foto a tu tarjeta de propidad");
         dialog.show();
     }
+    public void OnClickHelpTecno(View view) {
+        dialog = new SweetAlertDialog(this, SweetAlertDialog.WARNING_TYPE);
+        dialog.setContentText("Tomale una foto a la Revisión Técnico mecánica");
+        dialog.show();
+    }
+
 
     public void OnClickRegister(View view) {
 
@@ -236,20 +256,24 @@ public class ViewTransport extends AppCompatActivity {
     }
 
     public void savedUser(){
-            dialog=new SweetAlertDialog(this,SweetAlertDialog.PROGRESS_TYPE);
-            dialog.setTitleText("Creando la cuenta");
-            dialog.setContentText("Por favor espere.");
+            dialog=new SweetAlertDialog(this,SweetAlertDialog.SUCCESS_TYPE);
+            dialog.setTitleText("Felicitaciones");
+           // dialog.setContentText("Por favor espere.");
+            dialog.setContentText("Has finalizado tu proceso de registro exitosamente.  Procederemos con un chequeo de seguridad de toda la información suministrada. Si eres seleccionado te llegará un mensaje de texto invitándote a una capacitación. Este proceso tardará una semana aproximadamente.");
+            dialog.setConfirmText("Aceptar");
             dialog.show();
+
+            firebaseAuth.signOut();
             Log.d("Datos",email+"_"+dniNumber+"_"+names+"_"+lastName+"_"+address+"_"+phone+"_"+urlDniFront+
-                    "_"+urlDniBack+"_"+urlAddress+"_"+urlProperty+"_"+urlLicence+"_"+urlSOAT);
-        new Timer().schedule(new TimerTask() {
+                    "_"+urlDniBack+"_"+urlAddress+"_"+urlProperty+"_"+urlLicence+"_"+urlSOAT+"_"+urlTecno);
+       /* new Timer().schedule(new TimerTask() {
             @Override
             public void run() {
                 dialog.changeAlertType(SweetAlertDialog.SUCCESS_TYPE);
                 dialog.setContentText("Felicitaciones has finalizado tu proceso de registro exitosamente.  Procederemos con un chequeo de seguridad de toda la información suministrada. Si eres seleccionado te llegará un mensaje de texto invitándote a una capacitación. Este proceso tardará una semana aproximadamente.");
             }
         }, 2000);
-            /*Call<JsonResponse> call = ApiAdapter.getApiService().USER_ADD(email,dniNumber, names, lastName, address,phone,urlDniBack,urlDniFront,urlAddress);
+            Call<JsonResponse> call = ApiAdapter.getApiService().USER_ADD(email,dniNumber, names, lastName, address,phone,urlDniBack,urlDniFront,urlAddress);
             call.enqueue(new Callback<JsonResponse>() {
                 @Override
                 public void onResponse(Call<JsonResponse> call, Response<JsonResponse> response) {
@@ -400,6 +424,30 @@ public class ViewTransport extends AppCompatActivity {
         });
     }
 
+    public void uploadTecno(RequestBody emailBody, MultipartBody.Part imagePart, final File imageFile) {
+        Call<JsonResponse> call = ApiAdapter.getApiService().UPLOAD_TECNO(emailBody, imagePart);
+        call.enqueue(new Callback<JsonResponse>() {
+            @Override
+            public void onResponse(Call<JsonResponse> call, Response<JsonResponse> response) {
+                if (response.isSuccessful()) {
+                    if (response.body().getStatus()) {
+                        urlTecno = response.body().getMessage();
+                        checkTecno.setVisibility(View.VISIBLE);
+                        dialog.dismissWithAnimation();
+                        imageFile.delete();
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<JsonResponse> call, Throwable t) {
+                dialog.changeAlertType(SweetAlertDialog.ERROR_TYPE);
+                dialog.setContentText(t.getMessage());
+                imageFile.delete();
+            }
+        });
+    }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -426,6 +474,14 @@ public class ViewTransport extends AppCompatActivity {
                     File soat = getFile(bitmap);
                     if (soat != null) {
                         getMultipart(soat, requestCode);
+                    }
+                    break;
+                case _TECNO:
+
+                    ivSoat.setImageBitmap(bitmap);
+                    File tecno = getFile(bitmap);
+                    if (tecno != null) {
+                        getMultipart(tecno, requestCode);
                     }
                     break;
             }
