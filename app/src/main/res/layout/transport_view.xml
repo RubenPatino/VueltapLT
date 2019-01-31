@@ -205,7 +205,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:text="Toma una foto a tu tarjeta de propiedad" />
+                android:text="Toma una foto a la tarjeta de propiedad" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -280,7 +280,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:text="Toma una foto a tu SOAT" />
+                android:text="Toma una foto al SOAT" />
 
             <LinearLayout
                 android:layout_width="match_parent"

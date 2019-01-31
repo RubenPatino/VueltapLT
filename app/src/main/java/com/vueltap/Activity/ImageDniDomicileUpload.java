@@ -61,8 +61,8 @@ public class ImageDniDomicileUpload extends AppCompatActivity {
 
     public void loadControls() {
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
-        firebaseAuth = FirebaseAuth.getInstance();
-        user = firebaseAuth.getCurrentUser();
+       // firebaseAuth = FirebaseAuth.getInstance();
+        //user = firebaseAuth.getCurrentUser();
         imgDniFront = findViewById(R.id.imageViewDniFront);
         imgDniBack = findViewById(R.id.imageViewDniBack);
         imgAddress = findViewById(R.id.imageViewAdress);
@@ -74,18 +74,18 @@ public class ImageDniDomicileUpload extends AppCompatActivity {
     }
 
     public void loadData() {
-      /*  email = "rr@gmail.com";
+       email = "rr@gmail.com";
         names="Rapa";
         lastName="Full";
         address="cll 4 #2-13";
         phone="4777558650";
-        dniNumber="1234567890";*/
-        email=user.getEmail();
+        dniNumber="1234567890";
+        /* email=user.getEmail();
         names = getIntent().getStringExtra(NAMES);
         lastName = getIntent().getStringExtra(LAST_NAME);
         address = getIntent().getStringExtra(ADDRESS);
         phone = getIntent().getStringExtra(PHONE);
-        dniNumber = getIntent().getStringExtra(DNI_NUMBER);
+        dniNumber = getIntent().getStringExtra(DNI_NUMBER);*/
     }
 
     public void OnClickDniFront(View view) {
@@ -303,37 +303,47 @@ public class ImageDniDomicileUpload extends AppCompatActivity {
                 break;
         }
     }
+    public static  Bitmap crupAndScale (Bitmap source,int scale){
+        int factor = source.getHeight() <= source.getWidth() ? source.getHeight(): source.getWidth();
+        int longer = source.getHeight() >= source.getWidth() ? source.getHeight(): source.getWidth();
+        int x = source.getHeight() >= source.getWidth() ?0:(longer-factor)/2;
+        int y = source.getHeight() <= source.getWidth() ?0:(longer-factor)/2;
+        source = Bitmap.createBitmap(source, x, y, factor, factor);
+        source = Bitmap.createScaledBitmap(source, scale, scale, false);
+        return source;
+    }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (data != null) {
-            bitmap = (Bitmap) data.getExtras().get("data");
-            switch (requestCode) {
-                case IDENTIFY_REQUEST_CODE_FRONT:
+                bitmap = (Bitmap) data.getExtras().get("data");
+                bitmap= crupAndScale(bitmap,1000);
+                switch (requestCode) {
+                    case IDENTIFY_REQUEST_CODE_FRONT:
 
-                    imgDniFront.setImageBitmap(bitmap);
-                    File dniFront = getFile(bitmap);
-                    if (dniFront != null) {
-                        getMultipart(dniFront, requestCode);
-                    }
-                    break;
-                case IDENTIFY_REQUEST_CODE_BACK:
+                        imgDniFront.setImageBitmap(bitmap);
+                        File dniFront = getFile(bitmap);
+                        if (dniFront != null) {
+                            getMultipart(dniFront, requestCode);
+                        }
+                        break;
+                    case IDENTIFY_REQUEST_CODE_BACK:
 
-                    imgDniBack.setImageBitmap(bitmap);
-                    File dniBack = getFile(bitmap);
-                    if (dniBack != null) {
-                        getMultipart(dniBack, requestCode);
-                    }
-                    break;
-                case DOMICILE_REQUEST_CODE:
+                        imgDniBack.setImageBitmap(bitmap);
+                        File dniBack = getFile(bitmap);
+                        if (dniBack != null) {
+                            getMultipart(dniBack, requestCode);
+                        }
+                        break;
+                    case DOMICILE_REQUEST_CODE:
 
-                    imgAddress.setImageBitmap(bitmap);
-                    File domicile = getFile(bitmap);
-                    if (domicile != null) {
-                        getMultipart(domicile, requestCode);
-                    }
-                    break;
-            }
+                        imgAddress.setImageBitmap(bitmap);
+                        File domicile = getFile(bitmap);
+                        if (domicile != null) {
+                            getMultipart(domicile, requestCode);
+                        }
+                        break;
+                }
         }
 
         super.onActivityResult(requestCode, resultCode, data);

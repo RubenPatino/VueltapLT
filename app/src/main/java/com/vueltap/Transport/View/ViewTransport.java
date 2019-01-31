@@ -1,15 +1,12 @@
 package com.vueltap.Transport.View;
 
-import android.app.Activity;
 import android.content.Intent;
-import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.net.Uri;
+import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
-import android.support.design.widget.TextInputEditText;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
@@ -19,17 +16,22 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
-import com.vueltap.Transport.Adapter.AdapterTransport;
+import com.karan.churi.PermissionManager.PermissionManager;
 import com.vueltap.R;
+import com.vueltap.Transport.Adapter.AdapterTransport;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.io.FileOutputStream;
+import java.io.IOException;
 
 import cn.pedant.SweetAlert.SweetAlertDialog;
 
 public class ViewTransport extends AppCompatActivity {
 
+    private static final int _PPROPERTY = 0;
+    private static final int _LYCENCE = 1;
+    private static final int _SOAT = 2;
     private RecyclerView recyclerView;
     private AdapterTransport adapter;
     private LinearLayout linearLayout;
@@ -40,6 +42,8 @@ public class ViewTransport extends AppCompatActivity {
     private final int PICTURE_RESULT=1;
     private Uri imageUri;
     private ImageView ivLicence,ivProperty,ivSoat;
+    private Bitmap bitmap;
+    private PermissionManager permissionManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,6 +54,7 @@ public class ViewTransport extends AppCompatActivity {
     }
 
     private void loadControls() {
+        permissionManager = new PermissionManager() {};
         etPlaca = findViewById(R.id.TextInputPlaca);
         ivLicence=findViewById(R.id.imageViewLicence);
         ivProperty=findViewById(R.id.imageViewProperty);
@@ -122,27 +127,27 @@ public class ViewTransport extends AppCompatActivity {
 
     }
 
-    private void takePic() {
-        String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
-        File file = new File(Environment.getExternalStorageDirectory(), ".temp" + timeStamp + ".png");
-        imageUri = Uri.fromFile(file);
 
-        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-        intent.putExtra(MediaStore.EXTRA_OUTPUT, imageUri);
-        startActivityForResult(intent, PICTURE_RESULT);
-    }
 
     public void OnclickPhotoSoat(View view) {
-        urlSOAT = "url";
+        if (permissionManager.checkAndRequestPermissions(this)) {
+            Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+            startActivityForResult(intent,_SOAT);
+        }
     }
 
-    public void OnclickPhotoLicence(View view) {
-        takePic();
-        //urlLicence = "url";
+    public void OnclickPhotoLicence(View view) throws IOException {
+        if (permissionManager.checkAndRequestPermissions(this)) {
+            Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+            startActivityForResult(intent,_LYCENCE);
+        }
     }
 
     public void OnclickPhotoProperty(View view) {
-        urlProperty = "url";
+        if (permissionManager.checkAndRequestPermissions(this)) {
+            Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+            startActivityForResult(intent,_PPROPERTY);
+        }
     }
 
     public void OnClickHelpSoat(View view) {
@@ -174,38 +179,74 @@ public class ViewTransport extends AppCompatActivity {
             Log.d("TAG", "cicla, todo OK");
         }
         if(!cbMoto.isChecked() && !cbClicla.isChecked()){
-            Log.d("TAG", "Por favor selecciona alguna.");
+            dialog=new SweetAlertDialog(this,SweetAlertDialog.ERROR_TYPE);
+            dialog.setContentText("Por favor selecciona una opción.");
+            dialog.setConfirmText("Aceptar");
+            dialog.show();
         }
     }
 
-    public String getRealPathFromURI(Uri contentUri) {
-        String[] proj = {MediaStore.Images.Media.DATA};
-        Cursor cursor = managedQuery(contentUri, proj, null, null, null);
-        int column_index = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
-        cursor.moveToFirst();
-        return cursor.getString(column_index);
+    public File getFile (Bitmap bmp){
+        //File tempFile = null;
+        //Uri uri = null;
+        try {
+            File tempDir = Environment.getExternalStorageDirectory();
+            tempDir = new File(tempDir.getAbsolutePath() + "/.temp/");
+            tempDir.mkdir();
+            File tempFile = File.createTempFile("temp", ".jpg", tempDir);
+            ByteArrayOutputStream bytes = new ByteArrayOutputStream();
+            bmp.compress(Bitmap.CompressFormat.JPEG, 100, bytes);
+            byte[] bitmapData = bytes.toByteArray();
+            FileOutputStream fos = new FileOutputStream(tempFile);
+            // uri = Uri.fromFile(tempFile);
+            fos.write(bitmapData);
+            fos.flush();
+            fos.close();
+            return tempFile;
+        } catch (IOException e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 
 
 
-
-    /*public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        switch (requestCode) {
-
-            case PICTURE_RESULT:
-                if (requestCode == PICTURE_RESULT)
-                    if (resultCode == Activity.RESULT_OK) {
-                        try {
-                            Bitmap thumbnail = MediaStore.Images.Media.getBitmap(
-                                    getContentResolver(), imageUri);
-                            ivLicence.setImageBitmap(thumbnail);
-                            String imageurl = getRealPathFromURI(imageUri);
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                        }
-
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (data != null) {
+            bitmap = (Bitmap) data.getExtras().get("data");
+            switch (requestCode) {
+                case _PPROPERTY:
+                    ivProperty.setImageBitmap(bitmap);
+                    File property = getFile(bitmap);
+                    if (property != null) {
+                       // getMultipart(dniFront, requestCode);
                     }
+                    break;
+                case _LYCENCE:
+                    ivLicence.setImageBitmap(bitmap);
+                    File licence = getFile(bitmap);
+                    if (licence != null) {
+                       // getMultipart(dniBack, requestCode);
+                    }
+                    break;
+                case _SOAT:
+
+                    ivSoat.setImageBitmap(bitmap);
+                    File domicile = getFile(bitmap);
+                    if (domicile != null) {
+                      //  getMultipart(domicile, requestCode);
+                    }
+                    break;
+            }
         }
-    }*/
+
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String permissions[], int[] grantResults) {
+        permissionManager.checkResult(requestCode, permissions, grantResults);
+    }
 }
 

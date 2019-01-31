@@ -16,6 +16,9 @@ public class Constant {
     public static final String VALIDATE_TRAINING="validateTraining";
     public static final String VALIDATE_FINISHED="validateFinished";
     public static final String ID_USER="idUser";
+    private static final int _PPROPERTY = 0;
+    private static final int _LYCENCE = 1;
+    private static final int _SOAT = 2;
 
 
     public static final String _IP = "DATA_IP";
