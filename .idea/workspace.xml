@@ -8,9 +8,7 @@
   <component name="ChangeListManager">
     <list default="true" id="2ff5b106-5611-484b-b015-f96b0939406d" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/vueltap/Api/ApiService.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/vueltap/Api/ApiService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/vueltap/Transport/View/ViewTransport.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/vueltap/Transport/View/ViewTransport.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/transport_view.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/transport_view.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable/border.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/drawable/border.xml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -37,53 +35,34 @@
         <counts>
           <entry key="class" value="1" />
           <entry key="java" value="10" />
-          <entry key="xml" value="6" />
+          <entry key="xml" value="7" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
           <entry key="CLASS" value="1" />
           <entry key="JAVA" value="10" />
-          <entry key="XML" value="6" />
+          <entry key="XML" value="7" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="java" value="2083" />
           <entry key="txt" value="45" />
-          <entry key="xml" value="43" />
+          <entry key="xml" value="46" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="JAVA" value="2083" />
           <entry key="PLAIN_TEXT" value="45" />
-          <entry key="XML" value="43" />
+          <entry key="XML" value="46" />
         </counts>
       </usages-collector>
     </session>
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/vueltap/Activity/ImageDniDomicileUpload.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1223">
-              <caret line="67" column="45" selection-start-line="66" selection-start-column="8" selection-end-line="67" selection-end-column="45" />
-              <folding>
-                <element signature="e#5735#6623#0" />
-                <element signature="e#6629#7586#0" />
-                <element signature="e#7593#8645#0" />
-                <element signature="e#8651#9699#0" />
-                <element signature="e#9705#10758#0" />
-                <element signature="e#10764#11751#0" />
-                <element signature="e#11756#12347#0" />
-                <element signature="e#12353#13740#0" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/vueltap/Activity/RegisterFormData.java">
           <provider selected="true" editor-type-id="text-editor">
@@ -139,7 +118,7 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/vueltap/Transport/View/ViewTransport.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="133">
@@ -161,6 +140,15 @@
                 <element signature="e#11955#13002#0" />
                 <element signature="e#13008#14043#0" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable/border.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="171">
+              <caret line="9" column="8" lean-forward="true" selection-start-line="9" selection-start-column="8" selection-end-line="9" selection-end-column="8" />
             </state>
           </provider>
         </entry>
@@ -215,6 +203,7 @@
         <option value="$PROJECT_DIR$/app/src/main/java/com/vueltap/Api/ApiService.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/transport_view.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/vueltap/Transport/View/ViewTransport.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/drawable/border.xml" />
       </list>
     </option>
   </component>
@@ -271,7 +260,7 @@
               <item name="VueltapLT" type="1abcf292:AndroidViewProjectNode" />
               <item name="app" type="feadf853:AndroidModuleNode" />
               <item name="res" type="d4f16f75:AndroidResFolderNode" />
-              <item name="layout" type="ddeffd01:AndroidResFolderTypeNode" />
+              <item name="drawable" type="ddeffd01:AndroidResFolderTypeNode" />
             </path>
           </expand>
           <select />
@@ -375,7 +364,7 @@
     <frame x="-7" y="-7" width="1550" height="838" extended-state="7" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" visible="true" weight="0.28120807" />
+      <window_info active="true" content_ui="combo" id="Project" visible="true" weight="0.28120807" />
       <window_info id="Structure" side_tool="true" />
       <window_info id="Build Variants" side_tool="true" />
       <window_info id="Image Layers" />
@@ -383,7 +372,7 @@
       <window_info id="Capture Tool" />
       <window_info id="Favorites" side_tool="true" />
       <window_info id="Captures" order="0" side_tool="true" weight="0.25" />
-      <window_info active="true" anchor="bottom" id="Run" visible="true" weight="0.34457478" />
+      <window_info anchor="bottom" id="Run" weight="0.34457478" />
       <window_info anchor="bottom" id="Logcat" />
       <window_info anchor="bottom" id="Version Control" />
       <window_info anchor="bottom" id="TODO" />
@@ -494,29 +483,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_register_welcome.xml">
-      <provider selected="true" editor-type-id="android-designer2" />
-      <provider editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/transport_view.xml">
-      <provider selected="true" editor-type-id="android-designer2" />
-      <provider editor-type-id="text-editor">
-        <state relative-caret-position="1214">
-          <caret line="402" column="29" selection-start-line="402" selection-start-column="29" selection-end-line="402" selection-end-column="29" />
-          <folding>
-            <element signature="e#5574#5809#0" />
-            <element signature="e#5823#8807#0" />
-            <element signature="e#8821#9056#0" />
-            <element signature="e#9070#12076#0" />
-            <element signature="e#12090#12307#0" />
-            <element signature="e#12321#15297#0" />
-            <element signature="e#16622#17427#0" />
-            <element signature="e#17445#18530#0" />
-            <element signature="e#21679#21693#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/vueltap/Transport/View/ViewTransport.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="133">
@@ -538,6 +504,36 @@
             <element signature="e#11955#13002#0" />
             <element signature="e#13008#14043#0" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/transport_view.xml">
+      <provider selected="true" editor-type-id="android-designer2" />
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="1214">
+          <caret line="402" column="29" selection-start-line="402" selection-start-column="29" selection-end-line="402" selection-end-column="29" />
+          <folding>
+            <element signature="e#5574#5809#0" />
+            <element signature="e#5823#8807#0" />
+            <element signature="e#8821#9056#0" />
+            <element signature="e#9070#12076#0" />
+            <element signature="e#12090#12307#0" />
+            <element signature="e#12321#15297#0" />
+            <element signature="e#16622#17427#0" />
+            <element signature="e#17445#18530#0" />
+            <element signature="e#21679#21693#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_register_welcome.xml">
+      <provider selected="true" editor-type-id="android-designer2" />
+      <provider editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable/border.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="171">
+          <caret line="9" column="8" lean-forward="true" selection-start-line="9" selection-start-column="8" selection-end-line="9" selection-end-column="8" />
         </state>
       </provider>
     </entry>
