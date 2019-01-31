@@ -17,6 +17,8 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import com.karan.churi.PermissionManager.PermissionManager;
+import com.vueltap.Api.ApiAdapter;
+import com.vueltap.Models.JsonResponse;
 import com.vueltap.R;
 import com.vueltap.Transport.Adapter.AdapterTransport;
 
@@ -26,6 +28,12 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 
 import cn.pedant.SweetAlert.SweetAlertDialog;
+import okhttp3.MediaType;
+import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class ViewTransport extends AppCompatActivity {
 
@@ -37,13 +45,14 @@ public class ViewTransport extends AppCompatActivity {
     private LinearLayout linearLayout;
     private CheckBox cbClicla, cbMoto;
     private SweetAlertDialog dialog;
-    private String urlProperty = "", urlSOAT = "", urlLicence = "", numPlaca = "";
+    private String urlProperty = "", urlSOAT = "", urlLicence = "", numPlaca = "",email;
     private EditText etPlaca;
     private final int PICTURE_RESULT=1;
     private Uri imageUri;
     private ImageView ivLicence,ivProperty,ivSoat;
     private Bitmap bitmap;
     private PermissionManager permissionManager;
+    private ImageView checkProperty,checkLicence,checkSoat;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,11 +63,15 @@ public class ViewTransport extends AppCompatActivity {
     }
 
     private void loadControls() {
+        email="rpm8530@gmail.com";
         permissionManager = new PermissionManager() {};
         etPlaca = findViewById(R.id.TextInputPlaca);
         ivLicence=findViewById(R.id.imageViewLicence);
         ivProperty=findViewById(R.id.imageViewProperty);
         ivSoat=findViewById(R.id.imageViewSoat);
+        checkProperty=findViewById(R.id.imageViewCheckProperty);
+        checkLicence=findViewById(R.id.imageViewCheckLicence);
+        checkSoat=findViewById(R.id.imageViewCheckSoat);
        /* recyclerView=findViewById(R.id.rvTypeTransport);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -208,6 +221,100 @@ public class ViewTransport extends AppCompatActivity {
             return null;
         }
     }
+
+    public void getMultipart(final File imageFile, int requestCode) {
+        dialog = new SweetAlertDialog(this, SweetAlertDialog.PROGRESS_TYPE);
+        dialog.setTitleText("Subiendo...");
+        dialog.setContentText("Por favor espere.");
+        dialog.show();
+        RequestBody emailBody = RequestBody.create(MultipartBody.FORM, email);
+        RequestBody imageBody = RequestBody.create(MediaType.parse("image/*"), imageFile);
+        MultipartBody.Part imagePart = MultipartBody.Part.createFormData("image", imageFile.getName(), imageBody);
+        switch (requestCode) {
+            case _PPROPERTY:
+                uploadpProperty(emailBody, imagePart, imageFile);
+                break;
+            case _LYCENCE:
+                uploadLycence(emailBody, imagePart, imageFile);
+                break;
+            case _SOAT:
+                uploadSoat(emailBody, imagePart, imageFile);
+                break;
+        }
+    }
+
+    public void uploadpProperty(RequestBody emailBody, MultipartBody.Part imagePart, final File imageFile) {
+        Call<JsonResponse> call = ApiAdapter.getApiService().UPLOAD_PROPERTY(emailBody, imagePart);
+        call.enqueue(new Callback<JsonResponse>() {
+            @Override
+            public void onResponse(Call<JsonResponse> call, Response<JsonResponse> response) {
+                if (response.isSuccessful()) {
+                    if (response.body().getStatus()) {
+                        urlProperty = response.body().getMessage();
+                        checkProperty.setVisibility(View.VISIBLE);
+                        dialog.dismissWithAnimation();
+                        imageFile.delete();
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<JsonResponse> call, Throwable t) {
+                dialog.changeAlertType(SweetAlertDialog.ERROR_TYPE);
+                dialog.setContentText(t.getMessage());
+                imageFile.delete();
+            }
+        });
+    }
+    public void uploadLycence(RequestBody emailBody, MultipartBody.Part imagePart, final File imageFile) {
+        Call<JsonResponse> call = ApiAdapter.getApiService().UPLOAD_LICENCE(emailBody, imagePart);
+        call.enqueue(new Callback<JsonResponse>() {
+            @Override
+            public void onResponse(Call<JsonResponse> call, Response<JsonResponse> response) {
+                if (response.isSuccessful()) {
+                    if (response.body().getStatus()) {
+                        urlLicence = response.body().getMessage();
+                        checkLicence.setVisibility(View.VISIBLE);
+                        dialog.dismissWithAnimation();
+                        imageFile.delete();
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<JsonResponse> call, Throwable t) {
+                dialog.changeAlertType(SweetAlertDialog.ERROR_TYPE);
+                dialog.setContentText(t.getMessage());
+                imageFile.delete();
+            }
+        });
+    }
+
+    public void uploadSoat(RequestBody emailBody, MultipartBody.Part imagePart, final File imageFile) {
+        Call<JsonResponse> call = ApiAdapter.getApiService().UPLOAD_SOAT(emailBody, imagePart);
+        call.enqueue(new Callback<JsonResponse>() {
+            @Override
+            public void onResponse(Call<JsonResponse> call, Response<JsonResponse> response) {
+                if (response.isSuccessful()) {
+                    if (response.body().getStatus()) {
+                        urlSOAT = response.body().getMessage();
+                        checkSoat.setVisibility(View.VISIBLE);
+                        dialog.dismissWithAnimation();
+                        imageFile.delete();
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<JsonResponse> call, Throwable t) {
+                dialog.changeAlertType(SweetAlertDialog.ERROR_TYPE);
+                dialog.setContentText(t.getMessage());
+                imageFile.delete();
+            }
+        });
+    }
+
+
 
 
 

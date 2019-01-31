@@ -54,6 +54,24 @@ public interface ApiService {
             @Part MultipartBody.Part image
     );
 
+    @Multipart
+    @POST("user/upload/img/property")
+    Call<JsonResponse> UPLOAD_PROPERTY(
+            @Part("email") RequestBody email,
+            @Part MultipartBody.Part image
+    );
+    @Multipart
+    @POST("user/upload/img/licence")
+    Call<JsonResponse> UPLOAD_LICENCE(
+            @Part("email") RequestBody email,
+            @Part MultipartBody.Part image
+    );
+    @Multipart
+    @POST("user/upload/img/soat")
+    Call<JsonResponse> UPLOAD_SOAT(
+            @Part("email") RequestBody email,
+            @Part MultipartBody.Part image
+    );
     @GET("type/transport")
     Call<ModelTransport> GET_TRANSPORT();
 
