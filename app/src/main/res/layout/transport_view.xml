@@ -100,7 +100,6 @@
             android:paddingTop="8dp"
             android:paddingRight="8dp"
             android:paddingBottom="8dp"
-            android:visibility="visible"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/checkBoxMoto">
@@ -120,16 +119,18 @@
                 android:layout_height="match_parent">
 
                 <android.support.design.widget.TextInputEditText
+                    android:id="@+id/TextInputPlaca"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Número de placa" />
+                    android:hint="Número de placa"
+                    android:inputType="textCapCharacters" />
             </android.support.design.widget.TextInputLayout>
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:text="Toma una foto a tu licendia de conducir" />
+                android:text="Toma una foto a tu licencia de conducir" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -184,6 +185,7 @@
                         android:id="@+id/imageButton3"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        android:onClick="OnclickPhotoLicence"
                         app:srcCompat="@drawable/ic_camera_black"
                         tools:ignore="VectorDrawableCompat" />
 
@@ -192,6 +194,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="@drawable/success_circle"
+                        android:onClick="OnClickHelpLicence"
                         android:text="@string/help" />
 
                 </LinearLayout>
@@ -257,6 +260,7 @@
                         android:id="@+id/imageButtonProperty"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        android:onClick="OnclickPhotoProperty"
                         app:srcCompat="@drawable/ic_camera_black"
                         tools:ignore="VectorDrawableCompat" />
 
@@ -265,6 +269,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="@drawable/success_circle"
+                        android:onClick="OnClickHelpProperty"
                         android:text="@string/help" />
 
                 </LinearLayout>
@@ -330,6 +335,7 @@
                         android:id="@+id/imageButton336"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        android:onClick="OnclickPhotoSoat"
                         app:srcCompat="@drawable/ic_camera_black"
                         tools:ignore="VectorDrawableCompat" />
 
@@ -357,6 +363,7 @@
             android:layout_marginEnd="16dp"
             android:layout_marginBottom="16dp"
             android:background="@drawable/boton_redondo"
+            android:onClick="OnClickRegister"
             android:text="Terminar registro"
             android:textAllCaps="false"
             android:textColor="@color/blanco"

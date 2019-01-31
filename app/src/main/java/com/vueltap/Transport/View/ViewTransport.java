@@ -1,11 +1,14 @@
 package com.vueltap.Transport.View;
 
+import android.support.design.widget.TextInputEditText;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 
 import com.vueltap.Transport.Adapter.AdapterTransport;
@@ -20,6 +23,8 @@ public class ViewTransport extends AppCompatActivity {
     private LinearLayout linearLayout;
     private CheckBox cbClicla,cbMoto;
     private SweetAlertDialog dialog;
+    private String urlProperty="",urlSOAT="",urlLicence="",numPlaca="";
+    private EditText etPlaca;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +35,7 @@ public class ViewTransport extends AppCompatActivity {
     }
 
     private void loadControls() {
+        etPlaca=findViewById(R.id.TextInputPlaca);
        /* recyclerView=findViewById(R.id.rvTypeTransport);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -69,6 +75,26 @@ public class ViewTransport extends AppCompatActivity {
 
     }
 
+    private Boolean validateMoto(View view){
+        numPlaca=etPlaca.getText().toString().trim();
+        if(numPlaca.isEmpty()){
+            etPlaca.setError("Completa este campo");
+            etPlaca.requestFocus();
+            return false;
+        }else if(urlLicence.isEmpty()){
+            OnClickHelpLicence(view);
+            return false;
+        }else if(urlLicence.isEmpty()){
+            OnClickHelpProperty(view);
+            return false;
+        }else if(urlSOAT.isEmpty()){
+            OnClickHelpSoat(view);
+            return false;
+        }else{
+            return true;
+        }
+    }
+
     private void validateCheck() {
         if(cbMoto.isChecked()){
             linearLayout.setVisibility(View.VISIBLE);
@@ -77,12 +103,54 @@ public class ViewTransport extends AppCompatActivity {
         }
 
     }
+    public void OnclickPhotoSoat(View view){
+        urlSOAT="url";
+    }
+    public void OnclickPhotoLicence(View view){
+        urlLicence="url";
+    }
+    public void OnclickPhotoProperty(View view){
+        urlProperty="url";
+    }
 
     public void OnClickHelpSoat(View view){
-        dialog=new SweetAlertDialog(this,SweetAlertDialog.CUSTOM_IMAGE_TYPE);
+        dialog=new SweetAlertDialog(this,SweetAlertDialog.WARNING_TYPE);
         dialog.setContentText("Tomale una foto a tu SOAP");
         dialog.show();
     }
-    public void OnClickHelpLicence(View view){}
-    public void OnClickHelpProperty(View view){}
+    public void OnClickHelpLicence(View view){
+        dialog=new SweetAlertDialog(this,SweetAlertDialog.WARNING_TYPE);
+        dialog.setContentText("Tomale una foto a tu licencia de conducir");
+        dialog.show();
+
+    }
+    public void OnClickHelpProperty(View view){
+        dialog=new SweetAlertDialog(this,SweetAlertDialog.WARNING_TYPE);
+        dialog.setContentText("Tomale una foto a tu tarjeta de propidad");
+        dialog.show();
+    }
+    public void OnClickRegister(View view){
+        if(cbMoto.isChecked()){
+            if(validateMoto(view)){
+                Log.d("TAG","moto, todo OK");
+            }
+        }else if(cbClicla.isChecked()){
+            Log.d("TAG","cicla, todo OK");
+        }else{
+            Log.d("TAG","Por favor selecciona alguna.");
+        }
+        if(cbClicla.isChecked() && cbMoto.isChecked()){
+            if(validateMoto(view)){
+
+            }
+        }else if(cbClicla.isChecked()){
+
+        }else if(cbMoto.isChecked()){
+            if(validateMoto(view)){
+
+            }
+        }else{
+
+        }
+    }
 }
