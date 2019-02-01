@@ -1,6 +1,6 @@
 package com.vueltap.Models;
 
-public class Response {
+public class ImageUpload {
     private Boolean status;
     private String image_id;
     private String image_url;

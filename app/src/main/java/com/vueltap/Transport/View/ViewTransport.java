@@ -19,8 +19,8 @@ import android.widget.LinearLayout;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.karan.churi.PermissionManager.PermissionManager;
-import com.vueltap.Activity.LoginActivity;
 import com.vueltap.Api.ApiAdapter;
+import com.vueltap.Models.ImageUpload;
 import com.vueltap.Models.JsonResponse;
 import com.vueltap.R;
 import com.vueltap.Transport.Adapter.AdapterTransport;
@@ -30,8 +30,6 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Objects;
-import java.util.Timer;
-import java.util.TimerTask;
 
 import cn.pedant.SweetAlert.SweetAlertDialog;
 import okhttp3.MediaType;
@@ -43,19 +41,23 @@ import retrofit2.Response;
 
 import static com.vueltap.System.Constant.ADDRESS;
 import static com.vueltap.System.Constant.DNI_NUMBER;
+import static com.vueltap.System.Constant.DRIVER_LICENSE;
 import static com.vueltap.System.Constant.LAST_NAME;
 import static com.vueltap.System.Constant.NAMES;
 import static com.vueltap.System.Constant.PHONE;
+import static com.vueltap.System.Constant.PROPERTY_CARD;
+import static com.vueltap.System.Constant.SOAT;
+import static com.vueltap.System.Constant.TECNOMECANICA;
 import static com.vueltap.System.Constant.URL_DNI_BACK;
 import static com.vueltap.System.Constant.URL_DNI_FRONT;
 import static com.vueltap.System.Constant.URL_DOMICILE;
+import static com.vueltap.System.Constant._PROPERTY;
+import static com.vueltap.System.Constant._LYCENCE;
+import static com.vueltap.System.Constant._SOAT;
+import static com.vueltap.System.Constant._TECNO;
 
 public class ViewTransport extends AppCompatActivity {
 
-    private static final int _PPROPERTY = 0;
-    private static final int _LYCENCE = 1;
-    private static final int _SOAT = 2;
-    private static final int _TECNO=3;
     private RecyclerView recyclerView;
     private AdapterTransport adapter;
     private LinearLayout linearLayout;
@@ -194,35 +196,32 @@ public class ViewTransport extends AppCompatActivity {
             startActivityForResult(intent,_TECNO);
         }
     }
-
-
-    public void OnclickPhotoLicence(View view) throws IOException {
+    public void OnclickPhotoLicence(View view){
         if (permissionManager.checkAndRequestPermissions(this)) {
             Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
             startActivityForResult(intent,_LYCENCE);
         }
     }
-
     public void OnclickPhotoProperty(View view) {
         if (permissionManager.checkAndRequestPermissions(this)) {
             Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-            startActivityForResult(intent,_PPROPERTY);
+            startActivityForResult(intent,_PROPERTY);
         }
     }
+
+    //HELP
 
     public void OnClickHelpSoat(View view) {
         dialog = new SweetAlertDialog(this, SweetAlertDialog.WARNING_TYPE);
         dialog.setContentText("Tomale una foto a tu SOAP");
         dialog.show();
     }
-
     public void OnClickHelpLicence(View view) {
         dialog = new SweetAlertDialog(this, SweetAlertDialog.WARNING_TYPE);
         dialog.setContentText("Tomale una foto a tu licencia de conducir");
         dialog.show();
 
     }
-
     public void OnClickHelpProperty(View view) {
         dialog = new SweetAlertDialog(this, SweetAlertDialog.WARNING_TYPE);
         dialog.setContentText("Tomale una foto a tu tarjeta de propidad");
@@ -331,36 +330,40 @@ public class ViewTransport extends AppCompatActivity {
         }
     }
 
-    public void getMultipart(final File imageFile, int requestCode) {
+    public void uploadImage(final File imageFile, String typeImg, final int requestCode) {
         dialog = new SweetAlertDialog(this, SweetAlertDialog.PROGRESS_TYPE);
         dialog.setTitleText("Subiendo...");
         dialog.setContentText("Por favor espere.");
         dialog.show();
         RequestBody emailBody = RequestBody.create(MultipartBody.FORM, email);
+        RequestBody type = RequestBody.create(MultipartBody.FORM, typeImg);
         RequestBody imageBody = RequestBody.create(MediaType.parse("image/*"), imageFile);
         MultipartBody.Part imagePart = MultipartBody.Part.createFormData("image", imageFile.getName(), imageBody);
-        switch (requestCode) {
-            case _PPROPERTY:
-                uploadpProperty(emailBody, imagePart, imageFile);
-                break;
-            case _LYCENCE:
-                uploadLicence(emailBody, imagePart, imageFile);
-                break;
-            case _SOAT:
-                uploadSoat(emailBody, imagePart, imageFile);
-                break;
-        }
-    }
 
-    public void uploadpProperty(RequestBody emailBody, MultipartBody.Part imagePart, final File imageFile) {
-        Call<JsonResponse> call = ApiAdapter.getApiService().UPLOAD_PROPERTY(emailBody, imagePart);
-        call.enqueue(new Callback<JsonResponse>() {
+        Call<ImageUpload> call = ApiAdapter.getApiService().UPLOAD_IMAGE(emailBody,type,imagePart);
+        call.enqueue(new Callback<ImageUpload>() {
             @Override
-            public void onResponse(Call<JsonResponse> call, Response<JsonResponse> response) {
+            public void onResponse(Call<ImageUpload> call, Response<ImageUpload> response) {
                 if (response.isSuccessful()) {
                     if (response.body().getStatus()) {
-                        urlProperty = response.body().getMessage();
-                        checkProperty.setVisibility(View.VISIBLE);
+                        switch (requestCode) {
+                            case _PROPERTY:
+                                urlProperty = response.body().getImage_url();
+                                checkProperty.setVisibility(View.VISIBLE);
+                                break;
+                            case _LYCENCE:
+                                urlLicence = response.body().getImage_url();
+                                checkProperty.setVisibility(View.VISIBLE);
+                                break;
+                            case _SOAT:
+                                urlSOAT = response.body().getImage_url();
+                                checkProperty.setVisibility(View.VISIBLE);
+                                break;
+                            case _TECNO:
+                                urlTecno = response.body().getImage_url();
+                                checkProperty.setVisibility(View.VISIBLE);
+                                break;
+                        }
                         dialog.dismissWithAnimation();
                         imageFile.delete();
                     }
@@ -368,79 +371,7 @@ public class ViewTransport extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(Call<JsonResponse> call, Throwable t) {
-                dialog.changeAlertType(SweetAlertDialog.ERROR_TYPE);
-                dialog.setContentText(t.getMessage());
-                imageFile.delete();
-            }
-        });
-    }
-
-    public void uploadLicence(RequestBody emailBody, MultipartBody.Part imagePart, final File imageFile) {
-        Call<JsonResponse> call = ApiAdapter.getApiService().UPLOAD_LICENCE(emailBody, imagePart);
-        call.enqueue(new Callback<JsonResponse>() {
-            @Override
-            public void onResponse(Call<JsonResponse> call, Response<JsonResponse> response) {
-                if (response.isSuccessful()) {
-                    if (response.body().getStatus()) {
-                        urlLicence = response.body().getMessage();
-                        checkLicence.setVisibility(View.VISIBLE);
-                        dialog.dismissWithAnimation();
-                        imageFile.delete();
-                    }
-                }
-            }
-
-            @Override
-            public void onFailure(Call<JsonResponse> call, Throwable t) {
-                dialog.changeAlertType(SweetAlertDialog.ERROR_TYPE);
-                dialog.setContentText(t.getMessage());
-                imageFile.delete();
-            }
-        });
-    }
-
-    public void uploadSoat(RequestBody emailBody, MultipartBody.Part imagePart, final File imageFile) {
-        Call<JsonResponse> call = ApiAdapter.getApiService().UPLOAD_SOAT(emailBody, imagePart);
-        call.enqueue(new Callback<JsonResponse>() {
-            @Override
-            public void onResponse(Call<JsonResponse> call, Response<JsonResponse> response) {
-                if (response.isSuccessful()) {
-                    if (response.body().getStatus()) {
-                        urlSOAT = response.body().getMessage();
-                        checkSoat.setVisibility(View.VISIBLE);
-                        dialog.dismissWithAnimation();
-                        imageFile.delete();
-                    }
-                }
-            }
-
-            @Override
-            public void onFailure(Call<JsonResponse> call, Throwable t) {
-                dialog.changeAlertType(SweetAlertDialog.ERROR_TYPE);
-                dialog.setContentText(t.getMessage());
-                imageFile.delete();
-            }
-        });
-    }
-
-    public void uploadTecno(RequestBody emailBody, MultipartBody.Part imagePart, final File imageFile) {
-        Call<JsonResponse> call = ApiAdapter.getApiService().UPLOAD_TECNO(emailBody, imagePart);
-        call.enqueue(new Callback<JsonResponse>() {
-            @Override
-            public void onResponse(Call<JsonResponse> call, Response<JsonResponse> response) {
-                if (response.isSuccessful()) {
-                    if (response.body().getStatus()) {
-                        urlTecno = response.body().getMessage();
-                        checkTecno.setVisibility(View.VISIBLE);
-                        dialog.dismissWithAnimation();
-                        imageFile.delete();
-                    }
-                }
-            }
-
-            @Override
-            public void onFailure(Call<JsonResponse> call, Throwable t) {
+            public void onFailure(Call<ImageUpload> call, Throwable t) {
                 dialog.changeAlertType(SweetAlertDialog.ERROR_TYPE);
                 dialog.setContentText(t.getMessage());
                 imageFile.delete();
@@ -454,18 +385,18 @@ public class ViewTransport extends AppCompatActivity {
         if (data != null) {
             bitmap = (Bitmap) data.getExtras().get("data");
             switch (requestCode) {
-                case _PPROPERTY:
+                case _PROPERTY:
                     ivProperty.setImageBitmap(bitmap);
                     File property = getFile(bitmap);
                     if (property != null) {
-                       getMultipart(property, requestCode);
+                       uploadImage(property,PROPERTY_CARD, requestCode);
                     }
                     break;
                 case _LYCENCE:
                     ivLicence.setImageBitmap(bitmap);
                     File licence = getFile(bitmap);
                     if (licence != null) {
-                        getMultipart(licence, requestCode);
+                        uploadImage(licence,DRIVER_LICENSE, requestCode);
                     }
                     break;
                 case _SOAT:
@@ -473,7 +404,7 @@ public class ViewTransport extends AppCompatActivity {
                     ivSoat.setImageBitmap(bitmap);
                     File soat = getFile(bitmap);
                     if (soat != null) {
-                        getMultipart(soat, requestCode);
+                        uploadImage(soat,SOAT,requestCode);
                     }
                     break;
                 case _TECNO:
@@ -481,7 +412,7 @@ public class ViewTransport extends AppCompatActivity {
                     ivSoat.setImageBitmap(bitmap);
                     File tecno = getFile(bitmap);
                     if (tecno != null) {
-                        getMultipart(tecno, requestCode);
+                        uploadImage(tecno, TECNOMECANICA,requestCode);
                     }
                     break;
             }

@@ -26,7 +26,8 @@
         tools:ignore="GoogleAppIndexingWarning">
 
         <activity android:name=".Transport.View.ViewTransport"
-            android:parentActivityName=".Activity.ImageDniDomicileUpload">
+            android:parentActivityName=".Activity.ImageDniDomicileUpload"
+            android:configChanges="keyboardHidden|orientation|screenSize">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.DEFAULT" />
@@ -36,7 +37,8 @@
             </meta-data>
         </activity>
         <activity android:name=".Activity.ImageDniDomicileUpload"
-            android:parentActivityName=".Activity.RegisterFormData">
+            android:parentActivityName=".Activity.RegisterFormData"
+            android:configChanges="keyboardHidden|orientation|screenSize">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.DEFAULT" />
@@ -48,6 +50,7 @@
         <activity android:name=".Activity.HomeActivity" />
         <activity android:name=".Activity.RegistroFinal" />
         <activity android:name=".Activity.RegisterFormData"
+            android:configChanges="keyboardHidden|orientation|screenSize"
             android:parentActivityName=".Activity.RegisterConditions">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
@@ -68,6 +71,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".Activity.RegisterConditions"
+            android:configChanges="keyboardHidden|orientation|screenSize"
             android:parentActivityName=".Activity.RegisterWelcome">
             <meta-data android:name="android.support.PARENT_ACTIVITY"
                 android:value=".Activity.RegisterWelcome">
@@ -75,7 +79,8 @@
 
         </activity>
         <activity android:name=".Activity.RegisterWelcome" />
-        <activity android:name=".Activity.LoginActivity">
+        <activity android:name=".Activity.LoginActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

@@ -1,7 +1,7 @@
 package com.vueltap.Api;
 
 import com.vueltap.Models.JsonResponse;
-import com.vueltap.Models.Response;
+import com.vueltap.Models.ImageUpload;
 import com.vueltap.Transport.Model.ModelTransport;
 
 import okhttp3.MultipartBody;
@@ -18,7 +18,12 @@ import retrofit2.http.Path;
 
 public interface ApiService {
     //user
-    @GET("user/check/{email}")
+   /* @GET("user/check/{email}")
+    Call<JsonResponse> EMAIL_CHECK(
+            @Path("email") String email
+    );*/
+
+    @GET("http://msaq.vueltap.com.co/api_1.0/Messengers/Check/Exist/{email}")
     Call<JsonResponse> EMAIL_CHECK(
             @Path("email") String email
     );
@@ -39,21 +44,21 @@ public interface ApiService {
 
     @Multipart
     @PUT("Messengers/Add/Image")
-    Call<Response> UPLOAD_IMAGE(
+    Call<ImageUpload> UPLOAD_IMAGE(
             @Part("email") RequestBody email,
             @Part("type") RequestBody type,
             @Part MultipartBody.Part image
     );
-    @Multipart
+   /* @Multipart
     @POST("user/upload/dni/back")
-    Call<JsonResponse> UPLOAD_DNI_BACK(
+    Call<ImageUpload> UPLOAD_DNI_BACK(
             @Part("email") RequestBody email,
             @Part("type") RequestBody type,
             @Part MultipartBody.Part image
     );
     @Multipart
     @POST("user/upload/domicile")
-    Call<JsonResponse> UPLOAD_DOMICILE(
+    Call<ImageUpload> UPLOAD_DOMICILE(
             @Part("email") RequestBody email,
             @Part MultipartBody.Part image
     );
@@ -66,20 +71,20 @@ public interface ApiService {
     );
     @Multipart
     @POST("user/upload/img/licence")
-    Call<JsonResponse> UPLOAD_LICENCE(
+    Call<ImageUpload> UPLOAD_LICENCE(
             @Part("email") RequestBody email,
             @Part MultipartBody.Part image
     );
     @Multipart
     @POST("user/upload/img/soat")
-    Call<JsonResponse> UPLOAD_SOAT(
+    Call<ImageUpload> UPLOAD_SOAT(
             @Part("email") RequestBody email,
             @Part MultipartBody.Part image
     );
 
     @Multipart
     @POST("user/upload/img/tecno")
-    Call<JsonResponse> UPLOAD_TECNO(
+    Call<ImageUpload> UPLOAD_TECNO(
             @Part("email") RequestBody email,
             @Part MultipartBody.Part image
     );
@@ -93,7 +98,7 @@ public interface ApiService {
 
 
     @GET("type/transport")
-    Call<ModelTransport> GET_TRANSPORT();
+    Call<ModelTransport> GET_TRANSPORT();*/
 
   /*  //LOGIN
 //Listar

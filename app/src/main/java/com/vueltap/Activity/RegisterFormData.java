@@ -11,6 +11,7 @@ import com.google.firebase.auth.FirebaseUser;
 import com.orhanobut.logger.AndroidLogAdapter;
 import com.orhanobut.logger.Logger;
 import com.vueltap.R;
+import com.vueltap.System.SessionManager;
 
 import static com.vueltap.System.Constant.ADDRESS;
 import static com.vueltap.System.Constant.DNI_NUMBER;
@@ -24,6 +25,8 @@ public class RegisterFormData extends AppCompatActivity {
     private FirebaseUser user;
     private EditText etEmail, etNames, etLastNames, etAddress, etPhone, etDniNumber;
     private String email;
+    private String uid;
+    private SessionManager manager;
 
 
     @Override
@@ -37,6 +40,7 @@ public class RegisterFormData extends AppCompatActivity {
     }
 
     private void loadControls() {
+        manager=new SessionManager(getApplicationContext());
 //        storageRef = FirebaseStorage.getInstance().getReference();
         firebaseAuth = FirebaseAuth.getInstance();
         user = firebaseAuth.getCurrentUser();
@@ -52,22 +56,9 @@ public class RegisterFormData extends AppCompatActivity {
 
     private void loadData() {
          email = user.getEmail();
+         uid=user.getUid();
        // email = "prueba@gmail.com";
         etEmail.setText(email);
-    }
-
-    private boolean validateDniNumer(String pass, EditText editText) {
-        if (pass.isEmpty()) {
-            editText.setError("Introduce la contraseña.");
-            editText.requestFocus();
-            return false;
-        } else if (pass.length() < 5) {
-            editText.setError("Por favor introduzca una contraseña  mayor de 5 caracteres (números y letras) solamente.");
-            editText.requestFocus();
-            return false;
-        } else {
-            return true;
-        }
     }
 
     public void OnClickNext(View view) {
@@ -97,16 +88,18 @@ public class RegisterFormData extends AppCompatActivity {
             etPhone.setError(getString(R.string.msg_isempty));
             etPhone.requestFocus();
         } else if(phone.length()<10){
-            etPhone.setError("Por favor digita un número de teléfono valido.");
+            etPhone.setError("Por favor digite un número de teléfono valido.");
             etPhone.requestFocus();
         }else {
-            Intent intent = new Intent(this, ImageDniDomicileUpload.class);
+            manager.setPersonalInformation(uid,email,dniNumber,names,lastName,address,phone);
+            startActivity(new Intent().setClass(this,ImageDniDomicileUpload.class));
+           /* Intent intent = new Intent(this, ImageDniDomicileUpload.class);
             intent.putExtra(DNI_NUMBER, dniNumber);
             intent.putExtra(NAMES, names);
             intent.putExtra(LAST_NAME, lastName);
             intent.putExtra(ADDRESS, address);
             intent.putExtra(PHONE, phone);
-            startActivity(intent);
+            startActivity(intent);*/
         }
     }
 }
