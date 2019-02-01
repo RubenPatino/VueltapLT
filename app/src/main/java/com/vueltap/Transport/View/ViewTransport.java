@@ -76,8 +76,8 @@ public class ViewTransport extends AppCompatActivity {
     private Bitmap bitmap;
     private PermissionManager permissionManager;
     private ImageView checkProperty,checkLicence,checkSoat,checkTecno;
-   // private FirebaseAuth firebaseAuth;
-    //private FirebaseUser user;
+    private FirebaseAuth firebaseAuth;
+    private FirebaseUser user;
 
 
     @Override
@@ -103,32 +103,10 @@ public class ViewTransport extends AppCompatActivity {
         checkProperty=findViewById(R.id.imageViewCheckProperty);
         checkLicence=findViewById(R.id.imageViewCheckLicence);
         checkSoat=findViewById(R.id.imageViewCheckSoat);
-        checkSoat=findViewById(R.id.imageViewCheckTecno);
-       /* recyclerView=findViewById(R.id.rvTypeTransport);
-        recyclerView.setHasFixedSize(true);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        recyclerView.setAdapter(new RecyclerView.Adapter() {
-            @Override
-            public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-                return null;
-            }
-
-            @Override
-            public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
-
-            }
-
-            @Override
-            public int getItemCount() {
-                return 0;
-            }
-        });*/
-
+        checkTecno=findViewById(R.id.imageViewCheckTecno);
         linearLayout = findViewById(R.id.LinearLayoutTransport);
         rbClicla = findViewById(R.id.radioButtonCicla);
         rbMoto = findViewById(R.id.radioButtonMoto);
-
-
 
         rbClicla.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -172,15 +150,19 @@ public class ViewTransport extends AppCompatActivity {
             return false;
         } else if (urlLicence.isEmpty()) {
             OnClickHelpLicence(view);
+            ivLicence.requestFocus();
             return false;
         } else if (urlProperty.isEmpty()) {
             OnClickHelpProperty(view);
+            ivProperty.requestFocus();
             return false;
         } else if (urlSOAT.isEmpty()) {
             OnClickHelpSoat(view);
+            ivSoat.requestFocus();
             return false;
         }else if(urlTecno.isEmpty()){
            OnClickHelpTecno(view);
+           ivTecno.requestFocus();
             return false;
         }else {
             return true;
@@ -248,22 +230,13 @@ public class ViewTransport extends AppCompatActivity {
 
     public void OnClickRegister(View view) {
 
-        /*if(cbClicla.isChecked()&&cbMoto.isChecked()){
-            if(validateMoto(view)){
-                savedUser();
-            }
-        }else if(cbClicla.isChecked()){
-            savedUser();
-        }else if(cbMoto.isChecked()){
-            if(validateMoto(view)){
-                savedUser();
-            }
+        if(rbClicla.isChecked()){
+            Log.d("Saved","Cicla");
         }else{
-            dialog=new SweetAlertDialog(this,SweetAlertDialog.ERROR_TYPE);
-            dialog.setContentText("Por favor selecciona una opción.");
-            dialog.setConfirmText("Aceptar");
-            dialog.show();
-        }*/
+            if(validateMoto(view)){
+                Log.d("Saved","MOTO");
+            }
+        }
     }
 
     public void savedUser(){
@@ -366,15 +339,15 @@ public class ViewTransport extends AppCompatActivity {
                                 break;
                             case _LYCENCE:
                                 urlLicence = response.body().getImage_url();
-                                checkProperty.setVisibility(View.VISIBLE);
+                                checkLicence.setVisibility(View.VISIBLE);
                                 break;
                             case _SOAT:
                                 urlSOAT = response.body().getImage_url();
-                                checkProperty.setVisibility(View.VISIBLE);
+                                checkSoat.setVisibility(View.VISIBLE);
                                 break;
                             case _TECNO:
                                 urlTecno = response.body().getImage_url();
-                                checkProperty.setVisibility(View.VISIBLE);
+                                checkTecno.setVisibility(View.VISIBLE);
                                 break;
                         }
                         dialog.dismissWithAnimation();
@@ -422,7 +395,7 @@ public class ViewTransport extends AppCompatActivity {
                     break;
                 case _TECNO:
 
-                    ivSoat.setImageBitmap(bitmap);
+                    ivTecno.setImageBitmap(bitmap);
                     File tecno = getFile(bitmap);
                     if (tecno != null) {
                         uploadImage(tecno, TECNOMECANICA,requestCode);

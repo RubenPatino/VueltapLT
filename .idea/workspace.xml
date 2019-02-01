@@ -7,15 +7,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2ff5b106-5611-484b-b015-f96b0939406d" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/assetWizardSettings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/ic_cicla.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/ic_motorcycle.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/vueltap/Activity/ImageDniDomicileUpload.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/vueltap/Activity/ImageDniDomicileUpload.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/vueltap/Activity/splash_screen.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/vueltap/Activity/splash_screen.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/vueltap/System/Constant.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/vueltap/System/Constant.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/vueltap/System/SessionManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/vueltap/System/SessionManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/vueltap/Transport/View/ViewTransport.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/vueltap/Transport/View/ViewTransport.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/transport_view.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/transport_view.xml" afterDir="false" />
     </list>
@@ -57,15 +49,15 @@
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="dummy" value="27" />
-          <entry key="java" value="3923" />
-          <entry key="txt" value="229" />
+          <entry key="java" value="4030" />
+          <entry key="txt" value="293" />
           <entry key="xml" value="72" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="JAVA" value="3923" />
-          <entry key="PLAIN_TEXT" value="256" />
+          <entry key="JAVA" value="4030" />
+          <entry key="PLAIN_TEXT" value="320" />
           <entry key="XML" value="72" />
         </counts>
       </usages-collector>
@@ -107,16 +99,15 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/vueltap/Transport/View/ViewTransport.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1166">
-              <caret line="247" selection-start-line="247" selection-end-line="247" />
+            <state relative-caret-position="-159">
+              <caret line="79" column="4" selection-start-line="79" selection-start-column="4" selection-end-line="79" selection-end-column="4" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#5839#6558#0" />
+                <element signature="e#12626#13499#0" />
                 <element signature="class#14275:15951" />
-                <element signature="e#15965#17454#0" />
               </folding>
             </state>
           </provider>
@@ -132,7 +123,7 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/transport_view.xml">
           <provider selected="true" editor-type-id="android-designer2" />
           <provider editor-type-id="text-editor">
@@ -214,8 +205,8 @@
         <option value="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/drawable/ic_cicla.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/drawable/ic_motorcycle.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/vueltap/Transport/View/ViewTransport.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/transport_view.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/vueltap/Transport/View/ViewTransport.java" />
       </list>
     </option>
   </component>
@@ -269,7 +260,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="android.sdk.path" value="$USER_HOME$/AppData/Local/Android/Sdk" />
-    <property name="device.picker.selection" value="Nexus_5X_API_24_2" />
+    <property name="device.picker.selection" value="2WT7N17C25003725" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
@@ -363,7 +354,7 @@
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" visible="true" weight="0.18389262" />
+      <window_info content_ui="combo" id="Project" visible="true" weight="0.18389262" />
       <window_info id="Structure" side_tool="true" />
       <window_info id="Build Variants" side_tool="true" />
       <window_info id="Image Layers" />
@@ -371,7 +362,7 @@
       <window_info id="Capture Tool" />
       <window_info id="Favorites" side_tool="true" />
       <window_info id="Captures" order="0" side_tool="true" weight="0.25" />
-      <window_info anchor="bottom" id="Run" weight="0.10117302" />
+      <window_info anchor="bottom" id="Run" weight="0.44721407" />
       <window_info anchor="bottom" id="Logcat" />
       <window_info anchor="bottom" id="Version Control" />
       <window_info anchor="bottom" id="TODO" />
@@ -584,16 +575,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/vueltap/Transport/View/ViewTransport.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable/ic_motorcycle.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1166">
-          <caret line="247" selection-start-line="247" selection-end-line="247" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#5839#6558#0" />
-            <element signature="class#14275:15951" />
-            <element signature="e#15965#17454#0" />
-          </folding>
+        <state relative-caret-position="38">
+          <caret line="2" column="25" selection-start-line="2" selection-start-column="25" selection-end-line="2" selection-end-column="25" />
         </state>
       </provider>
     </entry>
@@ -602,13 +587,6 @@
       <provider editor-type-id="text-editor">
         <state relative-caret-position="608">
           <caret line="32" column="31" selection-start-line="32" selection-start-column="31" selection-end-line="32" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable/ic_motorcycle.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="38">
-          <caret line="2" column="25" selection-start-line="2" selection-start-column="25" selection-end-line="2" selection-end-column="25" />
         </state>
       </provider>
     </entry>
@@ -621,6 +599,18 @@
             <element signature="e#3278#3852#0" />
             <element signature="e#3862#18610#0" />
             <element signature="e#18620#19458#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/vueltap/Transport/View/ViewTransport.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-159">
+          <caret line="79" column="4" selection-start-line="79" selection-start-column="4" selection-end-line="79" selection-end-column="4" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#12626#13499#0" />
+            <element signature="class#14275:15951" />
           </folding>
         </state>
       </provider>
