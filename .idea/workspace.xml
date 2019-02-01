@@ -7,13 +7,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2ff5b106-5611-484b-b015-f96b0939406d" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/vueltap/Models/Response.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/vueltap/Activity/ImageDniDomicileUpload.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/vueltap/Activity/ImageDniDomicileUpload.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/vueltap/Api/ApiAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/vueltap/Api/ApiAdapter.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/vueltap/Api/ApiService.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/vueltap/Api/ApiService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/vueltap/System/Constant.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/vueltap/System/Constant.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_image_dni_domicile_upload.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_image_dni_domicile_upload.xml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -68,11 +63,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/vueltap/Activity/ImageDniDomicileUpload.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="373">
-              <caret line="191" column="39" selection-start-line="191" selection-start-column="39" selection-end-line="191" selection-end-column="39" />
+            <state relative-caret-position="240">
+              <caret line="184" column="16" lean-forward="true" selection-start-line="184" selection-start-column="16" selection-end-line="184" selection-end-column="16" />
               <folding>
                 <element signature="e#2082#2332#0" />
                 <element signature="e#2338#3003#0" />
@@ -101,7 +96,7 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/vueltap/Models/Response.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="133">
@@ -149,8 +144,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/vueltap/Api/ApiService.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="266">
-              <caret line="40" column="35" selection-start-line="40" selection-start-column="35" selection-end-line="40" selection-end-column="35" />
+            <state relative-caret-position="211">
+              <caret line="41" column="13" lean-forward="true" selection-start-line="41" selection-start-column="13" selection-end-line="41" selection-end-column="13" />
               <folding>
                 <element signature="e#571#588#0" />
               </folding>
@@ -191,17 +186,18 @@
         <option value="$PROJECT_DIR$/app/src/main/res/drawable/border.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_image_dni_domicile_upload.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/vueltap/Api/ApiAdapter.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/vueltap/Api/ApiService.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/vueltap/System/Constant.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/vueltap/Activity/ImageDniDomicileUpload.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/vueltap/Models/Response.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/vueltap/Api/ApiService.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/vueltap/Activity/ImageDniDomicileUpload.java" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-9" />
-    <option name="width" value="1664" />
-    <option name="height" value="1039" />
+    <option name="x" value="-10" />
+    <option name="y" value="107" />
+    <option name="width" value="1332" />
+    <option name="height" value="832" />
   </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
@@ -534,42 +530,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/vueltap/Api/ApiService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="266">
-          <caret line="40" column="35" selection-start-line="40" selection-start-column="35" selection-end-line="40" selection-end-column="35" />
-          <folding>
-            <element signature="e#571#588#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/vueltap/System/Constant.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="494">
           <caret line="26" column="57" selection-start-line="26" selection-start-column="57" selection-end-line="26" selection-end-column="57" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/vueltap/Activity/ImageDniDomicileUpload.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="373">
-          <caret line="191" column="39" selection-start-line="191" selection-start-column="39" selection-end-line="191" selection-end-column="39" />
-          <folding>
-            <element signature="e#2082#2332#0" />
-            <element signature="e#2338#3003#0" />
-            <element signature="e#3009#3345#0" />
-            <element signature="e#3351#3619#0" />
-            <element signature="e#3625#4064#0" />
-            <element signature="e#4070#4336#0" />
-            <element signature="e#4342#4780#0" />
-            <element signature="e#4786#5049#0" />
-            <element signature="e#5055#5550#0" />
-            <element signature="e#5556#6424#0" />
-            <element signature="e#6430#7387#0" />
-            <element signature="e#8452#9500#0" />
-            <element signature="e#9506#10559#0" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -590,6 +554,38 @@
             <element signature="e#267#268#0" expanded="true" />
             <element signature="e#303#304#0" expanded="true" />
             <element signature="e#335#336#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/vueltap/Api/ApiService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="211">
+          <caret line="41" column="13" lean-forward="true" selection-start-line="41" selection-start-column="13" selection-end-line="41" selection-end-column="13" />
+          <folding>
+            <element signature="e#571#588#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/vueltap/Activity/ImageDniDomicileUpload.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="184" column="16" lean-forward="true" selection-start-line="184" selection-start-column="16" selection-end-line="184" selection-end-column="16" />
+          <folding>
+            <element signature="e#2082#2332#0" />
+            <element signature="e#2338#3003#0" />
+            <element signature="e#3009#3345#0" />
+            <element signature="e#3351#3619#0" />
+            <element signature="e#3625#4064#0" />
+            <element signature="e#4070#4336#0" />
+            <element signature="e#4342#4780#0" />
+            <element signature="e#4786#5049#0" />
+            <element signature="e#5055#5550#0" />
+            <element signature="e#5556#6424#0" />
+            <element signature="e#6430#7387#0" />
+            <element signature="e#8452#9500#0" />
+            <element signature="e#9506#10559#0" />
           </folding>
         </state>
       </provider>

@@ -1,6 +1,7 @@
 package com.vueltap.Api;
 
 import com.vueltap.Models.JsonResponse;
+import com.vueltap.Models.Response;
 import com.vueltap.Transport.Model.ModelTransport;
 
 import okhttp3.MultipartBody;
@@ -38,7 +39,7 @@ public interface ApiService {
 
     @Multipart
     @PUT("Messengers/Add/Image")
-    Call<JsonResponse> UPLOAD_IMAGE(
+    Call<Response> UPLOAD_IMAGE(
             @Part("email") RequestBody email,
             @Part("type") RequestBody type,
             @Part MultipartBody.Part image

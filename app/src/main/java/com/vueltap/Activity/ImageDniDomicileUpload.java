@@ -182,7 +182,7 @@ public class ImageDniDomicileUpload extends AppCompatActivity {
         }
 
     public void uploadImage(final RequestBody type, RequestBody emailBody, MultipartBody.Part imagePart, final File imageFile) {
-        Call<JsonResponse> call = ApiAdapter.getApiService().UPLOAD_IMAGE(emailBody,type,imagePart);
+        Call<Response> call = ApiAdapter.getApiService().UPLOAD_IMAGE(emailBody,type,imagePart);
         call.enqueue(new Callback<JsonResponse>() {
             @Override
             public void onResponse(Call<JsonResponse> call, Response<JsonResponse> response) {
