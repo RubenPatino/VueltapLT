@@ -7,6 +7,8 @@ import android.widget.Toast;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+
+
 import static com.vueltap.System.Constant.ADDRESS;
 import static com.vueltap.System.Constant.DNI_NUMBER;
 import static com.vueltap.System.Constant.EMAIL;
@@ -30,7 +32,7 @@ public class SessionManager {
         this.objContext = context;
     }
 
-    public void setPersonalInformation(String uid,String email,String dniNumber,String names,String lastName,String address,String phone ){
+    public void setPersonalInfo(String uid, String email, String dniNumber, String names, String lastName, String address, String phone ){
         objShared = objContext.getSharedPreferences(INFORMATION,Context.MODE_PRIVATE);
         objEditor = objShared.edit();
         objEditor.putString(UID,uid);
@@ -43,10 +45,11 @@ public class SessionManager {
         objEditor.commit();
     }
 
-    public JSONObject getDataConfig(){
+    public JSONObject getPersonalInfo(){
         objShared=objContext.getSharedPreferences(INFORMATION,Context.MODE_PRIVATE);
         JSONObject jsonObject=new JSONObject();
         try {
+            jsonObject.put(UID,objShared.getString(UID, VALUE_ZERO));
             jsonObject.put(EMAIL,objShared.getString(EMAIL, VALUE_ZERO));
             jsonObject.put(DNI_NUMBER,objShared.getString(DNI_NUMBER, VALUE_ZERO));
             jsonObject.put(NAMES,objShared.getString(NAMES, VALUE_ZERO));

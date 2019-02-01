@@ -6,11 +6,9 @@ import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 
-import com.google.firebase.auth.FirebaseAuth;
 import com.karan.churi.PermissionManager.PermissionManager;
 import com.vueltap.Api.ApiAdapter;
 import com.vueltap.Models.ImageUpload;
@@ -33,21 +31,13 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-import static com.vueltap.System.Constant.ADDRESS;
 import static com.vueltap.System.Constant.BILL_PAYMENT;
 import static com.vueltap.System.Constant.DNI_BACK;
 import static com.vueltap.System.Constant.DNI_FRONT;
-import static com.vueltap.System.Constant.DNI_NUMBER;
 import static com.vueltap.System.Constant.DOMICILE_REQUEST_CODE;
 import static com.vueltap.System.Constant.EMAIL;
 import static com.vueltap.System.Constant.IDENTIFY_REQUEST_CODE_BACK;
 import static com.vueltap.System.Constant.IDENTIFY_REQUEST_CODE_FRONT;
-import static com.vueltap.System.Constant.LAST_NAME;
-import static com.vueltap.System.Constant.NAMES;
-import static com.vueltap.System.Constant.PHONE;
-import static com.vueltap.System.Constant.URL_DNI_BACK;
-import static com.vueltap.System.Constant.URL_DNI_FRONT;
-import static com.vueltap.System.Constant.URL_DOMICILE;
 
 public class ImageDniDomicileUpload extends AppCompatActivity {
 
@@ -88,7 +78,7 @@ public class ImageDniDomicileUpload extends AppCompatActivity {
 
     public void loadData() {
         try {
-            email=manager.getDataConfig().getString(EMAIL);
+            email=manager.getPersonalInfo().getString(EMAIL);
         } catch (JSONException e) {
             e.printStackTrace();
         }

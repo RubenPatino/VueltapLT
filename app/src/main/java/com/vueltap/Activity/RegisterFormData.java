@@ -13,12 +13,6 @@ import com.orhanobut.logger.Logger;
 import com.vueltap.R;
 import com.vueltap.System.SessionManager;
 
-import static com.vueltap.System.Constant.ADDRESS;
-import static com.vueltap.System.Constant.DNI_NUMBER;
-import static com.vueltap.System.Constant.LAST_NAME;
-import static com.vueltap.System.Constant.NAMES;
-import static com.vueltap.System.Constant.PHONE;
-
 public class RegisterFormData extends AppCompatActivity {
 
     private FirebaseAuth firebaseAuth;
@@ -87,11 +81,11 @@ public class RegisterFormData extends AppCompatActivity {
         } else if (phone.isEmpty()) {
             etPhone.setError(getString(R.string.msg_isempty));
             etPhone.requestFocus();
-        } else if(phone.length()<10){
+        } else if(phone.length()<7){
             etPhone.setError("Por favor digite un número de teléfono valido.");
             etPhone.requestFocus();
         }else {
-            manager.setPersonalInformation(uid,email,dniNumber,names,lastName,address,phone);
+            manager.setPersonalInfo(uid,email,dniNumber,names,lastName,address,phone);
             startActivity(new Intent().setClass(this,ImageDniDomicileUpload.class));
            /* Intent intent = new Intent(this, ImageDniDomicileUpload.class);
             intent.putExtra(DNI_NUMBER, dniNumber);

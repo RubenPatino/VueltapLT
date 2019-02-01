@@ -7,10 +7,8 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
-import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -22,10 +20,8 @@ import com.google.firebase.auth.FirebaseUser;
 import com.karan.churi.PermissionManager.PermissionManager;
 import com.vueltap.Api.ApiAdapter;
 import com.vueltap.Models.ImageUpload;
-import com.vueltap.Models.JsonResponse;
 import com.vueltap.R;
 import com.vueltap.System.SessionManager;
-import com.vueltap.Transport.Adapter.AdapterTransport;
 
 import org.json.JSONException;
 
@@ -53,6 +49,7 @@ import static com.vueltap.System.Constant.PHONE;
 import static com.vueltap.System.Constant.PROPERTY_CARD;
 import static com.vueltap.System.Constant.SOAT;
 import static com.vueltap.System.Constant.TECNOMECANICA;
+import static com.vueltap.System.Constant.UID;
 import static com.vueltap.System.Constant.URL_DNI_BACK;
 import static com.vueltap.System.Constant.URL_DNI_FRONT;
 import static com.vueltap.System.Constant.URL_DOMICILE;
@@ -68,7 +65,7 @@ public class ViewTransport extends AppCompatActivity {
     private RadioButton rbClicla, rbMoto;
     private SweetAlertDialog dialog;
     private String urlProperty = "", urlSOAT = "", urlLicence = "", numPlaca = "",urlTecno="";
-    private String email,names, lastName, address, phone, dniNumber,urlDniFront,urlDniBack, urlAddress;
+    private String uid,email,names, lastName, address, phone, dniNumber,urlDniFront,urlDniBack, urlAddress;
     private EditText etPlaca;
     private final int PICTURE_RESULT=1;
     private Uri imageUri;
@@ -127,15 +124,16 @@ public class ViewTransport extends AppCompatActivity {
 
     private void loadData() {
         try {
-            dniNumber = manager.getDataConfig().getString(DNI_NUMBER);
-            email=manager.getDataConfig().getString(EMAIL);
-            names = manager.getDataConfig().getString(NAMES);
-            lastName = manager.getDataConfig().getString(LAST_NAME);
-            address = manager.getDataConfig().getString(ADDRESS);
-            phone = manager.getDataConfig().getString(PHONE);
-            urlDniFront=manager.getDataConfig().getString(URL_DNI_FRONT);
-            urlDniBack=manager.getDataConfig().getString(URL_DNI_BACK);
-            urlAddress =manager.getDataConfig().getString(URL_DOMICILE);
+            uid=manager.getPersonalInfo().getString(UID);
+            dniNumber = manager.getPersonalInfo().getString(DNI_NUMBER);
+            email=manager.getPersonalInfo().getString(EMAIL);
+            names = manager.getPersonalInfo().getString(NAMES);
+            lastName = manager.getPersonalInfo().getString(LAST_NAME);
+            address = manager.getPersonalInfo().getString(ADDRESS);
+            phone = manager.getPersonalInfo().getString(PHONE);
+            urlDniFront=manager.getUrlInformation().getString(URL_DNI_FRONT);
+            urlDniBack=manager.getUrlInformation().getString(URL_DNI_BACK);
+            urlAddress =manager.getUrlInformation().getString(URL_DOMICILE);
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -231,10 +229,35 @@ public class ViewTransport extends AppCompatActivity {
     public void OnClickRegister(View view) {
 
         if(rbClicla.isChecked()){
-            Log.d("Saved","Cicla");
+            Log.d("uid",uid);
+            Log.d("dni",dniNumber);
+            Log.d("email",email);
+            Log.d("name",names);
+            Log.d("last",lastName);
+            Log.d("address",address);
+            Log.d("phone",phone);
+            Log.d("urlfron",urlDniFront);
+            Log.d("urlback",urlDniBack);
+            Log.d("urlAddress",urlAddress);
+            Log.d("typeTransport","1");
         }else{
             if(validateMoto(view)){
-                Log.d("Saved","MOTO");
+                Log.d("uid",uid);
+                Log.d("dni",dniNumber);
+                Log.d("email",email);
+                Log.d("name",names);
+                Log.d("last",lastName);
+                Log.d("address",address);
+                Log.d("phone",phone);
+                Log.d("urlfron",urlDniFront);
+                Log.d("urlback",urlDniBack);
+                Log.d("urlAddress",urlAddress);
+                Log.d("placa",numPlaca);
+                Log.d("urllicencia",urlLicence);
+                Log.d("urlpropiedad",urlProperty);
+                Log.d("urlsoat",urlSOAT);
+                Log.d("urltecnico",urlTecno);
+                Log.d("typeTransport","2");
             }
         }
     }
@@ -293,14 +316,14 @@ public class ViewTransport extends AppCompatActivity {
             });*/
     }
 
-    public File getFile (Bitmap bmp){
+    public File getFile (Bitmap bmp,String prefix){
         //File tempFile = null;
         //Uri uri = null;
         try {
             File tempDir = Environment.getExternalStorageDirectory();
             tempDir = new File(tempDir.getAbsolutePath() + "/.temp/");
             tempDir.mkdir();
-            File tempFile = File.createTempFile("temp", ".jpg", tempDir);
+            File tempFile = File.createTempFile(prefix, ".jpg", tempDir);
             ByteArrayOutputStream bytes = new ByteArrayOutputStream();
             bmp.compress(Bitmap.CompressFormat.JPEG, 100, bytes);
             byte[] bitmapData = bytes.toByteArray();
@@ -373,14 +396,14 @@ public class ViewTransport extends AppCompatActivity {
             switch (requestCode) {
                 case _PROPERTY:
                     ivProperty.setImageBitmap(bitmap);
-                    File property = getFile(bitmap);
+                    File property = getFile(bitmap,PROPERTY_CARD);
                     if (property != null) {
                        uploadImage(property,PROPERTY_CARD, requestCode);
                     }
                     break;
                 case _LYCENCE:
                     ivLicence.setImageBitmap(bitmap);
-                    File licence = getFile(bitmap);
+                    File licence = getFile(bitmap,DRIVER_LICENSE);
                     if (licence != null) {
                         uploadImage(licence,DRIVER_LICENSE, requestCode);
                     }
@@ -388,7 +411,7 @@ public class ViewTransport extends AppCompatActivity {
                 case _SOAT:
 
                     ivSoat.setImageBitmap(bitmap);
-                    File soat = getFile(bitmap);
+                    File soat = getFile(bitmap,SOAT);
                     if (soat != null) {
                         uploadImage(soat,SOAT,requestCode);
                     }
@@ -396,14 +419,13 @@ public class ViewTransport extends AppCompatActivity {
                 case _TECNO:
 
                     ivTecno.setImageBitmap(bitmap);
-                    File tecno = getFile(bitmap);
+                    File tecno = getFile(bitmap,TECNOMECANICA);
                     if (tecno != null) {
                         uploadImage(tecno, TECNOMECANICA,requestCode);
                     }
                     break;
             }
         }
-
     }
 
     @Override
