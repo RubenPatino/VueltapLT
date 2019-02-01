@@ -32,6 +32,9 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 import static com.vueltap.System.Constant.ADDRESS;
+import static com.vueltap.System.Constant.BILL_PAYMENT;
+import static com.vueltap.System.Constant.DNI_BACK;
+import static com.vueltap.System.Constant.DNI_FRONT;
 import static com.vueltap.System.Constant.DNI_NUMBER;
 import static com.vueltap.System.Constant.DOMICILE_REQUEST_CODE;
 import static com.vueltap.System.Constant.IDENTIFY_REQUEST_CODE_BACK;
@@ -178,14 +181,16 @@ public class ImageDniDomicileUpload extends AppCompatActivity {
             }
         }
 
-
-    public void uploadDniFront(RequestBody emailBody, MultipartBody.Part imagePart, final File imageFile) {
-        Call<JsonResponse> call = ApiAdapter.getApiService().UPLOAD_DNI_FRONT(emailBody, imagePart);
+    public void uploadImage(final RequestBody type, RequestBody emailBody, MultipartBody.Part imagePart, final File imageFile) {
+        Call<JsonResponse> call = ApiAdapter.getApiService().UPLOAD_IMAGE(emailBody,type,imagePart);
         call.enqueue(new Callback<JsonResponse>() {
             @Override
             public void onResponse(Call<JsonResponse> call, Response<JsonResponse> response) {
                 if (response.isSuccessful()) {
                     if (response.body().getStatus()) {
+                        if(type.equals(DNI_FRONT)){
+                            urlDniFront
+                        }
                         urlDniFront = response.body().getMessage();
                         imgCheckFront.setVisibility(View.VISIBLE);
                         dialog.dismissWithAnimation();
@@ -203,8 +208,8 @@ public class ImageDniDomicileUpload extends AppCompatActivity {
         });
     }
 
-    public void uploadDniBack(RequestBody emailBody, MultipartBody.Part imagePart, final File imageFile) {
-        Call<JsonResponse> call = ApiAdapter.getApiService().UPLOAD_DNI_BACK(emailBody, imagePart);
+    public void uploadDniBack(RequestBody type,RequestBody emailBody, MultipartBody.Part imagePart, final File imageFile) {
+        Call<JsonResponse> call = ApiAdapter.getApiService().UPLOAD_IMAGE(emailBody,type,imagePart);
         call.enqueue(new Callback<JsonResponse>() {
             @Override
             public void onResponse(Call<JsonResponse> call, Response<JsonResponse> response) {
@@ -251,48 +256,41 @@ public class ImageDniDomicileUpload extends AppCompatActivity {
         });
     }
 
-    public void getMultipart(final File imageFile, int requestCode) {
+    public void getMultipart(final File imageFile, String typeImg) {
         dialog = new SweetAlertDialog(this, SweetAlertDialog.PROGRESS_TYPE);
         dialog.setTitleText("Subiendo...");
         dialog.setContentText("Por favor espere.");
         dialog.show();
         RequestBody emailBody = RequestBody.create(MultipartBody.FORM, email);
+        RequestBody type = RequestBody.create(MultipartBody.FORM, typeImg);
         RequestBody imageBody = RequestBody.create(MediaType.parse("image/*"), imageFile);
         MultipartBody.Part imagePart = MultipartBody.Part.createFormData("image", imageFile.getName(), imageBody);
-        switch (requestCode) {
+
+        uploadImage(type,emailBody,imagePart,imageFile);
+
+        /*switch (requestCode) {
             case IDENTIFY_REQUEST_CODE_FRONT:
-                uploadDniFront(emailBody, imagePart, imageFile);
+                uploadDniFront(type,emailBody, imagePart, imageFile);
                 break;
             case IDENTIFY_REQUEST_CODE_BACK:
-                uploadDniBack(emailBody, imagePart, imageFile);
+              //  uploadDniBack(type, imagePart, imageFile);
                 break;
             case DOMICILE_REQUEST_CODE:
                 uploadDomicile(emailBody, imagePart, imageFile);
                 break;
-        }
-    }
-    public static  Bitmap crupAndScale (Bitmap source,int scale){
-        int factor = source.getHeight() <= source.getWidth() ? source.getHeight(): source.getWidth();
-        int longer = source.getHeight() >= source.getWidth() ? source.getHeight(): source.getWidth();
-        int x = source.getHeight() >= source.getWidth() ?0:(longer-factor)/2;
-        int y = source.getHeight() <= source.getWidth() ?0:(longer-factor)/2;
-        source = Bitmap.createBitmap(source, x, y, factor, factor);
-        source = Bitmap.createScaledBitmap(source, scale, scale, false);
-        return source;
+        }*/
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (data != null) {
                 bitmap = (Bitmap) data.getExtras().get("data");
-                bitmap= crupAndScale(bitmap,1000);
                 switch (requestCode) {
                     case IDENTIFY_REQUEST_CODE_FRONT:
-
                         imgDniFront.setImageBitmap(bitmap);
                         File dniFront = getFile(bitmap);
                         if (dniFront != null) {
-                            getMultipart(dniFront, requestCode);
+                            getMultipart(dniFront, DNI_FRONT);
                         }
                         break;
                     case IDENTIFY_REQUEST_CODE_BACK:
@@ -300,20 +298,18 @@ public class ImageDniDomicileUpload extends AppCompatActivity {
                         imgDniBack.setImageBitmap(bitmap);
                         File dniBack = getFile(bitmap);
                         if (dniBack != null) {
-                            getMultipart(dniBack, requestCode);
+                            getMultipart(dniBack, DNI_BACK);
                         }
                         break;
                     case DOMICILE_REQUEST_CODE:
-
                         imgAddress.setImageBitmap(bitmap);
                         File domicile = getFile(bitmap);
                         if (domicile != null) {
-                            getMultipart(domicile, requestCode);
+                            getMultipart(domicile,BILL_PAYMENT);
                         }
                         break;
                 }
         }
-
         super.onActivityResult(requestCode, resultCode, data);
     }
 

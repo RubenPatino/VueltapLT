@@ -11,6 +11,7 @@ import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.Multipart;
 import retrofit2.http.POST;
+import retrofit2.http.PUT;
 import retrofit2.http.Part;
 import retrofit2.http.Path;
 
@@ -36,15 +37,17 @@ public interface ApiService {
             );
 
     @Multipart
-    @POST("user/upload/dni/front")
-    Call<JsonResponse> UPLOAD_DNI_FRONT(
+    @PUT("Messengers/Add/Image")
+    Call<JsonResponse> UPLOAD_IMAGE(
             @Part("email") RequestBody email,
+            @Part("type") RequestBody type,
             @Part MultipartBody.Part image
     );
     @Multipart
     @POST("user/upload/dni/back")
     Call<JsonResponse> UPLOAD_DNI_BACK(
             @Part("email") RequestBody email,
+            @Part("type") RequestBody type,
             @Part MultipartBody.Part image
     );
     @Multipart

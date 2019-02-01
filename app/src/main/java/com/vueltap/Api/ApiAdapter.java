@@ -11,7 +11,8 @@ public class ApiAdapter {
     private static ApiService API_SERVICE;
 
     //String baseUrl = "http://192.168.100.2:3000/";
-    private static String baseUrl="https://vueltap.herokuapp.com/";
+    //private static String baseUrl="https://vueltap.herokuapp.com/";
+    private static String baseUrl="http://msau.vueltap.com.co/api_1.0/";
 
     public static ApiService getApiService() {
         HttpLoggingInterceptor logging = new HttpLoggingInterceptor();

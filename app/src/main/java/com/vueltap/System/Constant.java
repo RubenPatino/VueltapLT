@@ -22,6 +22,9 @@ public class Constant {
     public static final String URL_DNI_FRONT="urldnifront";
     public static final String URL_DNI_BACK="urldniback";
     public static final String URL_DOMICILE="urldomicile";
+    public static final String DNI_FRONT="dni_front";
+    public static final String DNI_BACK="dni_back";
+    public static final String BILL_PAYMENT="bill_paument";
 
 
 
