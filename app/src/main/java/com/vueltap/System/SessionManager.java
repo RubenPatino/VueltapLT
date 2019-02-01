@@ -15,6 +15,10 @@ import static com.vueltap.System.Constant.LAST_NAME;
 import static com.vueltap.System.Constant.NAMES;
 import static com.vueltap.System.Constant.PHONE;
 import static com.vueltap.System.Constant.UID;
+import static com.vueltap.System.Constant.URL_DNI_BACK;
+import static com.vueltap.System.Constant.URL_DNI_FRONT;
+import static com.vueltap.System.Constant.URL_DOMICILE;
+import static com.vueltap.System.Constant.URL_INFORMATION;
 import static com.vueltap.System.Constant.VALUE_ZERO;
 
 public class SessionManager {
@@ -39,11 +43,6 @@ public class SessionManager {
         objEditor.commit();
     }
 
-    public void clearDataConfig(){
-        objShared=objContext.getSharedPreferences(INFORMATION,Context.MODE_PRIVATE);
-        objShared.edit().clear().commit();
-    }
-
     public JSONObject getDataConfig(){
         objShared=objContext.getSharedPreferences(INFORMATION,Context.MODE_PRIVATE);
         JSONObject jsonObject=new JSONObject();
@@ -59,4 +58,38 @@ public class SessionManager {
         }
         return jsonObject;
     }
+
+    public void clearInformation(){
+        objShared=objContext.getSharedPreferences(INFORMATION,Context.MODE_PRIVATE);
+        objShared.edit().clear().commit();
+    }
+
+
+
+    public void setUrlInformation(String urlDniFront,String urlDniBack,String urlDomicile){
+        objShared = objContext.getSharedPreferences(URL_INFORMATION,Context.MODE_PRIVATE);
+        objEditor = objShared.edit();
+        objEditor.putString(URL_DNI_FRONT,urlDniFront);
+        objEditor.putString(URL_DNI_BACK,urlDniBack);
+        objEditor.putString(URL_DOMICILE,urlDomicile);
+        objEditor.commit();
+    }
+
+    public JSONObject getUrlInformation(){
+        objShared=objContext.getSharedPreferences(URL_INFORMATION,Context.MODE_PRIVATE);
+        JSONObject jsonObject=new JSONObject();
+        try {
+            jsonObject.put(URL_DNI_FRONT,objShared.getString(URL_DNI_FRONT, VALUE_ZERO));
+            jsonObject.put(URL_DNI_BACK,objShared.getString(URL_DNI_BACK, VALUE_ZERO));
+            jsonObject.put(URL_DOMICILE,objShared.getString(URL_DOMICILE, VALUE_ZERO));
+        } catch (JSONException e) {
+            Toast.makeText(objContext,e.getMessage(),Toast.LENGTH_SHORT).show();
+        }
+        return jsonObject;
+    }
+    public void clearUrlInformation(){
+        objShared=objContext.getSharedPreferences(URL_INFORMATION,Context.MODE_PRIVATE);
+        objShared.edit().clear().commit();
+    }
+
 }

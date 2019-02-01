@@ -18,9 +18,6 @@ public class splash_screen extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.splash_screen);
-
-
-
         new Timer().schedule(new TimerTask() {
             @Override
             public void run() {

@@ -15,6 +15,7 @@ import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RadioButton;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -23,7 +24,10 @@ import com.vueltap.Api.ApiAdapter;
 import com.vueltap.Models.ImageUpload;
 import com.vueltap.Models.JsonResponse;
 import com.vueltap.R;
+import com.vueltap.System.SessionManager;
 import com.vueltap.Transport.Adapter.AdapterTransport;
+
+import org.json.JSONException;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -42,6 +46,7 @@ import retrofit2.Response;
 import static com.vueltap.System.Constant.ADDRESS;
 import static com.vueltap.System.Constant.DNI_NUMBER;
 import static com.vueltap.System.Constant.DRIVER_LICENSE;
+import static com.vueltap.System.Constant.EMAIL;
 import static com.vueltap.System.Constant.LAST_NAME;
 import static com.vueltap.System.Constant.NAMES;
 import static com.vueltap.System.Constant.PHONE;
@@ -58,10 +63,9 @@ import static com.vueltap.System.Constant._TECNO;
 
 public class ViewTransport extends AppCompatActivity {
 
-    private RecyclerView recyclerView;
-    private AdapterTransport adapter;
+    private SessionManager manager;
     private LinearLayout linearLayout;
-    private CheckBox cbClicla, cbMoto;
+    private RadioButton rbClicla, rbMoto;
     private SweetAlertDialog dialog;
     private String urlProperty = "", urlSOAT = "", urlLicence = "", numPlaca = "",urlTecno="";
     private String email,names, lastName, address, phone, dniNumber,urlDniFront,urlDniBack, urlAddress;
@@ -72,8 +76,8 @@ public class ViewTransport extends AppCompatActivity {
     private Bitmap bitmap;
     private PermissionManager permissionManager;
     private ImageView checkProperty,checkLicence,checkSoat,checkTecno;
-    private FirebaseAuth firebaseAuth;
-    private FirebaseUser user;
+   // private FirebaseAuth firebaseAuth;
+    //private FirebaseUser user;
 
 
     @Override
@@ -86,8 +90,9 @@ public class ViewTransport extends AppCompatActivity {
 
     private void loadControls() {
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
-        firebaseAuth = FirebaseAuth.getInstance();
-        user = firebaseAuth.getCurrentUser();
+        manager=new SessionManager(getApplicationContext());
+        //firebaseAuth = FirebaseAuth.getInstance();
+        //user = firebaseAuth.getCurrentUser();
         //email="rpm8530@gmail.com";
         permissionManager = new PermissionManager() {};
         etPlaca = findViewById(R.id.TextInputPlaca);
@@ -120,16 +125,18 @@ public class ViewTransport extends AppCompatActivity {
         });*/
 
         linearLayout = findViewById(R.id.LinearLayoutTransport);
-        cbClicla = findViewById(R.id.checkBoxBicicleta);
-        cbMoto = findViewById(R.id.checkBoxMoto);
+        rbClicla = findViewById(R.id.radioButtonCicla);
+        rbMoto = findViewById(R.id.radioButtonMoto);
 
-        cbClicla.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+
+
+        rbClicla.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
                 validateCheck();
             }
         });
-        cbMoto.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+        rbMoto.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
                 validateCheck();
@@ -141,15 +148,20 @@ public class ViewTransport extends AppCompatActivity {
     }
 
     private void loadData() {
-        email=user.getEmail();
-        dniNumber = getIntent().getStringExtra(DNI_NUMBER);
-        names = getIntent().getStringExtra(NAMES);
-        lastName = getIntent().getStringExtra(LAST_NAME);
-        address = getIntent().getStringExtra(ADDRESS);
-        phone = getIntent().getStringExtra(PHONE);
-        urlDniFront=getIntent().getStringExtra(URL_DNI_FRONT);
-        urlDniBack=getIntent().getStringExtra(URL_DNI_BACK);
-        urlAddress =getIntent().getStringExtra(URL_DOMICILE);
+        try {
+            dniNumber = manager.getDataConfig().getString(DNI_NUMBER);
+            email=manager.getDataConfig().getString(EMAIL);
+            names = manager.getDataConfig().getString(NAMES);
+            lastName = manager.getDataConfig().getString(LAST_NAME);
+            address = manager.getDataConfig().getString(ADDRESS);
+            phone = manager.getDataConfig().getString(PHONE);
+            urlDniFront=manager.getDataConfig().getString(URL_DNI_FRONT);
+            urlDniBack=manager.getDataConfig().getString(URL_DNI_BACK);
+            urlAddress =manager.getDataConfig().getString(URL_DOMICILE);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
     }
 
     private Boolean validateMoto(View view) {
@@ -176,7 +188,7 @@ public class ViewTransport extends AppCompatActivity {
     }
 
     private void validateCheck() {
-        if (cbMoto.isChecked()) {
+        if (rbMoto.isChecked()) {
             linearLayout.setVisibility(View.VISIBLE);
         } else {
             linearLayout.setVisibility(View.GONE);
@@ -236,7 +248,7 @@ public class ViewTransport extends AppCompatActivity {
 
     public void OnClickRegister(View view) {
 
-        if(cbClicla.isChecked()&&cbMoto.isChecked()){
+        /*if(cbClicla.isChecked()&&cbMoto.isChecked()){
             if(validateMoto(view)){
                 savedUser();
             }
@@ -251,21 +263,22 @@ public class ViewTransport extends AppCompatActivity {
             dialog.setContentText("Por favor selecciona una opción.");
             dialog.setConfirmText("Aceptar");
             dialog.show();
-        }
+        }*/
     }
 
     public void savedUser(){
             dialog=new SweetAlertDialog(this,SweetAlertDialog.SUCCESS_TYPE);
             dialog.setTitleText("Felicitaciones");
+            dialog.setContentText(dniNumber+"<br>"+email+"<br>"+names+"<br>"+lastName+"<br>"+address+"<br>"+phone+"<br>");
            // dialog.setContentText("Por favor espere.");
-            dialog.setContentText("Has finalizado tu proceso de registro exitosamente.  Procederemos con un chequeo de seguridad de toda la información suministrada. Si eres seleccionado te llegará un mensaje de texto invitándote a una capacitación. Este proceso tardará una semana aproximadamente.");
+           // dialog.setContentText("Has finalizado tu proceso de registro exitosamente.  Procederemos con un chequeo de seguridad de toda la información suministrada. Si eres seleccionado te llegará un mensaje de texto invitándote a una capacitación. Este proceso tardará una semana aproximadamente.");
             dialog.setConfirmText("Aceptar");
             dialog.show();
-
+ /*
             firebaseAuth.signOut();
             Log.d("Datos",email+"_"+dniNumber+"_"+names+"_"+lastName+"_"+address+"_"+phone+"_"+urlDniFront+
                     "_"+urlDniBack+"_"+urlAddress+"_"+urlProperty+"_"+urlLicence+"_"+urlSOAT+"_"+urlTecno);
-       /* new Timer().schedule(new TimerTask() {
+       new Timer().schedule(new TimerTask() {
             @Override
             public void run() {
                 dialog.changeAlertType(SweetAlertDialog.SUCCESS_TYPE);

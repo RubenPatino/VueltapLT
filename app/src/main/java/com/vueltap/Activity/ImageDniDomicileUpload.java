@@ -15,7 +15,10 @@ import com.karan.churi.PermissionManager.PermissionManager;
 import com.vueltap.Api.ApiAdapter;
 import com.vueltap.Models.ImageUpload;
 import com.vueltap.R;
+import com.vueltap.System.SessionManager;
 import com.vueltap.Transport.View.ViewTransport;
+
+import org.json.JSONException;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -36,6 +39,7 @@ import static com.vueltap.System.Constant.DNI_BACK;
 import static com.vueltap.System.Constant.DNI_FRONT;
 import static com.vueltap.System.Constant.DNI_NUMBER;
 import static com.vueltap.System.Constant.DOMICILE_REQUEST_CODE;
+import static com.vueltap.System.Constant.EMAIL;
 import static com.vueltap.System.Constant.IDENTIFY_REQUEST_CODE_BACK;
 import static com.vueltap.System.Constant.IDENTIFY_REQUEST_CODE_FRONT;
 import static com.vueltap.System.Constant.LAST_NAME;
@@ -47,14 +51,16 @@ import static com.vueltap.System.Constant.URL_DOMICILE;
 
 public class ImageDniDomicileUpload extends AppCompatActivity {
 
+    private SessionManager manager;
+
     private SweetAlertDialog dialog;
     private ImageView imgDniFront, imgDniBack, imgAddress, imgCheckFront, imgCheckBack, imgCheckDomicile;
     private Bitmap bitmap;
     private PermissionManager permissionManager;
-    private String email, names, lastName, address, phone, dniNumber;
+  /*  private String email, names, lastName, address, phone, dniNumber;
     private FirebaseAuth firebaseAuth;
-    //private FirebaseUser user;
-    private String urlDniFront = "", urlDniBack = "", urlAddress = "";
+    private FirebaseUser user;*/
+    private String email="", urlDniFront = "", urlDniBack = "", urlAddress = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,6 +71,7 @@ public class ImageDniDomicileUpload extends AppCompatActivity {
     }
 
     public void loadControls() {
+        manager=new SessionManager(getApplicationContext());
       //  Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
       //  firebaseAuth = FirebaseAuth.getInstance();
       //  user = firebaseAuth.getCurrentUser();
@@ -80,22 +87,27 @@ public class ImageDniDomicileUpload extends AppCompatActivity {
     }
 
     public void loadData() {
-
-        email="pruebas@gmail.com";
-        names="nn";
-        lastName="nn";
-        address="nn";
-        phone="2123232323";
-        dniNumber="345332113";
-        /*
-        email = user.getEmail();
-        names = getIntent().getStringExtra(NAMES);
-        lastName = getIntent().getStringExtra(LAST_NAME);
-        address = getIntent().getStringExtra(ADDRESS);
-        phone = getIntent().getStringExtra(PHONE);
-        dniNumber = getIntent().getStringExtra(DNI_NUMBER);
-        */
-    }
+        try {
+            email=manager.getDataConfig().getString(EMAIL);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+//
+//        email="pruebas@gmail.com";
+//        names="nn";
+//        lastName="nn";
+//        address="nn";
+//        phone="2123232323";
+//        dniNumber="345332113";
+//        /*
+//        email = user.getEmail();
+//        names = getIntent().getStringExtra(NAMES);
+//        lastName = getIntent().getStringExtra(LAST_NAME);
+//        address = getIntent().getStringExtra(ADDRESS);
+//        phone = getIntent().getStringExtra(PHONE);
+//        dniNumber = getIntent().getStringExtra(DNI_NUMBER);
+//        */
+   }
 
     public void OnClickDniFront(View view) {
         if (permissionManager.checkAndRequestPermissions(this)) {
@@ -155,6 +167,10 @@ public class ImageDniDomicileUpload extends AppCompatActivity {
             OnClickDomicileHelp(view);
         } else {
 
+            manager.setUrlInformation(urlDniFront,urlDniBack,urlAddress);
+
+            startActivity(new Intent().setClass(getApplicationContext(),ViewTransport.class));
+/*
             //Log.d("URL",urlDniFront+"_"+urlDniBack+"_"+urlAddress);
             Intent intent = new Intent(this, ViewTransport.class);
             intent.putExtra(DNI_NUMBER, dniNumber);
@@ -165,7 +181,7 @@ public class ImageDniDomicileUpload extends AppCompatActivity {
             intent.putExtra(URL_DNI_FRONT, urlDniFront);
             intent.putExtra(URL_DNI_BACK, urlDniFront);
             intent.putExtra(URL_DOMICILE, urlDniFront);
-            startActivity(new Intent().setClass(getApplicationContext(), ViewTransport.class));
+            startActivity(new Intent().setClass(getApplicationContext(), ViewTransport.class));*/
         }
     }
 
@@ -197,6 +213,7 @@ public class ImageDniDomicileUpload extends AppCompatActivity {
         dialog.setTitleText("Subiendo...");
         dialog.setContentText("Por favor espere.");
         dialog.show();
+
         final RequestBody emailBody = RequestBody.create(MultipartBody.FORM, email);
         final RequestBody type = RequestBody.create(MultipartBody.FORM, typeImg);
         RequestBody imageBody = RequestBody.create(MediaType.parse("image/*"), imageFile);

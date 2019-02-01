@@ -34,6 +34,7 @@ public class Constant {
     public static final String TECNOMECANICA="tecnomecanica";
 
     public static final String INFORMATION="information";
+    public static final String URL_INFORMATION="urlinformation";
 
 
 
