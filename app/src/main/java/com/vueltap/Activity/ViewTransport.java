@@ -1,4 +1,4 @@
-package com.vueltap.Transport.View;
+package com.vueltap.Activity;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -67,8 +67,6 @@ public class ViewTransport extends AppCompatActivity {
     private String urlProperty = "", urlSOAT = "", urlLicence = "", numPlaca = "",urlTecno="";
     private String uid,email,names, lastName, address, phone, dniNumber,urlDniFront,urlDniBack, urlAddress;
     private EditText etPlaca;
-    private final int PICTURE_RESULT=1;
-    private Uri imageUri;
     private ImageView ivLicence,ivProperty,ivSoat,ivTecno;
     private Bitmap bitmap;
     private PermissionManager permissionManager;
@@ -88,8 +86,8 @@ public class ViewTransport extends AppCompatActivity {
     private void loadControls() {
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
         manager=new SessionManager(getApplicationContext());
-        //firebaseAuth = FirebaseAuth.getInstance();
-        //user = firebaseAuth.getCurrentUser();
+        firebaseAuth = FirebaseAuth.getInstance();
+        user = firebaseAuth.getCurrentUser();
         //email="rpm8530@gmail.com";
         permissionManager = new PermissionManager() {};
         etPlaca = findViewById(R.id.TextInputPlaca);

@@ -23,7 +23,6 @@ import com.karan.churi.PermissionManager.PermissionManager;
 import com.vueltap.Api.ApiAdapter;
 import com.vueltap.Models.JsonResponse;
 import com.vueltap.R;
-import com.vueltap.Transport.View.ViewTransport;
 
 import cn.pedant.SweetAlert.SweetAlertDialog;
 import retrofit2.Call;
@@ -94,7 +93,8 @@ public class LoginActivity extends AppCompatActivity {
     // Verificamos si el correo ya esta registrado
     private void checkEmail(String email) {
         dialog = new SweetAlertDialog(this, SweetAlertDialog.PROGRESS_TYPE);
-        dialog.setContentText("Procesando, por favor espere.");
+        setTitle("Procesando");
+        dialog.setContentText("Por favor espere.");
         dialog.show();
         Call<JsonResponse> call = ApiAdapter.getApiService().EMAIL_CHECK(email);
         call.enqueue(new Callback<JsonResponse>() {
@@ -110,7 +110,7 @@ public class LoginActivity extends AppCompatActivity {
                                         " pude durar hasta una semana aproximadamente. Gracias por su compresión.");
                                 dialog.setConfirmText("Aceptar");
                                 firebaseAuth.signOut();
-                            } else if (checkIn.equals(VALIDATE_TRANSPORT)) {
+                            } /*else if (checkIn.equals(VALIDATE_TRANSPORT)) {
                                 final String id = response.body().getUser().getId();
                                 dialog.changeAlertType(SweetAlertDialog.SUCCESS_TYPE);
                                 dialog.setContentText("Muy bien, toda la información suministrada se ha revisado correctamente, lo " +
@@ -123,7 +123,7 @@ public class LoginActivity extends AppCompatActivity {
                                         startActivity(intent);
                                     }
                                 });
-                            } else if (checkIn.equals(VALIDATE_TRAINING)) {
+                            }*/ else if (checkIn.equals(VALIDATE_TRAINING)) {
                                 dialog.changeAlertType(SweetAlertDialog.SUCCESS_TYPE);
                                 dialog.setContentText("¡Excelente!, Ya estamos listos para empezar a trabajar. Te esperamos por nuestras" +
                                         " instalaciones para una capacitación de manejo del programa y entrega de material. Recuerda que nos encontramos en bogota" +

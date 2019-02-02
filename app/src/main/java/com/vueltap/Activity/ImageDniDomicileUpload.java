@@ -14,7 +14,6 @@ import com.vueltap.Api.ApiAdapter;
 import com.vueltap.Models.ImageUpload;
 import com.vueltap.R;
 import com.vueltap.System.SessionManager;
-import com.vueltap.Transport.View.ViewTransport;
 
 import org.json.JSONException;
 
@@ -22,6 +21,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.Objects;
 
 import cn.pedant.SweetAlert.SweetAlertDialog;
 import okhttp3.MediaType;
@@ -47,10 +47,10 @@ public class ImageDniDomicileUpload extends AppCompatActivity {
     private ImageView imgDniFront, imgDniBack, imgAddress, imgCheckFront, imgCheckBack, imgCheckDomicile;
     private Bitmap bitmap;
     private PermissionManager permissionManager;
-  /*  private String email, names, lastName, address, phone, dniNumber;
-    private FirebaseAuth firebaseAuth;
-    private FirebaseUser user;*/
-    private String email="", urlDniFront = "", urlDniBack = "", urlAddress = "";
+    /*  private String email, names, lastName, address, phone, dniNumber;
+      private FirebaseAuth firebaseAuth;
+      private FirebaseUser user;*/
+    private String email = "", urlDniFront = "", urlDniBack = "", urlAddress = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,10 +61,10 @@ public class ImageDniDomicileUpload extends AppCompatActivity {
     }
 
     public void loadControls() {
-        manager=new SessionManager(getApplicationContext());
-      //  Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
-      //  firebaseAuth = FirebaseAuth.getInstance();
-      //  user = firebaseAuth.getCurrentUser();
+        manager = new SessionManager(getApplicationContext());
+        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
+        //  firebaseAuth = FirebaseAuth.getInstance();
+        //  user = firebaseAuth.getCurrentUser();
         imgDniFront = findViewById(R.id.imageViewDniFront);
         imgDniBack = findViewById(R.id.imageViewDniBack);
         imgAddress = findViewById(R.id.imageViewAdress);
@@ -78,26 +78,11 @@ public class ImageDniDomicileUpload extends AppCompatActivity {
 
     public void loadData() {
         try {
-            email=manager.getPersonalInfo().getString(EMAIL);
+            email = manager.getPersonalInfo().getString(EMAIL);
         } catch (JSONException e) {
             e.printStackTrace();
         }
-//
-//        email="pruebas@gmail.com";
-//        names="nn";
-//        lastName="nn";
-//        address="nn";
-//        phone="2123232323";
-//        dniNumber="345332113";
-//        /*
-//        email = user.getEmail();
-//        names = getIntent().getStringExtra(NAMES);
-//        lastName = getIntent().getStringExtra(LAST_NAME);
-//        address = getIntent().getStringExtra(ADDRESS);
-//        phone = getIntent().getStringExtra(PHONE);
-//        dniNumber = getIntent().getStringExtra(DNI_NUMBER);
-//        */
-   }
+    }
 
     public void OnClickDniFront(View view) {
         if (permissionManager.checkAndRequestPermissions(this)) {
@@ -156,22 +141,8 @@ public class ImageDniDomicileUpload extends AppCompatActivity {
         } else if (urlAddress.isEmpty()) {
             OnClickDomicileHelp(view);
         } else {
-
-            manager.setUrlInformation(urlDniFront,urlDniBack,urlAddress);
-
-            startActivity(new Intent().setClass(getApplicationContext(),ViewTransport.class));
-/*
-            //Log.d("URL",urlDniFront+"_"+urlDniBack+"_"+urlAddress);
-            Intent intent = new Intent(this, ViewTransport.class);
-            intent.putExtra(DNI_NUMBER, dniNumber);
-            intent.putExtra(NAMES, names);
-            intent.putExtra(LAST_NAME, lastName);
-            intent.putExtra(ADDRESS, address);
-            intent.putExtra(PHONE, phone);
-            intent.putExtra(URL_DNI_FRONT, urlDniFront);
-            intent.putExtra(URL_DNI_BACK, urlDniFront);
-            intent.putExtra(URL_DOMICILE, urlDniFront);
-            startActivity(new Intent().setClass(getApplicationContext(), ViewTransport.class));*/
+            manager.setUrlInformation(urlDniFront, urlDniBack, urlAddress);
+            startActivity(new Intent().setClass(getApplicationContext(), ViewTransport.class));
         }
     }
 
@@ -182,7 +153,7 @@ public class ImageDniDomicileUpload extends AppCompatActivity {
             File tempDir = Environment.getExternalStorageDirectory();
             tempDir = new File(tempDir.getAbsolutePath() + "/.temp/");
             tempDir.mkdir();
-            File tempFile = File.createTempFile(prefix+"_", ".jpg", tempDir);
+            File tempFile = File.createTempFile(prefix + "_", ".jpg", tempDir);
             ByteArrayOutputStream bytes = new ByteArrayOutputStream();
             bmp.compress(Bitmap.CompressFormat.JPEG, 100, bytes);
             byte[] bitmapData = bytes.toByteArray();
@@ -204,10 +175,11 @@ public class ImageDniDomicileUpload extends AppCompatActivity {
         dialog.setContentText("Por favor espere.");
         dialog.show();
 
-        final RequestBody emailBody = RequestBody.create(MultipartBody.FORM, email);
-        final RequestBody type = RequestBody.create(MultipartBody.FORM, typeImg);
+        RequestBody emailBody = RequestBody.create(MultipartBody.FORM, email);
+        RequestBody type = RequestBody.create(MultipartBody.FORM, typeImg);
         RequestBody imageBody = RequestBody.create(MediaType.parse("image/*"), imageFile);
-        final MultipartBody.Part imagePart = MultipartBody.Part.createFormData("image", imageFile.getName(), imageBody);
+        MultipartBody.Part imagePart = MultipartBody.Part.createFormData("image", imageFile.getName(), imageBody);
+
         Call<ImageUpload> call = ApiAdapter.getApiService().UPLOAD_IMAGE(emailBody, type, imagePart);
         call.enqueue(new Callback<ImageUpload>() {
             @Override
@@ -218,7 +190,6 @@ public class ImageDniDomicileUpload extends AppCompatActivity {
                             case IDENTIFY_REQUEST_CODE_FRONT:
                                 urlDniFront = response.body().getImage_url();
                                 imgCheckFront.setVisibility(View.VISIBLE);
-
                                 break;
                             case IDENTIFY_REQUEST_CODE_BACK:
                                 urlDniBack = response.body().getImage_url();
@@ -232,7 +203,7 @@ public class ImageDniDomicileUpload extends AppCompatActivity {
                         dialog.dismissWithAnimation();
                         imageFile.delete();
                     }
-                }else{
+                } else {
                     dialog.changeAlertType(SweetAlertDialog.ERROR_TYPE);
                     dialog.setContentText(response.message());
                 }
@@ -246,6 +217,7 @@ public class ImageDniDomicileUpload extends AppCompatActivity {
             }
         });
     }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (data != null) {
@@ -253,7 +225,7 @@ public class ImageDniDomicileUpload extends AppCompatActivity {
             switch (requestCode) {
                 case IDENTIFY_REQUEST_CODE_FRONT:
                     imgDniFront.setImageBitmap(bitmap);
-                    File dniFront = getFile(bitmap,DNI_FRONT);
+                    File dniFront = getFile(bitmap, DNI_FRONT);
                     if (dniFront != null) {
                         uploadImage(dniFront, DNI_FRONT, requestCode);
                     }
@@ -276,6 +248,7 @@ public class ImageDniDomicileUpload extends AppCompatActivity {
         }
         super.onActivityResult(requestCode, resultCode, data);
     }
+
     @Override
     public void onRequestPermissionsResult(int requestCode, String permissions[], int[] grantResults) {
         permissionManager.checkResult(requestCode, permissions, grantResults);

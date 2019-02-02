@@ -2,14 +2,12 @@ package com.vueltap.System;
 
 public class Constant {
     public static final String UID = "uid";
-
     public static final String EMAIL = "email";
     public static final String DNI_NUMBER = "dni_number";
     public static final String NAMES = "names";
     public static final String LAST_NAME = "last_name";
     public static final String ADDRESS = "address";
     public static final String PHONE = "phone";
-
     public static final int IDENTIFY_REQUEST_CODE_FRONT = 0;
     public static final int IDENTIFY_REQUEST_CODE_BACK = 1;
     public static final int DOMICILE_REQUEST_CODE = 2;
@@ -34,5 +32,5 @@ public class Constant {
     public static final String TECNOMECANICA="tecnomecanica";
     public static final String INFORMATION="information";
     public static final String URL_INFORMATION="urlinformation";
- public static final String VALUE_ZERO = "0";
+    public static final String VALUE_ZERO = "0";
  }

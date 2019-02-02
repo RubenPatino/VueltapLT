@@ -18,10 +18,6 @@ import retrofit2.http.Path;
 
 public interface ApiService {
     //user
-   /* @GET("user/check/{email}")
-    Call<JsonResponse> EMAIL_CHECK(
-            @Path("email") String email
-    );*/
 
     @GET("http://msaq.vueltap.com.co/api_1.0/Messengers/Check/Exist/{email}")
     Call<JsonResponse> EMAIL_CHECK(
@@ -49,81 +45,6 @@ public interface ApiService {
             @Part("type") RequestBody type,
             @Part MultipartBody.Part image
     );
-   /* @Multipart
-    @POST("user/upload/dni/back")
-    Call<ImageUpload> UPLOAD_DNI_BACK(
-            @Part("email") RequestBody email,
-            @Part("type") RequestBody type,
-            @Part MultipartBody.Part image
-    );
-    @Multipart
-    @POST("user/upload/domicile")
-    Call<ImageUpload> UPLOAD_DOMICILE(
-            @Part("email") RequestBody email,
-            @Part MultipartBody.Part image
-    );
-
-    @Multipart
-    @POST("user/upload/img/property")
-    Call<JsonResponse> UPLOAD_PROPERTY(
-            @Part("email") RequestBody email,
-            @Part MultipartBody.Part image
-    );
-    @Multipart
-    @POST("user/upload/img/licence")
-    Call<ImageUpload> UPLOAD_LICENCE(
-            @Part("email") RequestBody email,
-            @Part MultipartBody.Part image
-    );
-    @Multipart
-    @POST("user/upload/img/soat")
-    Call<ImageUpload> UPLOAD_SOAT(
-            @Part("email") RequestBody email,
-            @Part MultipartBody.Part image
-    );
-
-    @Multipart
-    @POST("user/upload/img/tecno")
-    Call<ImageUpload> UPLOAD_TECNO(
-            @Part("email") RequestBody email,
-            @Part MultipartBody.Part image
-    );
-
-
-
-
-
-
-
-
-
-    @GET("type/transport")
-    Call<ModelTransport> GET_TRANSPORT();*/
-
-  /*  //LOGIN
-//Listar
-    @GET("user/check/{email}")
-    Call<JsonResponse> EMAIL_CHECK(
-            @Path("email") String email
-    );
-
-    @POST("user/add")
-    @FormUrlEncoded
-    Call<JsonResponse>USER_ADD(
-            @Field("email") String email,
-            @Field("name") String name,
-            @Field("lastName") String lastName,
-            @Field("address") String address,
-            @Field("phone") String phone,
-            @Field("identificationNumber") String identificationNumber
-    );
-
-    @Multipart
-    @POST("user/upload/cedula")
-    Call<Void> USER_UPLOAD_IMAGE(
-            @Part("email") RequestBody email,
-            @Part MultipartBody.Part image
-    );*/
 }
 
 
