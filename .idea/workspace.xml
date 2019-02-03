@@ -5,15 +5,18 @@
       <config />
     </shared>
   </component>
-  <component name="AndroidLogFilters">
-    <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="Show only selected application" />
-  </component>
   <component name="ChangeListManager">
-    <list default="true" id="2ff5b106-5611-484b-b015-f96b0939406d" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/xml/file_paths.xml" afterDir="false" />
+    <list default="true" id="d6a39f9e-2d4c-4042-8078-2a42e8c8d199" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/assetWizardSettings.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/caches/gradle_models.ser" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/caches/gradle_models.ser" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/VueltapLT.iml" beforeDir="false" afterPath="$PROJECT_DIR$/VueltapLT.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/vueltap/Activity/ImageDniDomicileUpload.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/vueltap/Activity/ImageDniDomicileUpload.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/vueltap/Activity/MainActivityPruebaCam.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/vueltap/Activity/MainActivityPruebaCam.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/vueltap/System/Constant.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/vueltap/System/Constant.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_image_dni_domicile_upload.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_image_dni_domicile_upload.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_main_prueba_cam.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_main_prueba_cam.xml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -39,100 +42,45 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
-          <entry key="class" value="1" />
-          <entry key="java" value="56" />
-          <entry key="xml" value="29" />
+          <entry key="java" value="3" />
+          <entry key="xml" value="3" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="CLASS" value="1" />
-          <entry key="JAVA" value="56" />
-          <entry key="XML" value="29" />
+          <entry key="JAVA" value="3" />
+          <entry key="XML" value="3" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="dummy" value="27" />
-          <entry key="java" value="5299" />
-          <entry key="txt" value="299" />
-          <entry key="xml" value="201" />
+          <entry key="java" value="1335" />
+          <entry key="txt" value="113" />
+          <entry key="xml" value="3" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="JAVA" value="5299" />
-          <entry key="PLAIN_TEXT" value="326" />
-          <entry key="XML" value="201" />
+          <entry key="JAVA" value="1335" />
+          <entry key="PLAIN_TEXT" value="113" />
+          <entry key="XML" value="3" />
         </counts>
       </usages-collector>
     </session>
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/vueltap/Activity/MainActivityPruebaCam.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="48">
-              <caret line="120" column="18" selection-start-line="120" selection-start-column="18" selection-end-line="120" selection-end-column="18" />
+            <state relative-caret-position="49">
+              <caret line="52" column="28" selection-start-line="52" selection-start-column="28" selection-end-line="52" selection-end-column="28" />
               <folding>
-                <element signature="e#1233#1234#0" expanded="true" />
-                <element signature="e#1276#1277#0" expanded="true" />
+                <element signature="method#setFile#0;class#MainActivityPruebaCam#0" />
                 <element signature="method#setPic#0;class#MainActivityPruebaCam#0" />
                 <element signature="method#galleryAddPic#0;class#MainActivityPruebaCam#0" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
-          <provider editor-type-id="android-manifest" />
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="551">
-              <caret line="29" column="48" selection-start-line="29" selection-start-column="35" selection-end-line="29" selection-end-column="48" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/res/xml/file_paths.xml">
-          <provider editor-type-id="android-designer2" />
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="38">
-              <caret line="2" column="85" selection-start-line="2" selection-start-column="85" selection-end-line="2" selection-end-column="85" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/vueltap/Activity/ImageDniDomicileUpload.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="431">
-              <caret line="169" column="5" selection-start-line="148" selection-start-column="4" selection-end-line="169" selection-end-column="5" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="method#OnClickDniHelpBack#0;class#ImageDniDomicileUpload#0" />
-                <element signature="method#OnClickDomiciled#0;class#ImageDniDomicileUpload#0" />
-                <element signature="method#OnClickDomicileHelp#0;class#ImageDniDomicileUpload#0" />
-                <element signature="method#OnClickRegister#0;class#ImageDniDomicileUpload#0" />
-                <element signature="method#uploadImage#0;class#ImageDniDomicileUpload#0" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/vueltap/Activity/ViewTransport.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1071">
-              <caret line="207" column="5" selection-start-line="207" selection-start-column="5" selection-end-line="207" selection-end-column="5" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#12626#13499#0" />
-                <element signature="e#14206#16652#0" />
-                <element signature="class#14275:15951" />
-                <element signature="e#16658#18147#0" />
+                <element signature="method#createImageFile#0;class#MainActivityPruebaCam#0" />
+                <element signature="method#dispatchTakePictureIntent#0;class#MainActivityPruebaCam#0" />
               </folding>
             </state>
           </provider>
@@ -144,43 +92,47 @@
           <provider editor-type-id="text-editor" />
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/vueltap/Activity/LoginActivity.java">
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/vueltap/Activity/ImageDniDomicileUpload.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="186">
-              <caret line="93" column="42" selection-start-line="93" selection-start-column="42" selection-end-line="93" selection-end-column="42" />
+            <state relative-caret-position="-183">
+              <caret line="52" column="4" selection-start-line="52" selection-start-column="4" selection-end-line="52" selection-end-column="4" />
               <folding>
-                <element signature="method#onCreate#0;class#LoginActivity#0" />
-                <element signature="method#loadPermission#0;class#LoginActivity#0" />
-                <element signature="e#2609#3263#0" expanded="true" />
-                <element signature="e#3262#3263#0" expanded="true" />
-                <element signature="method#checkEmail#0;class#LoginActivity#0" />
-                <element signature="method#emailVerified#0;class#LoginActivity#0" />
-                <element signature="e#8612#9724#0" expanded="true" />
-                <element signature="e#9723#9724#0" expanded="true" />
-                <element signature="method#onClickLogIn#0;class#LoginActivity#0" />
-                <element signature="method#forgotPassword#0;class#LoginActivity#0" />
-                <element signature="method#sendPasswordReset#0;class#LoginActivity#0" />
-                <element signature="method#OnClickRegister#0;class#LoginActivity#0" />
-                <element signature="method#createAccount#0;class#LoginActivity#0" />
-                <element signature="method#verifyPass#0;class#LoginActivity#0" />
-                <element signature="method#verifyMail#0;class#LoginActivity#0" />
-                <element signature="method#onStart#0;class#LoginActivity#0" />
-                <element signature="method#onStop#0;class#LoginActivity#0" />
+                <element signature="imports" expanded="true" />
+                <element signature="method#onCreate#0;class#ImageDniDomicileUpload#0" />
+                <element signature="method#loadControls#0;class#ImageDniDomicileUpload#0" />
+                <element signature="method#loadData#0;class#ImageDniDomicileUpload#0" />
+                <element signature="method#createImageFile#0;class#ImageDniDomicileUpload#0" />
+                <element signature="method#SweetAlert#0;class#ImageDniDomicileUpload#0" />
+                <element signature="method#OnClickHelp#0;class#ImageDniDomicileUpload#0" />
+                <element signature="method#helpMessenger#0;class#ImageDniDomicileUpload#0" />
+                <element signature="method#dispatchTakePictureIntent#0;class#ImageDniDomicileUpload#0" />
+                <element signature="method#OnClickCamera#0;class#ImageDniDomicileUpload#0" />
+                <element signature="method#OnClickRegister#0;class#ImageDniDomicileUpload#0" />
+                <element signature="method#getFile#0;class#ImageDniDomicileUpload#0" />
+                <element signature="class#7426:9090" />
+                <element signature="method#onActivityResult#0;class#ImageDniDomicileUpload#0" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_image_dni_domicile_upload.xml">
+          <provider selected="true" editor-type-id="android-designer2" />
+          <provider editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/vueltap/System/Constant.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="190">
+              <caret line="10" column="51" selection-start-line="10" selection-start-column="51" selection-end-line="10" selection-end-column="51" />
+            </state>
+          </provider>
+        </entry>
+      </file>
     </leaf>
-  </component>
-  <component name="FileTemplateManagerImpl">
-    <option name="RECENT_TEMPLATES">
-      <list>
-        <option value="Class" />
-        <option value="resourceFile" />
-      </list>
-    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -188,42 +140,25 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_register_welcome.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/vueltap/Activity/RegisterWelcome.java" />
-        <option value="$PROJECT_DIR$/app/src/main/res/drawable/border.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/vueltap/Api/ApiAdapter.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/vueltap/Models/Response.java" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_image_dni_domicile_upload.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/vueltap/Activity/splash_screen.java" />
-        <option value="$PROJECT_DIR$/app/src/main/res/drawable/ic_cicla.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/res/drawable/ic_motorcycle.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/vueltap/Activity/RegisterFormData.java" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/transport_view.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/vueltap/System/SessionManager.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/vueltap/Transport/View/ViewTransport.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/vueltap/Activity/ViewTransport.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/vueltap/Api/ApiService.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/vueltap/System/Constant.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/vueltap/Activity/LoginActivity.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/vueltap/Activity/ImageDniDomicileUpload.java" />
-        <option value="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/res/xml/file_paths.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_main_prueba_cam.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/vueltap/Activity/MainActivityPruebaCam.java" />
+        <option value="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/vueltap/System/Constant.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_image_dni_domicile_upload.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/vueltap/Activity/ImageDniDomicileUpload.java" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-8" />
+  <component name="ProjectFrameBounds" extendedState="7">
+    <option name="x" value="-9" />
     <option name="width" value="1315" />
-    <option name="height" value="1038" />
+    <option name="height" value="1039" />
   </component>
   <component name="ProjectView">
-    <navigator currentView="ProjectPane" proportions="" version="1">
+    <navigator proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="PackagesPane" />
       <pane id="AndroidView">
         <subPane>
@@ -265,13 +200,6 @@
             <path>
               <item name="VueltapLT" type="1abcf292:AndroidViewProjectNode" />
               <item name="app" type="feadf853:AndroidModuleNode" />
-              <item name="java" type="edd41e36:AndroidSourceTypeNode" />
-              <item name="vueltap" type="cbb59c9e:AndroidPsiDirectoryNode" />
-              <item name="Transport" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="VueltapLT" type="1abcf292:AndroidViewProjectNode" />
-              <item name="app" type="feadf853:AndroidModuleNode" />
               <item name="res" type="d4f16f75:AndroidResFolderNode" />
             </path>
             <path>
@@ -284,55 +212,14 @@
           <select />
         </subPane>
       </pane>
-      <pane id="ProjectPane">
-        <subPane>
-          <expand>
-            <path>
-              <item name="VueltapLT" type="b2602c69:ProjectViewProjectNode" />
-              <item name="VueltapLT" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-            </path>
-            <path>
-              <item name="VueltapLT" type="b2602c69:ProjectViewProjectNode" />
-              <item name="VueltapLT" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="app" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-            </path>
-            <path>
-              <item name="VueltapLT" type="b2602c69:ProjectViewProjectNode" />
-              <item name="VueltapLT" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="app" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="VueltapLT" type="b2602c69:ProjectViewProjectNode" />
-              <item name="VueltapLT" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="app" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="VueltapLT" type="b2602c69:ProjectViewProjectNode" />
-              <item name="VueltapLT" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="app" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
+      <pane id="Scope" />
+      <pane id="ProjectPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="android.sdk.path" value="$USER_HOME$/AppData/Local/Android/Sdk" />
     <property name="device.picker.selection" value="2WT7N17C25003725" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
-  </component>
-  <component name="RecentsManager">
-    <key name="android.template.packageName">
-      <recent name="com.vueltap.Activity" />
-    </key>
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -412,19 +299,19 @@
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="2ff5b106-5611-484b-b015-f96b0939406d" name="Default Changelist" comment="" />
-      <created>1548914021491</created>
+      <changelist id="d6a39f9e-2d4c-4042-8078-2a42e8c8d199" name="Default Changelist" comment="" />
+      <created>1549165168311</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1548914021491</updated>
+      <updated>1549165168311</updated>
     </task>
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
+    <frame x="-7" y="-7" width="1550" height="838" extended-state="7" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" visible="true" weight="0.19731544" />
+      <window_info content_ui="combo" id="Project" visible="true" weight="0.20872483" />
       <window_info id="Structure" side_tool="true" />
       <window_info id="Build Variants" side_tool="true" />
       <window_info id="Image Layers" />
@@ -432,265 +319,36 @@
       <window_info id="Capture Tool" />
       <window_info id="Favorites" side_tool="true" />
       <window_info id="Captures" order="0" side_tool="true" weight="0.25" />
-      <window_info anchor="bottom" id="Run" weight="0.5043988" />
-      <window_info anchor="bottom" id="Logcat" weight="0.7096774" />
+      <window_info anchor="bottom" id="Run" weight="0.46041057" />
+      <window_info anchor="bottom" id="Logcat" />
       <window_info anchor="bottom" id="Version Control" />
       <window_info anchor="bottom" id="TODO" />
       <window_info anchor="bottom" id="Android Profiler" />
       <window_info anchor="bottom" id="Debug" />
       <window_info anchor="bottom" id="Terminal" />
       <window_info anchor="bottom" id="Event Log" side_tool="true" />
-      <window_info anchor="bottom" id="Find" weight="0.32991204" />
-      <window_info anchor="bottom" id="Build" weight="0.3240469" />
-      <window_info anchor="right" id="Device File Explorer" side_tool="true" weight="0.20402685" />
+      <window_info anchor="bottom" id="Build" weight="0.32991204" />
+      <window_info anchor="right" id="Device File Explorer" side_tool="true" />
       <window_info anchor="right" id="Capture Analysis" />
       <window_info anchor="right" id="Gradle" />
       <window_info anchor="right" id="Theme Preview" />
       <window_info anchor="right" id="Palette&#9;" />
-      <window_info anchor="right" id="Preview" />
     </layout>
   </component>
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="jar://$USER_HOME$/AppData/Local/Android/Sdk/platforms/android-26/android.jar!/android/content/Context.class">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/vueltap/Activity/MainActivityPruebaCam.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-66">
-          <caret line="74" column="31" selection-start-line="74" selection-start-column="31" selection-end-line="74" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_register_welcome.xml">
-      <provider selected="true" editor-type-id="android-designer2" />
-      <provider editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/vueltap/util/JsonUtils.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="76">
-          <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/vueltap/Activity/RegistroFinal.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="76">
-          <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/vueltap/Activity/RegisterWelcome.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="25" column="96" selection-start-line="25" selection-start-column="96" selection-end-line="25" selection-end-column="96" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable/border.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="171">
-          <caret line="9" column="8" selection-start-line="9" selection-start-column="8" selection-end-line="9" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/vueltap/Activity/RegisterConditions.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="76">
-          <caret line="16" column="13" selection-start-line="16" selection-start-column="13" selection-end-line="16" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_register_conditions.xml">
-      <provider selected="true" editor-type-id="android-designer2" />
-      <provider editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_register_form_data.xml">
-      <provider selected="true" editor-type-id="android-designer2" />
-      <provider editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/vueltap/Activity/HomeActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="361">
-          <caret line="25" lean-forward="true" selection-start-line="25" selection-end-line="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/vueltap/Activity/splash_screen.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="190">
-          <caret line="19" column="47" selection-start-line="19" selection-start-column="47" selection-end-line="19" selection-end-column="47" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_login.xml">
-      <provider selected="true" editor-type-id="android-designer2" />
-      <provider editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable/ic_cicla.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="171">
-          <caret line="9" selection-start-line="9" selection-end-line="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable/ic_motorcycle.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="38">
-          <caret line="2" column="25" selection-start-line="2" selection-start-column="25" selection-end-line="2" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/transport_view.xml">
-      <provider selected="true" editor-type-id="android-designer2" />
-      <provider editor-type-id="text-editor">
-        <state relative-caret-position="19">
-          <caret line="72" column="8" selection-start-line="72" selection-start-column="8" selection-end-line="72" selection-end-column="8" />
+        <state relative-caret-position="49">
+          <caret line="52" column="28" selection-start-line="52" selection-start-column="28" selection-end-line="52" selection-end-column="28" />
           <folding>
-            <element signature="e#3278#3852#0" />
-            <element signature="e#3862#18610#0" />
-            <element signature="e#18620#19458#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../../../AndroidStudio/DeviceExplorer/emulator-5554/data/data/com.vueltap/shared_prefs/information.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="95">
-          <caret line="5" column="51" selection-start-line="5" selection-start-column="23" selection-end-line="5" selection-end-column="51" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/vueltap/Activity/RegisterFormData.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="532">
-          <caret line="87" column="38" selection-start-line="87" selection-start-column="38" selection-end-line="87" selection-end-column="38" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/vueltap/Models/UploadImageJsonResponse.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="95">
-          <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/vueltap/Models/JsonUser.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="76">
-          <caret line="4" column="13" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_image_dni_domicile_upload.xml">
-      <provider selected="true" editor-type-id="android-designer2" />
-      <provider editor-type-id="text-editor">
-        <state relative-caret-position="608">
-          <caret line="32" column="31" selection-start-line="32" selection-start-column="31" selection-end-line="32" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/vueltap/System/SessionManager.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="43">
-          <caret line="51" column="54" selection-start-line="51" selection-start-column="54" selection-end-line="51" selection-end-column="54" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/vueltap/System/Constant.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="589">
-          <caret line="31" column="61" selection-start-line="31" selection-start-column="61" selection-end-line="31" selection-end-column="61" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/vueltap/Models/JsonResponse.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="38">
-          <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/vueltap/Api/ApiAdapter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="209">
-          <caret line="14" column="70" selection-start-line="14" selection-start-column="70" selection-end-line="14" selection-end-column="70" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/vueltap/Api/ApiService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-50">
-          <caret line="21" column="74" selection-start-line="21" selection-start-column="69" selection-end-line="21" selection-end-column="74" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/vueltap/Models/ImageUpload.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="209">
-          <caret line="11" column="29" selection-start-line="11" selection-start-column="18" selection-end-line="11" selection-end-column="29" />
-          <folding>
-            <element signature="e#175#176#0" expanded="true" />
-            <element signature="e#204#205#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/vueltap/Activity/LoginActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="186">
-          <caret line="93" column="42" selection-start-line="93" selection-start-column="42" selection-end-line="93" selection-end-column="42" />
-          <folding>
-            <element signature="method#onCreate#0;class#LoginActivity#0" />
-            <element signature="method#loadPermission#0;class#LoginActivity#0" />
-            <element signature="e#2609#3263#0" expanded="true" />
-            <element signature="e#3262#3263#0" expanded="true" />
-            <element signature="method#checkEmail#0;class#LoginActivity#0" />
-            <element signature="method#emailVerified#0;class#LoginActivity#0" />
-            <element signature="e#8612#9724#0" expanded="true" />
-            <element signature="e#9723#9724#0" expanded="true" />
-            <element signature="method#onClickLogIn#0;class#LoginActivity#0" />
-            <element signature="method#forgotPassword#0;class#LoginActivity#0" />
-            <element signature="method#sendPasswordReset#0;class#LoginActivity#0" />
-            <element signature="method#OnClickRegister#0;class#LoginActivity#0" />
-            <element signature="method#createAccount#0;class#LoginActivity#0" />
-            <element signature="method#verifyPass#0;class#LoginActivity#0" />
-            <element signature="method#verifyMail#0;class#LoginActivity#0" />
-            <element signature="method#onStart#0;class#LoginActivity#0" />
-            <element signature="method#onStop#0;class#LoginActivity#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
-      <provider editor-type-id="android-manifest" />
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="551">
-          <caret line="29" column="48" selection-start-line="29" selection-start-column="35" selection-end-line="29" selection-end-column="48" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/xml/file_paths.xml">
-      <provider editor-type-id="android-designer2" />
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="38">
-          <caret line="2" column="85" selection-start-line="2" selection-start-column="85" selection-end-line="2" selection-end-column="85" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/vueltap/Activity/ImageDniDomicileUpload.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="431">
-          <caret line="169" column="5" selection-start-line="148" selection-start-column="4" selection-end-line="169" selection-end-column="5" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="method#OnClickDniHelpBack#0;class#ImageDniDomicileUpload#0" />
-            <element signature="method#OnClickDomiciled#0;class#ImageDniDomicileUpload#0" />
-            <element signature="method#OnClickDomicileHelp#0;class#ImageDniDomicileUpload#0" />
-            <element signature="method#OnClickRegister#0;class#ImageDniDomicileUpload#0" />
-            <element signature="method#uploadImage#0;class#ImageDniDomicileUpload#0" />
+            <element signature="method#setFile#0;class#MainActivityPruebaCam#0" />
+            <element signature="method#setPic#0;class#MainActivityPruebaCam#0" />
+            <element signature="method#galleryAddPic#0;class#MainActivityPruebaCam#0" />
+            <element signature="method#createImageFile#0;class#MainActivityPruebaCam#0" />
+            <element signature="method#dispatchTakePictureIntent#0;class#MainActivityPruebaCam#0" />
           </folding>
         </state>
       </provider>
@@ -699,29 +357,44 @@
       <provider selected="true" editor-type-id="android-designer2" />
       <provider editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/vueltap/Activity/ViewTransport.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
+      <provider editor-type-id="android-manifest" />
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1071">
-          <caret line="207" column="5" selection-start-line="207" selection-start-column="5" selection-end-line="207" selection-end-column="5" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#12626#13499#0" />
-            <element signature="e#14206#16652#0" />
-            <element signature="class#14275:15951" />
-            <element signature="e#16658#18147#0" />
-          </folding>
+        <state relative-caret-position="323">
+          <caret line="65" column="72" selection-start-line="65" selection-start-column="72" selection-end-line="65" selection-end-column="72" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/vueltap/Activity/MainActivityPruebaCam.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/vueltap/System/Constant.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="48">
-          <caret line="120" column="18" selection-start-line="120" selection-start-column="18" selection-end-line="120" selection-end-column="18" />
+        <state relative-caret-position="190">
+          <caret line="10" column="51" selection-start-line="10" selection-start-column="51" selection-end-line="10" selection-end-column="51" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_image_dni_domicile_upload.xml">
+      <provider selected="true" editor-type-id="android-designer2" />
+      <provider editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/vueltap/Activity/ImageDniDomicileUpload.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-183">
+          <caret line="52" column="4" selection-start-line="52" selection-start-column="4" selection-end-line="52" selection-end-column="4" />
           <folding>
-            <element signature="e#1233#1234#0" expanded="true" />
-            <element signature="e#1276#1277#0" expanded="true" />
-            <element signature="method#setPic#0;class#MainActivityPruebaCam#0" />
-            <element signature="method#galleryAddPic#0;class#MainActivityPruebaCam#0" />
+            <element signature="imports" expanded="true" />
+            <element signature="method#onCreate#0;class#ImageDniDomicileUpload#0" />
+            <element signature="method#loadControls#0;class#ImageDniDomicileUpload#0" />
+            <element signature="method#loadData#0;class#ImageDniDomicileUpload#0" />
+            <element signature="method#createImageFile#0;class#ImageDniDomicileUpload#0" />
+            <element signature="method#SweetAlert#0;class#ImageDniDomicileUpload#0" />
+            <element signature="method#OnClickHelp#0;class#ImageDniDomicileUpload#0" />
+            <element signature="method#helpMessenger#0;class#ImageDniDomicileUpload#0" />
+            <element signature="method#dispatchTakePictureIntent#0;class#ImageDniDomicileUpload#0" />
+            <element signature="method#OnClickCamera#0;class#ImageDniDomicileUpload#0" />
+            <element signature="method#OnClickRegister#0;class#ImageDniDomicileUpload#0" />
+            <element signature="method#getFile#0;class#ImageDniDomicileUpload#0" />
+            <element signature="class#7426:9090" />
+            <element signature="method#onActivityResult#0;class#ImageDniDomicileUpload#0" />
           </folding>
         </state>
       </provider>

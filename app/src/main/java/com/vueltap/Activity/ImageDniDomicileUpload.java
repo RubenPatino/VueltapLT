@@ -2,15 +2,20 @@ package com.vueltap.Activity;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
+import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.support.v4.content.FileProvider;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 
 import com.karan.churi.PermissionManager.PermissionManager;
 import com.vueltap.Api.ApiAdapter;
+import com.vueltap.BuildConfig;
 import com.vueltap.Models.ImageUpload;
 import com.vueltap.R;
 import com.vueltap.System.SessionManager;
@@ -34,22 +39,19 @@ import retrofit2.Response;
 import static com.vueltap.System.Constant.BILL_PAYMENT;
 import static com.vueltap.System.Constant.DNI_BACK;
 import static com.vueltap.System.Constant.DNI_FRONT;
-import static com.vueltap.System.Constant.DOMICILE_REQUEST_CODE;
 import static com.vueltap.System.Constant.EMAIL;
-import static com.vueltap.System.Constant.IDENTIFY_REQUEST_CODE_BACK;
-import static com.vueltap.System.Constant.IDENTIFY_REQUEST_CODE_FRONT;
+import static com.vueltap.System.Constant.FILE_PROVIDER;
+import static com.vueltap.System.Constant.IDENTIFY_BILL_PAYMENT;
+import static com.vueltap.System.Constant.IDENTIFY_DNI_BACK;
+import static com.vueltap.System.Constant.IDENTIFY_DNI_FRONT;
 
 public class ImageDniDomicileUpload extends AppCompatActivity {
 
     private SessionManager manager;
-
     private SweetAlertDialog dialog;
     private ImageView imgDniFront, imgDniBack, imgAddress, imgCheckFront, imgCheckBack, imgCheckDomicile;
-    private Bitmap bitmap;
+    private File photoFile;
     private PermissionManager permissionManager;
-    /*  private String email, names, lastName, address, phone, dniNumber;
-      private FirebaseAuth firebaseAuth;
-      private FirebaseUser user;*/
     private String email = "", urlDniFront = "", urlDniBack = "", urlAddress = "";
 
     @Override
@@ -59,23 +61,18 @@ public class ImageDniDomicileUpload extends AppCompatActivity {
         setTitle("Validar información");
         loadControls();
     }
-
     public void loadControls() {
         manager = new SessionManager(getApplicationContext());
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
-        //  firebaseAuth = FirebaseAuth.getInstance();
-        //  user = firebaseAuth.getCurrentUser();
         imgDniFront = findViewById(R.id.imageViewDniFront);
         imgDniBack = findViewById(R.id.imageViewDniBack);
         imgAddress = findViewById(R.id.imageViewAdress);
         imgCheckFront = findViewById(R.id.imageViewCheckFront);
         imgCheckBack = findViewById(R.id.imageViewCheckBack);
         imgCheckDomicile = findViewById(R.id.imageViewCheckDomicile);
-        permissionManager = new PermissionManager() {
-        };
+        permissionManager = new PermissionManager() {};
         loadData();
     }
-
     public void loadData() {
         try {
             email = manager.getPersonalInfo().getString(EMAIL);
@@ -83,69 +80,105 @@ public class ImageDniDomicileUpload extends AppCompatActivity {
             e.printStackTrace();
         }
     }
-
-    public void OnClickDniFront(View view) {
-        if (permissionManager.checkAndRequestPermissions(this)) {
-            Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-            startActivityForResult(intent, IDENTIFY_REQUEST_CODE_FRONT);
+    private File createImageFile(String imageFileName){
+        String prefix = imageFileName+"_";
+        File storageDir = getExternalFilesDir(Environment.DIRECTORY_PICTURES);
+        File image = null;
+        try {
+            image = File.createTempFile(
+                    prefix,  /* prefix */
+                    ".jpg",         /* suffix */
+                    storageDir      /* directory */
+            );
+        } catch (IOException e) {
+            e.printStackTrace();
         }
+        return image;
     }
-
-    public void OnClickDniHelpFront(View view) {
+    public void SweetAlert(String msg){
         dialog = new SweetAlertDialog(this, SweetAlertDialog.WARNING_TYPE);
-        dialog.setContentText("Tomale una foto a tu cédula de ciudadanía,(Parte frontal).<b>Si partes de" +
-                " la imagen están borrosas o no están claras, no " +
-                "podremos comprobar la validez de tu identificación");
+        dialog.setContentText(msg);
         dialog.setConfirmText("Aceptar");
         dialog.show();
     }
-
-    public void OnClickDniBack(View view) {
-        if (permissionManager.checkAndRequestPermissions(this)) {
-            Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-            startActivityForResult(intent, IDENTIFY_REQUEST_CODE_BACK);
+    public void OnClickHelp(View view){
+        int id=view.getId();
+        switch (id){
+            case R.id.buttonHelpPhotoFront:
+                helpMessenger(id);
+                break;
+            case R.id.buttonHelpPhotoBack:
+                helpMessenger(id);
+                break;
+            case R.id.buttonHelpPhotoAddress:
+                helpMessenger(id);
+                break;
         }
     }
+    public void helpMessenger(int id){
+        switch (id){
+            case R.id.buttonHelpPhotoFront:
+                SweetAlert("Tomale una foto a tu cédula de ciudadanía,(Parte frontal).<b>Si partes de" +
+                        " la imagen están borrosas o no están claras, no " +
+                        "podremos comprobar la validez de tu identificación");
+                break;
+            case R.id.buttonHelpPhotoBack:
+                SweetAlert("Tomale una foto a tu cédula de ciudadanía,(Parte trasera).<b>Si partes " +
+                        "de la imagen están borrosas o no están claras, no " +
+                        "podremos comprobar la validez de tu identificación");
+                break;
+            case R.id.buttonHelpPhotoAddress:
+                SweetAlert("Tomale una foto a tu comprobante de domicilio ya sea Agua,Luz " +
+                        "o Teléfono,(No mayor a tres meses)." +
+                        "<b>Si partes de la imagen están borrosas o no están claras, no " +
+                        "podremos comprobar la validez de tu dirección.");
+                break;
+        }
 
-    public void OnClickDniHelpBack(View view) {
-        dialog = new SweetAlertDialog(this, SweetAlertDialog.WARNING_TYPE);
-        dialog.setContentText("Tomale una foto a tu cédula de ciudadanía,(Parte trasera).<b>Si partes " +
-                "de la imagen están borrosas o no están claras, no " +
-                "podremos comprobar la validez de tu identificación");
-        dialog.setConfirmText("Aceptar");
-        dialog.show();
     }
-
-    public void OnClickDomiciled(View view) {
-        if (permissionManager.checkAndRequestPermissions(this)) {
-            Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-            startActivityForResult(intent, DOMICILE_REQUEST_CODE);
+    private void dispatchTakePictureIntent(Intent intent, String dni,int identify) {
+        photoFile = createImageFile(dni);
+        if(photoFile!=null){
+            Uri photoURI = FileProvider.getUriForFile(this,
+                    BuildConfig.APPLICATION_ID + FILE_PROVIDER,
+                    photoFile);
+            intent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
+            startActivityForResult(intent, identify);
         }
     }
-
-    public void OnClickDomicileHelp(View view) {
-        dialog = new SweetAlertDialog(this, SweetAlertDialog.WARNING_TYPE);
-        dialog.setContentText("Tomale una foto a tu comprobante de domicilio ya sea Agua,Luz " +
-                "o Teléfono,(No mayor a tres meses)." +
-                "<b>Si partes de la imagen están borrosas o no están claras, no " +
-                "podremos comprobar la validez de tu dirección.");
-        dialog.setConfirmText("Aceptar");
-        dialog.show();
+    public void OnClickCamera(View view){
+        if (permissionManager.checkAndRequestPermissions(this)) {
+            Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+            if(intent.resolveActivity(getPackageManager())!=null) {
+                int id = view.getId();
+                switch (id) {
+                    case R.id.imageButtonCameraDniFront:
+                        dispatchTakePictureIntent(intent,DNI_FRONT,IDENTIFY_DNI_FRONT);
+                        break;
+                    case R.id.imageButtonCameraDniBack:
+                        dispatchTakePictureIntent(intent,DNI_BACK,IDENTIFY_DNI_BACK);
+                        break;
+                    case R.id.imageButtonDniCameraAddress:
+                        dispatchTakePictureIntent(intent,BILL_PAYMENT,IDENTIFY_BILL_PAYMENT);
+                        break;
+                }
+            }
+        }
     }
 
     public void OnClickRegister(View view) {
         if (urlDniFront.isEmpty()) {
-            OnClickDniHelpFront(view);
+            helpMessenger(R.id.buttonHelpPhotoFront);
         } else if (urlDniBack.isEmpty()) {
-            OnClickDniHelpBack(view);
+            helpMessenger(R.id.buttonHelpPhotoBack);
         } else if (urlAddress.isEmpty()) {
-            OnClickDomicileHelp(view);
+            helpMessenger(R.id.buttonHelpPhotoAddress);
         } else {
-            manager.setUrlInformation(urlDniFront, urlDniBack, urlAddress);
-            startActivity(new Intent().setClass(getApplicationContext(), ViewTransport.class));
+            Log.d("OK","OK");
+           // manager.setUrlInformation(urlDniFront, urlDniBack, urlAddress);
+           // startActivity(new Intent().setClass(getApplicationContext(), ViewTransport.class));
         }
     }
-
     public File getFile(Bitmap bmp, String prefix) {
         //File tempFile = null;
         //Uri uri = null;
@@ -155,7 +188,7 @@ public class ImageDniDomicileUpload extends AppCompatActivity {
             tempDir.mkdir();
             File tempFile = File.createTempFile(prefix + "_", ".jpg", tempDir);
             ByteArrayOutputStream bytes = new ByteArrayOutputStream();
-            bmp.compress(Bitmap.CompressFormat.JPEG, 100, bytes);
+            bmp.compress(Bitmap.CompressFormat.JPEG, 30, bytes);
             byte[] bitmapData = bytes.toByteArray();
             FileOutputStream fos = new FileOutputStream(tempFile);
             // uri = Uri.fromFile(tempFile);
@@ -168,7 +201,6 @@ public class ImageDniDomicileUpload extends AppCompatActivity {
             return null;
         }
     }
-
     public void uploadImage(final File imageFile, String typeImg, final int requestCode) {
         dialog = new SweetAlertDialog(this, SweetAlertDialog.PROGRESS_TYPE);
         dialog.setTitleText("Subiendo...");
@@ -187,15 +219,15 @@ public class ImageDniDomicileUpload extends AppCompatActivity {
                 if (response.isSuccessful()) {
                     if (response.body().getStatus()) {
                         switch (requestCode) {
-                            case IDENTIFY_REQUEST_CODE_FRONT:
+                            case IDENTIFY_DNI_FRONT:
                                 urlDniFront = response.body().getImage_url();
                                 imgCheckFront.setVisibility(View.VISIBLE);
                                 break;
-                            case IDENTIFY_REQUEST_CODE_BACK:
+                            case IDENTIFY_DNI_BACK:
                                 urlDniBack = response.body().getImage_url();
                                 imgCheckBack.setVisibility(View.VISIBLE);
                                 break;
-                            case DOMICILE_REQUEST_CODE:
+                            case IDENTIFY_BILL_PAYMENT:
                                 urlAddress = response.body().getImage_url();
                                 imgCheckDomicile.setVisibility(View.VISIBLE);
                                 break;
@@ -217,27 +249,28 @@ public class ImageDniDomicileUpload extends AppCompatActivity {
             }
         });
     }
-
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (data != null) {
-            bitmap = (Bitmap) data.getExtras().get("data");
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == RESULT_OK) {
+            String pathName=photoFile.getAbsolutePath();
+            Bitmap bitmap = BitmapFactory.decodeFile(pathName);
             switch (requestCode) {
-                case IDENTIFY_REQUEST_CODE_FRONT:
+                case IDENTIFY_DNI_FRONT:
                     imgDniFront.setImageBitmap(bitmap);
                     File dniFront = getFile(bitmap, DNI_FRONT);
                     if (dniFront != null) {
                         uploadImage(dniFront, DNI_FRONT, requestCode);
                     }
                     break;
-                case IDENTIFY_REQUEST_CODE_BACK:
+                case IDENTIFY_DNI_BACK:
                     imgDniBack.setImageBitmap(bitmap);
                     File dniBack = getFile(bitmap, DNI_BACK);
                     if (dniBack != null) {
                         uploadImage(dniBack, DNI_BACK, requestCode);
                     }
                     break;
-                case DOMICILE_REQUEST_CODE:
+                case IDENTIFY_BILL_PAYMENT:
                     imgAddress.setImageBitmap(bitmap);
                     File domicile = getFile(bitmap, BILL_PAYMENT);
                     if (domicile != null) {
@@ -245,10 +278,10 @@ public class ImageDniDomicileUpload extends AppCompatActivity {
                     }
                     break;
             }
-        }
-        super.onActivityResult(requestCode, resultCode, data);
-    }
 
+        }
+
+    }
     @Override
     public void onRequestPermissionsResult(int requestCode, String permissions[], int[] grantResults) {
         permissionManager.checkResult(requestCode, permissions, grantResults);

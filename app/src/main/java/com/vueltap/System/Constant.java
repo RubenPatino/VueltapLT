@@ -8,9 +8,9 @@ public class Constant {
     public static final String LAST_NAME = "last_name";
     public static final String ADDRESS = "address";
     public static final String PHONE = "phone";
-    public static final int IDENTIFY_REQUEST_CODE_FRONT = 0;
-    public static final int IDENTIFY_REQUEST_CODE_BACK = 1;
-    public static final int DOMICILE_REQUEST_CODE = 2;
+    public static final int IDENTIFY_DNI_FRONT = 0;
+    public static final int IDENTIFY_DNI_BACK = 1;
+    public static final int IDENTIFY_BILL_PAYMENT = 2;
     public static final String VALIDATE_INFORMATION="validateInformation";
     public static final String VALIDATE_TRANSPORT="validateTransport";
     public static final String VALIDATE_TRAINING="validateTraining";
@@ -33,4 +33,6 @@ public class Constant {
     public static final String INFORMATION="information";
     public static final String URL_INFORMATION="urlinformation";
     public static final String VALUE_ZERO = "0";
+    public static final int REQUEST_IMAGE_CAPTURE=1;
+    public static final String FILE_PROVIDER=".fileprovider";
  }

@@ -23,6 +23,8 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import static com.vueltap.System.Constant.REQUEST_IMAGE_CAPTURE;
+
 public class MainActivityPruebaCam extends AppCompatActivity {
     private ImageView mImageView;
     private final int REQUEST_CODE = 1;
@@ -41,7 +43,19 @@ public class MainActivityPruebaCam extends AppCompatActivity {
     }
 
     public void OnClick(View view) {
-        dispatchTakePictureIntent();
+       // dispatchTakePictureIntent();
+        Log.d("View",""+view.getId());
+        switch (view.getId()){
+            case R.id.button4:
+                Log.d("Tomar foto",""+view.getId());
+                break;
+            case R.id.button8:
+                Log.d("abajo",""+view.getId());
+                break;
+                default:
+                    Log.d("Nada",""+view.getId());
+                    break;
+        }
     }
 
     public void setFile(Bitmap bmp, String prefix) {
@@ -138,7 +152,7 @@ public class MainActivityPruebaCam extends AppCompatActivity {
                         BuildConfig.APPLICATION_ID + ".fileprovider",
                         photoFile);
                 takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
-                startActivityForResult(takePictureIntent, REQUEST_TAKE_PHOTO);
+                startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
             }
         }
     }
@@ -146,13 +160,16 @@ public class MainActivityPruebaCam extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-
-        switch (requestCode) {
-            case REQUEST_TAKE_PHOTO:
-                Bitmap bitmap = BitmapFactory.decodeFile(mCurrentPhotoPath);
-                mImageView.setImageBitmap(bitmap);
-                setFile(bitmap, "IMG");
-                break;
+        Log.d("requestCode",": "+requestCode);
+        Log.d("resultCode",": "+resultCode);
+        if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
+            switch (requestCode) {
+                case REQUEST_IMAGE_CAPTURE:
+                    Bitmap bitmap = BitmapFactory.decodeFile(mCurrentPhotoPath);
+                    mImageView.setImageBitmap(bitmap);
+                    setFile(bitmap, "IMG");
+                    break;
+            }
         }
     }
 }

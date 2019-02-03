@@ -78,12 +78,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="2"
+                android:gravity="center"
                 android:orientation="horizontal">
 
                 <ImageView
                     android:id="@+id/imageViewDniFront"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_width="150dp"
+                    android:layout_height="110dp"
                     android:scaleType="fitXY"
                     tools:srcCompat="@android:drawable/ic_menu_gallery" />
             </LinearLayout>
@@ -96,21 +97,21 @@
                 android:padding="5dp">
 
                 <ImageButton
-                    android:id="@+id/imageButton3"
+                    android:id="@+id/imageButtonCameraDniFront"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
                     android:layout_marginBottom="4dp"
                     android:background="@drawable/success_circle"
-                    android:onClick="OnClickDniFront"
+                    android:onClick="OnClickCamera"
                     app:srcCompat="@drawable/ic_camera_black"
                     tools:ignore="VectorDrawableCompat" />
 
                 <Button
-                    android:id="@+id/button5"
+                    android:id="@+id/buttonHelpPhotoFront"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@drawable/success_circle"
-                    android:onClick="OnClickDniHelpFront"
+                    android:onClick="OnClickHelp"
                     android:text="@string/help" />
 
             </LinearLayout>
@@ -164,12 +165,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="2"
+                android:gravity="center"
                 android:orientation="horizontal">
 
                 <ImageView
                     android:id="@+id/imageViewDniBack"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_width="150dp"
+                    android:layout_height="110dp"
                     android:scaleType="fitXY"
                     tools:srcCompat="@android:drawable/ic_menu_gallery" />
             </LinearLayout>
@@ -182,21 +184,21 @@
                 android:padding="5dp">
 
                 <ImageButton
-                    android:id="@+id/imageButton332"
+                    android:id="@+id/imageButtonCameraDniBack"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
                     android:layout_marginBottom="4dp"
                     android:background="@drawable/success_circle"
-                    android:onClick="OnClickDniBack"
+                    android:onClick="OnClickCamera"
                     app:srcCompat="@drawable/ic_camera_black"
                     tools:ignore="VectorDrawableCompat" />
 
                 <Button
-                    android:id="@+id/button53"
+                    android:id="@+id/buttonHelpPhotoBack"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@drawable/success_circle"
-                    android:onClick="OnClickDniHelpBack"
+                    android:onClick="OnClickHelp"
                     android:text="@string/help" />
 
             </LinearLayout>
@@ -249,12 +251,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="2"
+                android:gravity="center"
                 android:orientation="horizontal">
 
                 <ImageView
                     android:id="@+id/imageViewAdress"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_width="150dp"
+                    android:layout_height="110dp"
                     android:scaleType="fitXY"
                     tools:srcCompat="@android:drawable/ic_menu_gallery" />
             </LinearLayout>
@@ -267,21 +270,21 @@
                 android:padding="5dp">
 
                 <ImageButton
-                    android:id="@+id/imageButton345"
+                    android:id="@+id/imageButtonDniCameraAddress"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
                     android:layout_marginBottom="4dp"
                     android:background="@drawable/success_circle"
-                    android:onClick="OnClickDomiciled"
+                    android:onClick="OnClickCamera"
                     app:srcCompat="@drawable/ic_camera_black"
                     tools:ignore="VectorDrawableCompat" />
 
                 <Button
-                    android:id="@+id/button554"
+                    android:id="@+id/buttonHelpPhotoAddress"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@drawable/success_circle"
-                    android:onClick="OnClickDomicileHelp"
+                    android:onClick="OnClickHelp"
                     android:text="@string/help" />
 
             </LinearLayout>
