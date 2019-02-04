@@ -23,6 +23,7 @@ import com.karan.churi.PermissionManager.PermissionManager;
 import com.vueltap.Api.ApiAdapter;
 import com.vueltap.BuildConfig;
 import com.vueltap.Models.ImageUpload;
+import com.vueltap.Models.JsonResponse;
 import com.vueltap.R;
 import com.vueltap.System.SessionManager;
 
@@ -57,6 +58,8 @@ import static com.vueltap.System.Constant.PHONE;
 import static com.vueltap.System.Constant.PROPERTY_CARD;
 import static com.vueltap.System.Constant.SOAT;
 import static com.vueltap.System.Constant.TECNOMECANICA;
+import static com.vueltap.System.Constant.TYPE_CICLA;
+import static com.vueltap.System.Constant.TYPE_MOTO;
 import static com.vueltap.System.Constant.UID;
 import static com.vueltap.System.Constant.URL_DNI_BACK;
 import static com.vueltap.System.Constant.URL_DNI_FRONT;
@@ -246,92 +249,83 @@ public class ViewTransport extends AppCompatActivity {
         dialog.show();
     }
     public void OnClickRegister(View view) {
-
+        dialog=new SweetAlertDialog(this,SweetAlertDialog.PROGRESS_TYPE);
+        dialog.setTitleText("Creando cuenta");
+        dialog.setContentText("Por favor espere...");
+        dialog.show();
         if(rbClicla.isChecked()){
-            Log.d("uid",uid);
-            Log.d("dni",dniNumber);
-            Log.d("email",email);
-            Log.d("name",names);
-            Log.d("last",lastName);
-            Log.d("address",address);
-            Log.d("phone",phone);
-            Log.d("urlfron",urlDniFront);
-            Log.d("urlback",urlDniBack);
-            Log.d("urlAddress",urlAddress);
-            Log.d("typeTransport","1");
+            Call<JsonResponse>call=ApiAdapter.getApiService().USER_ADD_CICLA(uid,email,dniNumber,names,lastName,address,phone,urlDniFront,urlDniBack,urlAddress,TYPE_CICLA);
+           call.enqueue(new Callback<JsonResponse>() {
+               @Override
+               public void onResponse(Call<JsonResponse> call, Response<JsonResponse> response) {
+                   if(response.isSuccessful()){
+                       if(response.body().getStatus()){
+                          messageSuccess();
+                       }else{
+                           dialog.changeAlertType(SweetAlertDialog.ERROR_TYPE);
+                           dialog.setTitleText("Error");
+                           dialog.setContentText(response.body().getMessage());
+                       }
+                   }else{
+                       dialog.changeAlertType(SweetAlertDialog.ERROR_TYPE);
+                       dialog.setTitleText("Error");
+                       dialog.setContentText(response.message());
+                   }
+               }
+
+               @Override
+               public void onFailure(Call<JsonResponse> call, Throwable t) {
+                   dialog.changeAlertType(SweetAlertDialog.ERROR_TYPE);
+                   dialog.setTitleText("Error");
+                   dialog.setContentText(t.getMessage());
+               }
+           });
+
         }else{
             if(validateMoto()){
-                Log.d("uid",uid);
-                Log.d("dni",dniNumber);
-                Log.d("email",email);
-                Log.d("name",names);
-                Log.d("last",lastName);
-                Log.d("address",address);
-                Log.d("phone",phone);
-                Log.d("urlfron",urlDniFront);
-                Log.d("urlback",urlDniBack);
-                Log.d("urlAddress",urlAddress);
-                Log.d("placa",numPlaca);
-                Log.d("urllicencia",urlLicence);
-                Log.d("urlpropiedad",urlProperty);
-                Log.d("urlsoat",urlSOAT);
-                Log.d("urltecnico",urlTecno);
-                Log.d("typeTransport","2");
+                Call<JsonResponse>call=ApiAdapter.getApiService().USER_ADD_MOTO(uid,email,dniNumber,names,lastName,
+                        address,phone,urlDniFront,urlDniBack,urlAddress,TYPE_MOTO,numPlaca,urlLicence,
+                        urlProperty,urlSOAT,urlTecno);
+                call.enqueue(new Callback<JsonResponse>() {
+                    @Override
+                    public void onResponse(Call<JsonResponse> call, Response<JsonResponse> response) {
+                        if(response.isSuccessful()){
+                            if(response.body().getStatus()){
+                                messageSuccess();
+                            }else{
+                                dialog.changeAlertType(SweetAlertDialog.ERROR_TYPE);
+                                dialog.setTitleText("Error");
+                                dialog.setContentText(response.body().getMessage());
+                            }
+                        }else{
+                            dialog.changeAlertType(SweetAlertDialog.ERROR_TYPE);
+                            dialog.setTitleText("Error");
+                            dialog.setContentText(response.message());
+                        }
+                    }
+                    @Override
+                    public void onFailure(Call<JsonResponse> call, Throwable t) {
+                        dialog.changeAlertType(SweetAlertDialog.ERROR_TYPE);
+                        dialog.setTitleText("Error");
+                        dialog.setContentText(t.getMessage());
+                    }
+                });
             }
         }
     }
-    public void savedUser(){
-            dialog=new SweetAlertDialog(this,SweetAlertDialog.SUCCESS_TYPE);
-            dialog.setTitleText("Felicitaciones");
-            dialog.setContentText(dniNumber+"<br>"+email+"<br>"+names+"<br>"+lastName+"<br>"+address+"<br>"+phone+"<br>");
-           // dialog.setContentText("Por favor espere.");
-           // dialog.setContentText("Has finalizado tu proceso de registro exitosamente.  Procederemos con un chequeo de seguridad de toda la información suministrada. Si eres seleccionado te llegará un mensaje de texto invitándote a una capacitación. Este proceso tardará una semana aproximadamente.");
-            dialog.setConfirmText("Aceptar");
-            dialog.show();
- /*
-            firebaseAuth.signOut();
-            Log.d("Datos",email+"_"+dniNumber+"_"+names+"_"+lastName+"_"+address+"_"+phone+"_"+urlDniFront+
-                    "_"+urlDniBack+"_"+urlAddress+"_"+urlProperty+"_"+urlLicence+"_"+urlSOAT+"_"+urlTecno);
-       new Timer().schedule(new TimerTask() {
+    public void messageSuccess(){
+        dialog.changeAlertType(SweetAlertDialog.SUCCESS_TYPE);
+        dialog.setTitleText("Felicitaciones");
+        dialog.setContentText("Has finalizado tu proceso de registro exitosamente.  Procederemos con un chequeo de seguridad de toda la información suministrada. Si eres seleccionado te llegará un mensaje de texto invitándote a una capacitación. Este proceso tardará una semana aproximadamente.");
+        dialog.setConfirmButton("Aceptar", new SweetAlertDialog.OnSweetClickListener() {
             @Override
-            public void run() {
-                dialog.changeAlertType(SweetAlertDialog.SUCCESS_TYPE);
-                dialog.setContentText("Felicitaciones has finalizado tu proceso de registro exitosamente.  Procederemos con un chequeo de seguridad de toda la información suministrada. Si eres seleccionado te llegará un mensaje de texto invitándote a una capacitación. Este proceso tardará una semana aproximadamente.");
+            public void onClick(SweetAlertDialog sweetAlertDialog) {
+                dialog.dismissWithAnimation();
+                firebaseAuth.signOut();
+                finish();
+                startActivity(new Intent().setClass(getApplicationContext(),LoginActivity.class));
             }
-        }, 2000);
-            Call<JsonResponse> call = ApiAdapter.getApiService().USER_ADD(email,dniNumber, names, lastName, address,phone,urlDniBack,urlDniFront,urlAddress);
-            call.enqueue(new Callback<JsonResponse>() {
-                @Override
-                public void onResponse(Call<JsonResponse> call, Response<JsonResponse> response) {
-                    if (response.isSuccessful()) {
-                        if (response.body().getStatus()) {
-                            dialog.changeAlertType(SweetAlertDialog.SUCCESS_TYPE);
-                            dialog.setContentText(response.body().getMessage());
-                            dialog.setConfirmButton("Aceptar", new SweetAlertDialog.OnSweetClickListener() {
-                                @Override
-                                public void onClick(SweetAlertDialog sweetAlertDialog) {
-                                    dialog.dismissWithAnimation();
-                                    firebaseAuth.signOut();
-                                    finish();
-                                    startActivity(new Intent().setClass(getApplicationContext(), LoginActivity.class));
-                                }
-                            });
-                        } else {
-                            dialog.changeAlertType(SweetAlertDialog.ERROR_TYPE);
-                            dialog.setContentText(response.body().getMessage());
-                        }
-                    } else {
-                        dialog.changeAlertType(SweetAlertDialog.ERROR_TYPE);
-                        dialog.setContentText(response.body().getMessage());
-                    }
-                }
-
-                @Override
-                public void onFailure(Call<JsonResponse> call, Throwable t) {
-                    dialog.changeAlertType(SweetAlertDialog.ERROR_TYPE);
-                    dialog.setContentText(t.getMessage());
-                }
-            });*/
+        });
     }
 
     public File getFile (Bitmap bmp,String prefix){

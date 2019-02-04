@@ -35,4 +35,7 @@ public class Constant {
     public static final String VALUE_ZERO = "0";
     public static final int REQUEST_IMAGE_CAPTURE=1;
     public static final String FILE_PROVIDER=".fileprovider";
+    public static final int TYPE_CICLA=1;
+    public static final int TYPE_MOTO=2;
+
  }

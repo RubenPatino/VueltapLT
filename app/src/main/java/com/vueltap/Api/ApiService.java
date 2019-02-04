@@ -24,7 +24,7 @@ public interface ApiService {
             @Path("email") String email
     );
 
-    @POST("user/add/cicla")
+    @POST("https://vueltap.herokuapp.com/user/add/cicla")
     @FormUrlEncoded
     Call<JsonResponse>USER_ADD_CICLA(
             @Field("uid") String uid,
@@ -37,10 +37,10 @@ public interface ApiService {
             @Field("urlDniFront") String urlDniFront,
             @Field("urlDniBack") String urlDniBack,
             @Field("urlAddress") String urlAddress,
-            @Field("typeTransport") String type
+            @Field("typeTransport") int type
             );
 
-    @POST("user/add/moto")
+    @POST("https://vueltap.herokuapp.com/user/add/moto")
     @FormUrlEncoded
     Call<JsonResponse>USER_ADD_MOTO(
             @Field("uid") String uid,
@@ -53,7 +53,7 @@ public interface ApiService {
             @Field("urlDniFront") String urlDniFront,
             @Field("urlDniBack") String urlDniBack,
             @Field("urlAddress") String urlAddress,
-            @Field("typeTransport") String type,
+            @Field("typeTransport") int type,
             @Field("placa") String placa,
             @Field("urlLicence") String urlLicence,
             @Field("urlProperty") String urlProperty,
