@@ -318,9 +318,9 @@ public class ViewTransport extends AppCompatActivity {
             @Override
             public void onClick(SweetAlertDialog sweetAlertDialog) {
                 dialog.dismissWithAnimation();
-                firebaseAuth.signOut();
-                finish();
-                startActivity(new Intent().setClass(getApplicationContext(),LoginActivity.class));
+                //firebaseAuth.signOut();
+                //finish();
+                //startActivity(new Intent().setClass(getApplicationContext(),LoginActivity.class));
             }
         });
     }

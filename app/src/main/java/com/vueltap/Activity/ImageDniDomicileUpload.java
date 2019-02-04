@@ -259,6 +259,8 @@ public class ImageDniDomicileUpload extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+        Log.d("Result"," = "+resultCode);
+        Log.d("Request"," = "+requestCode);
         if (resultCode == RESULT_OK) {
             String pathName=photoFile.getAbsolutePath();
             Bitmap bitmap = BitmapFactory.decodeFile(pathName);

@@ -6,6 +6,7 @@ import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.support.annotation.NonNull;
 import android.support.v4.content.FileProvider;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -13,6 +14,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 
+import com.karan.churi.PermissionManager.PermissionManager;
 import com.vueltap.BuildConfig;
 import com.vueltap.R;
 
@@ -29,7 +31,7 @@ public class MainActivityPruebaCam extends AppCompatActivity {
     private ImageView mImageView;
     private final int REQUEST_CODE = 1;
     private String mCurrentPhotoPath;
-    private static final int REQUEST_TAKE_PHOTO = 1;
+    private static final int REQUEST_TAKE_PHOTO = 11;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +41,10 @@ public class MainActivityPruebaCam extends AppCompatActivity {
     }
 
     private void loadControls() {
+        PermissionManager permissionManager = new PermissionManager() {
+        };
+        permissionManager.checkAndRequestPermissions(this);
+
         mImageView = findViewById(R.id.imageViewPrueba);
     }
 
@@ -48,6 +54,8 @@ public class MainActivityPruebaCam extends AppCompatActivity {
         switch (view.getId()){
             case R.id.button4:
                 Log.d("Tomar foto",""+view.getId());
+                dispatchTakePictureIntent();
+               // camera();
                 break;
             case R.id.button8:
                 Log.d("abajo",""+view.getId());
@@ -58,6 +66,10 @@ public class MainActivityPruebaCam extends AppCompatActivity {
         }
     }
 
+    public void camera(){
+        Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        startActivityForResult(takePictureIntent, REQUEST_TAKE_PHOTO);
+    }
     public void setFile(Bitmap bmp, String prefix) {
         //File tempFile = null;
         //Uri uri = null;
@@ -148,13 +160,18 @@ public class MainActivityPruebaCam extends AppCompatActivity {
             }
             // Continue only if the File was successfully created
             if (photoFile != null) {
-                Uri photoURI = FileProvider.getUriForFile(this,
+                Uri photoURI = FileProvider.getUriForFile(getApplicationContext(),
                         BuildConfig.APPLICATION_ID + ".fileprovider",
                         photoFile);
                 takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
-                startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
+                startActivityForResult(takePictureIntent, REQUEST_TAKE_PHOTO);
             }
         }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
     }
 
     @Override
@@ -162,9 +179,12 @@ public class MainActivityPruebaCam extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
         Log.d("requestCode",": "+requestCode);
         Log.d("resultCode",": "+resultCode);
-        if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
+    /*    Bitmap bitmap=(Bitmap)data.getExtras().get("data");
+         mImageView.setImageBitmap(bitmap);
+*/
+        if (requestCode == REQUEST_TAKE_PHOTO && resultCode == RESULT_OK) {
             switch (requestCode) {
-                case REQUEST_IMAGE_CAPTURE:
+                case REQUEST_TAKE_PHOTO:
                     Bitmap bitmap = BitmapFactory.decodeFile(mCurrentPhotoPath);
                     mImageView.setImageBitmap(bitmap);
                     setFile(bitmap, "IMG");
