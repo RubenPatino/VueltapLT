@@ -7,10 +7,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d6a39f9e-2d4c-4042-8078-2a42e8c8d199" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/vueltap/Activity/ImageDniDomicileUpload.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/vueltap/Activity/ImageDniDomicileUpload.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/vueltap/Activity/ViewTransport.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/vueltap/Activity/ViewTransport.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/vueltap/System/Constant.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/vueltap/System/Constant.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/transport_view.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/transport_view.xml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -47,14 +45,14 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="java" value="1733" />
+          <entry key="java" value="1844" />
           <entry key="txt" value="180" />
           <entry key="xml" value="3" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="JAVA" value="1733" />
+          <entry key="JAVA" value="1844" />
           <entry key="PLAIN_TEXT" value="180" />
           <entry key="XML" value="3" />
         </counts>
@@ -66,19 +64,23 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/vueltap/Activity/ImageDniDomicileUpload.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="206">
-              <caret line="112" column="45" lean-forward="true" selection-start-line="112" selection-start-column="45" selection-end-line="112" selection-end-column="45" />
+            <state relative-caret-position="483">
+              <caret line="260" column="82" selection-start-line="260" selection-start-column="82" selection-end-line="260" selection-end-column="82" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="method#onCreate#0;class#ImageDniDomicileUpload#0" />
                 <element signature="method#loadControls#0;class#ImageDniDomicileUpload#0" />
                 <element signature="method#loadData#0;class#ImageDniDomicileUpload#0" />
                 <element signature="method#OnClickCamera#0;class#ImageDniDomicileUpload#0" />
+                <element signature="method#OnClickHelp#0;class#ImageDniDomicileUpload#0" />
                 <element signature="method#OnClickRegister#0;class#ImageDniDomicileUpload#0" />
+                <element signature="method#helpMessenger#0;class#ImageDniDomicileUpload#0" />
+                <element signature="method#SweetAlert#0;class#ImageDniDomicileUpload#0" />
                 <element signature="method#createImageFile#0;class#ImageDniDomicileUpload#0" />
                 <element signature="method#dispatchTakePictureIntent#0;class#ImageDniDomicileUpload#0" />
                 <element signature="method#getFile#0;class#ImageDniDomicileUpload#0" />
                 <element signature="method#uploadImage#0;class#ImageDniDomicileUpload#0" />
+                <element signature="method#onResponse#0;class#8878:10524" />
                 <element signature="method#onActivityResult#0;class#ImageDniDomicileUpload#0" />
               </folding>
             </state>
@@ -88,18 +90,16 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/vueltap/Activity/ViewTransport.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="197">
-              <caret line="269" column="31" lean-forward="true" selection-start-line="269" selection-start-column="31" selection-end-line="269" selection-end-column="31" />
+            <state relative-caret-position="221">
+              <caret line="248" column="43" selection-start-line="248" selection-start-column="43" selection-end-line="248" selection-end-column="43" />
               <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#2835#3056#0" />
                 <element signature="e#3062#4653#0" />
                 <element signature="e#4659#5475#0" />
-                <element signature="e#5481#6347#0" />
-                <element signature="e#6353#6556#0" />
                 <element signature="e#6562#7263#0" />
                 <element signature="e#7406#7847#0" />
                 <element signature="e#7880#8398#0" />
-                <element signature="e#9032#9033#0" expanded="true" />
-                <element signature="e#9062#9063#0" expanded="true" />
                 <element signature="e#9086#10375#0" />
                 <element signature="e#9696#9914#0" />
                 <element signature="e#9507#10752#0" />
@@ -127,8 +127,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/vueltap/System/Constant.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="311">
-              <caret line="21" column="37" selection-start-line="21" selection-start-column="37" selection-end-line="21" selection-end-column="37" />
+            <state relative-caret-position="254">
+              <caret line="18" column="50" lean-forward="true" selection-start-line="18" selection-start-column="50" selection-end-line="18" selection-end-column="50" />
             </state>
           </provider>
         </entry>
@@ -146,8 +146,8 @@
         <option value="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_image_dni_domicile_upload.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/transport_view.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/vueltap/System/Constant.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/vueltap/Activity/ImageDniDomicileUpload.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/vueltap/System/Constant.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/vueltap/Activity/ViewTransport.java" />
       </list>
     </option>
@@ -359,32 +359,36 @@
       <provider selected="true" editor-type-id="android-designer2" />
       <provider editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/vueltap/System/Constant.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="311">
-          <caret line="21" column="37" selection-start-line="21" selection-start-column="37" selection-end-line="21" selection-end-column="37" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/transport_view.xml">
       <provider selected="true" editor-type-id="android-designer2" />
       <provider editor-type-id="text-editor" />
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/vueltap/System/Constant.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="254">
+          <caret line="18" column="50" lean-forward="true" selection-start-line="18" selection-start-column="50" selection-end-line="18" selection-end-column="50" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/vueltap/Activity/ImageDniDomicileUpload.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="206">
-          <caret line="112" column="45" lean-forward="true" selection-start-line="112" selection-start-column="45" selection-end-line="112" selection-end-column="45" />
+        <state relative-caret-position="483">
+          <caret line="260" column="82" selection-start-line="260" selection-start-column="82" selection-end-line="260" selection-end-column="82" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="method#onCreate#0;class#ImageDniDomicileUpload#0" />
             <element signature="method#loadControls#0;class#ImageDniDomicileUpload#0" />
             <element signature="method#loadData#0;class#ImageDniDomicileUpload#0" />
             <element signature="method#OnClickCamera#0;class#ImageDniDomicileUpload#0" />
+            <element signature="method#OnClickHelp#0;class#ImageDniDomicileUpload#0" />
             <element signature="method#OnClickRegister#0;class#ImageDniDomicileUpload#0" />
+            <element signature="method#helpMessenger#0;class#ImageDniDomicileUpload#0" />
+            <element signature="method#SweetAlert#0;class#ImageDniDomicileUpload#0" />
             <element signature="method#createImageFile#0;class#ImageDniDomicileUpload#0" />
             <element signature="method#dispatchTakePictureIntent#0;class#ImageDniDomicileUpload#0" />
             <element signature="method#getFile#0;class#ImageDniDomicileUpload#0" />
             <element signature="method#uploadImage#0;class#ImageDniDomicileUpload#0" />
+            <element signature="method#onResponse#0;class#8878:10524" />
             <element signature="method#onActivityResult#0;class#ImageDniDomicileUpload#0" />
           </folding>
         </state>
@@ -392,18 +396,16 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/vueltap/Activity/ViewTransport.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="197">
-          <caret line="269" column="31" lean-forward="true" selection-start-line="269" selection-start-column="31" selection-end-line="269" selection-end-column="31" />
+        <state relative-caret-position="221">
+          <caret line="248" column="43" selection-start-line="248" selection-start-column="43" selection-end-line="248" selection-end-column="43" />
           <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#2835#3056#0" />
             <element signature="e#3062#4653#0" />
             <element signature="e#4659#5475#0" />
-            <element signature="e#5481#6347#0" />
-            <element signature="e#6353#6556#0" />
             <element signature="e#6562#7263#0" />
             <element signature="e#7406#7847#0" />
             <element signature="e#7880#8398#0" />
-            <element signature="e#9032#9033#0" expanded="true" />
-            <element signature="e#9062#9063#0" expanded="true" />
             <element signature="e#9086#10375#0" />
             <element signature="e#9696#9914#0" />
             <element signature="e#9507#10752#0" />

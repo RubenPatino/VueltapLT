@@ -2,6 +2,7 @@ package com.vueltap.Activity;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
@@ -46,7 +47,7 @@ import static com.vueltap.System.Constant.DNI_NUMBER;
 import static com.vueltap.System.Constant.DRIVER_LICENSE;
 import static com.vueltap.System.Constant.EMAIL;
 import static com.vueltap.System.Constant.FILE_PROVIDER;
-import static com.vueltap.System.Constant.IDENTIFY_LYCENCE;
+import static com.vueltap.System.Constant.IDENTIFY_LICENCE;
 import static com.vueltap.System.Constant.IDENTIFY_PROPERTY;
 import static com.vueltap.System.Constant.IDENTIFY_SOAT;
 import static com.vueltap.System.Constant.IDENTIFY_TECNO;
@@ -60,10 +61,6 @@ import static com.vueltap.System.Constant.UID;
 import static com.vueltap.System.Constant.URL_DNI_BACK;
 import static com.vueltap.System.Constant.URL_DNI_FRONT;
 import static com.vueltap.System.Constant.URL_DOMICILE;
-import static com.vueltap.System.Constant._PROPERTY;
-import static com.vueltap.System.Constant._LYCENCE;
-import static com.vueltap.System.Constant._SOAT;
-import static com.vueltap.System.Constant._TECNO;
 
 public class ViewTransport extends AppCompatActivity {
 
@@ -75,7 +72,6 @@ public class ViewTransport extends AppCompatActivity {
     private String uid,email,names, lastName, address, phone, dniNumber,urlDniFront,urlDniBack, urlAddress;
     private EditText etPlaca;
     private ImageView ivLicence,ivProperty,ivSoat,ivTecno;
-    private Bitmap bitmap;
     private PermissionManager permissionManager;
     private ImageView checkProperty,checkLicence,checkSoat,checkTecno;
     private FirebaseAuth firebaseAuth;
@@ -90,7 +86,6 @@ public class ViewTransport extends AppCompatActivity {
         setTitle("Transporte");
         loadControls();
     }
-
     private void loadControls() {
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
         manager=new SessionManager(getApplicationContext());
@@ -114,20 +109,19 @@ public class ViewTransport extends AppCompatActivity {
         rbClicla.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                validateCheck();
+                linearLayout.setVisibility(View.GONE);
             }
         });
         rbMoto.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                validateCheck();
+                linearLayout.setVisibility(View.VISIBLE);
             }
         });
 
         loadData();
 
     }
-
     private void loadData() {
         try {
             uid=manager.getPersonalInfo().getString(UID);
@@ -145,41 +139,31 @@ public class ViewTransport extends AppCompatActivity {
         }
 
     }
-
-    private Boolean validateMoto(View view) {
+    private Boolean validateMoto() {
         numPlaca = etPlaca.getText().toString().trim();
         if (numPlaca.isEmpty()) {
             etPlaca.setError("Completa este campo");
             etPlaca.requestFocus();
             return false;
         } else if (urlLicence.isEmpty()) {
-            OnClickHelpLicence(view);
+            helpMessenger(R.id.buttonHelpLicence);
             ivLicence.requestFocus();
             return false;
         } else if (urlProperty.isEmpty()) {
-            OnClickHelpProperty(view);
+            helpMessenger(R.id.buttonHelpProperty);
             ivProperty.requestFocus();
             return false;
         } else if (urlSOAT.isEmpty()) {
-            OnClickHelpSoat(view);
+            helpMessenger(R.id.buttonHelpSoat);
             ivSoat.requestFocus();
             return false;
         }else if(urlTecno.isEmpty()){
-           OnClickHelpTecno(view);
+            helpMessenger(R.id.buttonHelpTecno);
            ivTecno.requestFocus();
             return false;
         }else {
             return true;
         }
-    }
-
-    private void validateCheck() {
-        if (rbMoto.isChecked()) {
-            linearLayout.setVisibility(View.VISIBLE);
-        } else {
-            linearLayout.setVisibility(View.GONE);
-        }
-
     }
 
     public void OnClickCamera(View view){
@@ -189,7 +173,7 @@ public class ViewTransport extends AppCompatActivity {
                 int id = view.getId();
                 switch (id) {
                     case R.id.imageButtonPhotoLicence:
-                        dispatchTakePictureIntent(intent,DRIVER_LICENSE,IDENTIFY_LYCENCE);
+                        dispatchTakePictureIntent(intent,DRIVER_LICENSE,IDENTIFY_LICENCE);
                         break;
                     case R.id.imageButtonPhotoProperty:
                         dispatchTakePictureIntent(intent,PROPERTY_CARD,IDENTIFY_PROPERTY);
@@ -229,12 +213,9 @@ public class ViewTransport extends AppCompatActivity {
         }
         return image;
     }
-
-
     public void OnClickHelp(View view){
         helpMessenger(view.getId());
     }
-
     public void helpMessenger(int id){
         switch (id){
             case R.id.buttonHelpLicence:
@@ -259,14 +240,12 @@ public class ViewTransport extends AppCompatActivity {
                 break;
         }
     }
-
     public void SweetAlert(String msg){
         dialog = new SweetAlertDialog(this, SweetAlertDialog.WARNING_TYPE);
         dialog.setContentText(msg);
         dialog.setConfirmText("Aceptar");
         dialog.show();
     }
-
     public void OnClickRegister(View view) {
 
         if(rbClicla.isChecked()){
@@ -282,7 +261,7 @@ public class ViewTransport extends AppCompatActivity {
             Log.d("urlAddress",urlAddress);
             Log.d("typeTransport","1");
         }else{
-            if(validateMoto(view)){
+            if(validateMoto()){
                 Log.d("uid",uid);
                 Log.d("dni",dniNumber);
                 Log.d("email",email);
@@ -302,7 +281,6 @@ public class ViewTransport extends AppCompatActivity {
             }
         }
     }
-
     public void savedUser(){
             dialog=new SweetAlertDialog(this,SweetAlertDialog.SUCCESS_TYPE);
             dialog.setTitleText("Felicitaciones");
@@ -397,19 +375,19 @@ public class ViewTransport extends AppCompatActivity {
                 if (response.isSuccessful()) {
                     if (response.body().getStatus()) {
                         switch (requestCode) {
-                            case _PROPERTY:
+                            case IDENTIFY_PROPERTY:
                                 urlProperty = response.body().getImage_url();
                                 checkProperty.setVisibility(View.VISIBLE);
                                 break;
-                            case _LYCENCE:
+                            case IDENTIFY_LICENCE:
                                 urlLicence = response.body().getImage_url();
                                 checkLicence.setVisibility(View.VISIBLE);
                                 break;
-                            case _SOAT:
+                            case IDENTIFY_SOAT:
                                 urlSOAT = response.body().getImage_url();
                                 checkSoat.setVisibility(View.VISIBLE);
                                 break;
-                            case _TECNO:
+                            case IDENTIFY_TECNO:
                                 urlTecno = response.body().getImage_url();
                                 checkTecno.setVisibility(View.VISIBLE);
                                 break;
@@ -432,24 +410,25 @@ public class ViewTransport extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (data != null) {
-            bitmap = (Bitmap) data.getExtras().get("data");
+        if (resultCode == RESULT_OK) {
+            String pathName=photoFile.getAbsolutePath();
+            Bitmap bitmap = BitmapFactory.decodeFile(pathName);
             switch (requestCode) {
-                case _PROPERTY:
+                case IDENTIFY_PROPERTY:
                     ivProperty.setImageBitmap(bitmap);
                     File property = getFile(bitmap,PROPERTY_CARD);
                     if (property != null) {
                        uploadImage(property,PROPERTY_CARD, requestCode);
                     }
                     break;
-                case _LYCENCE:
+                case IDENTIFY_LICENCE:
                     ivLicence.setImageBitmap(bitmap);
                     File licence = getFile(bitmap,DRIVER_LICENSE);
                     if (licence != null) {
                         uploadImage(licence,DRIVER_LICENSE, requestCode);
                     }
                     break;
-                case _SOAT:
+                case IDENTIFY_SOAT:
 
                     ivSoat.setImageBitmap(bitmap);
                     File soat = getFile(bitmap,SOAT);
@@ -457,7 +436,7 @@ public class ViewTransport extends AppCompatActivity {
                         uploadImage(soat,SOAT,requestCode);
                     }
                     break;
-                case _TECNO:
+                case IDENTIFY_TECNO:
 
                     ivTecno.setImageBitmap(bitmap);
                     File tecno = getFile(bitmap,TECNOMECANICA);

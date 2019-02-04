@@ -17,7 +17,7 @@ public class Constant {
     public static final String VALIDATE_FINISHED="validateFinished";
     public static final String ID_USER="idUser";
     public static final int IDENTIFY_PROPERTY = 0;
-    public static final int  IDENTIFY_LYCENCE = 1;
+    public static final int  IDENTIFY_LICENCE = 1;
     public static final int  IDENTIFY_SOAT = 2;
     public static final int  IDENTIFY_TECNO = 3;
     public static final String URL_DNI_FRONT="urldnifront";
