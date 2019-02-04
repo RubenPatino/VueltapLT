@@ -80,26 +80,25 @@ public class ImageDniDomicileUpload extends AppCompatActivity {
             e.printStackTrace();
         }
     }
-    private File createImageFile(String imageFileName){
-        String prefix = imageFileName+"_";
-        File storageDir = getExternalFilesDir(Environment.DIRECTORY_PICTURES);
-        File image = null;
-        try {
-            image = File.createTempFile(
-                    prefix,  /* prefix */
-                    ".jpg",         /* suffix */
-                    storageDir      /* directory */
-            );
-        } catch (IOException e) {
-            e.printStackTrace();
+
+    public void OnClickCamera(View view){
+        if (permissionManager.checkAndRequestPermissions(this)) {
+            Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+            if(intent.resolveActivity(getPackageManager())!=null) {
+                int id = view.getId();
+                switch (id) {
+                    case R.id.imageButtonCameraDniFront:
+                        dispatchTakePictureIntent(intent,DNI_FRONT,IDENTIFY_DNI_FRONT);
+                        break;
+                    case R.id.imageButtonCameraDniBack:
+                        dispatchTakePictureIntent(intent,DNI_BACK,IDENTIFY_DNI_BACK);
+                        break;
+                    case R.id.imageButtonDniCameraAddress:
+                        dispatchTakePictureIntent(intent,BILL_PAYMENT,IDENTIFY_BILL_PAYMENT);
+                        break;
+                }
+            }
         }
-        return image;
-    }
-    public void SweetAlert(String msg){
-        dialog = new SweetAlertDialog(this, SweetAlertDialog.WARNING_TYPE);
-        dialog.setContentText(msg);
-        dialog.setConfirmText("Aceptar");
-        dialog.show();
     }
     public void OnClickHelp(View view){
         int id=view.getId();
@@ -115,6 +114,20 @@ public class ImageDniDomicileUpload extends AppCompatActivity {
                 break;
         }
     }
+    public void OnClickRegister(View view) {
+        if (urlDniFront.isEmpty()) {
+            helpMessenger(R.id.buttonHelpPhotoFront);
+        } else if (urlDniBack.isEmpty()) {
+            helpMessenger(R.id.buttonHelpPhotoBack);
+        } else if (urlAddress.isEmpty()) {
+            helpMessenger(R.id.buttonHelpPhotoAddress);
+        } else {
+            Log.d("OK","OK");
+            // manager.setUrlInformation(urlDniFront, urlDniBack, urlAddress);
+            // startActivity(new Intent().setClass(getApplicationContext(), ViewTransport.class));
+        }
+    }
+
     public void helpMessenger(int id){
         switch (id){
             case R.id.buttonHelpPhotoFront:
@@ -136,6 +149,30 @@ public class ImageDniDomicileUpload extends AppCompatActivity {
         }
 
     }
+
+    public void SweetAlert(String msg){
+        dialog = new SweetAlertDialog(this, SweetAlertDialog.WARNING_TYPE);
+        dialog.setContentText(msg);
+        dialog.setConfirmText("Aceptar");
+        dialog.show();
+    }
+
+    private File createImageFile(String imageFileName){
+        String prefix = imageFileName+"_";
+        File storageDir = getExternalFilesDir(Environment.DIRECTORY_PICTURES);
+        File image = null;
+        try {
+            image = File.createTempFile(
+                    prefix,  /* prefix */
+                    ".jpg",         /* suffix */
+                    storageDir      /* directory */
+            );
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return image;
+    }
+
     private void dispatchTakePictureIntent(Intent intent, String dni,int identify) {
         photoFile = createImageFile(dni);
         if(photoFile!=null){
@@ -146,39 +183,7 @@ public class ImageDniDomicileUpload extends AppCompatActivity {
             startActivityForResult(intent, identify);
         }
     }
-    public void OnClickCamera(View view){
-        if (permissionManager.checkAndRequestPermissions(this)) {
-            Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-            if(intent.resolveActivity(getPackageManager())!=null) {
-                int id = view.getId();
-                switch (id) {
-                    case R.id.imageButtonCameraDniFront:
-                        dispatchTakePictureIntent(intent,DNI_FRONT,IDENTIFY_DNI_FRONT);
-                        break;
-                    case R.id.imageButtonCameraDniBack:
-                        dispatchTakePictureIntent(intent,DNI_BACK,IDENTIFY_DNI_BACK);
-                        break;
-                    case R.id.imageButtonDniCameraAddress:
-                        dispatchTakePictureIntent(intent,BILL_PAYMENT,IDENTIFY_BILL_PAYMENT);
-                        break;
-                }
-            }
-        }
-    }
 
-    public void OnClickRegister(View view) {
-        if (urlDniFront.isEmpty()) {
-            helpMessenger(R.id.buttonHelpPhotoFront);
-        } else if (urlDniBack.isEmpty()) {
-            helpMessenger(R.id.buttonHelpPhotoBack);
-        } else if (urlAddress.isEmpty()) {
-            helpMessenger(R.id.buttonHelpPhotoAddress);
-        } else {
-            Log.d("OK","OK");
-           // manager.setUrlInformation(urlDniFront, urlDniBack, urlAddress);
-           // startActivity(new Intent().setClass(getApplicationContext(), ViewTransport.class));
-        }
-    }
     public File getFile(Bitmap bmp, String prefix) {
         //File tempFile = null;
         //Uri uri = null;
@@ -201,6 +206,7 @@ public class ImageDniDomicileUpload extends AppCompatActivity {
             return null;
         }
     }
+
     public void uploadImage(final File imageFile, String typeImg, final int requestCode) {
         dialog = new SweetAlertDialog(this, SweetAlertDialog.PROGRESS_TYPE);
         dialog.setTitleText("Subiendo...");
@@ -249,6 +255,7 @@ public class ImageDniDomicileUpload extends AppCompatActivity {
             }
         });
     }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);

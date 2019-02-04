@@ -1,5 +1,8 @@
 .gradle
 /build/
+# (No todo el mundo tiene que saber que los ficheros .idea son de un 
+# entorno de desarrollo)
+.idea 
 
 # Ignore Gradle GUI config
 gradle-app.setting
