@@ -97,7 +97,6 @@
             android:paddingTop="8dp"
             android:paddingRight="8dp"
             android:paddingBottom="8dp"
-            android:visibility="gone"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/radioGroup">
@@ -180,21 +179,21 @@
                     android:padding="5dp">
 
                     <ImageButton
-                        android:id="@+id/imageButton3"
+                        android:id="@+id/imageButtonPhotoLicence"
                         android:layout_width="match_parent"
                         android:layout_height="50dp"
                         android:layout_marginBottom="4dp"
                         android:background="@drawable/success_circle"
-                        android:onClick="OnclickPhotoLicence"
+                        android:onClick="OnClickCamera"
                         app:srcCompat="@drawable/ic_camera_black"
                         tools:ignore="VectorDrawableCompat" />
 
                     <Button
-                        android:id="@+id/button5"
+                        android:id="@+id/buttonHelpLicence"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="@drawable/success_circle"
-                        android:onClick="OnClickHelpLicence"
+                        android:onClick="OnClickHelp"
                         android:text="@string/help" />
 
                 </LinearLayout>
@@ -256,12 +255,12 @@
                     android:padding="5dp">
 
                     <ImageButton
-                        android:id="@+id/imageButtonProperty"
+                        android:id="@+id/imageButtonPhotoProperty"
                         android:layout_width="match_parent"
                         android:layout_height="50dp"
                         android:layout_marginBottom="4dp"
                         android:background="@drawable/success_circle"
-                        android:onClick="OnclickPhotoProperty"
+                        android:onClick="OnClickCamera"
                         app:srcCompat="@drawable/ic_camera_black"
                         tools:ignore="VectorDrawableCompat" />
 
@@ -270,7 +269,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="@drawable/success_circle"
-                        android:onClick="OnClickHelpProperty"
+                        android:onClick="OnClickHelp"
                         android:text="@string/help" />
 
                 </LinearLayout>
@@ -332,21 +331,21 @@
                     android:padding="5dp">
 
                     <ImageButton
-                        android:id="@+id/imageButton336"
+                        android:id="@+id/imageButtonPhotoSoat"
                         android:layout_width="match_parent"
                         android:layout_height="50dp"
                         android:layout_marginBottom="4dp"
                         android:background="@drawable/success_circle"
-                        android:onClick="OnclickPhotoSoat"
+                        android:onClick="OnClickCamera"
                         app:srcCompat="@drawable/ic_camera_black"
                         tools:ignore="VectorDrawableCompat" />
 
                     <Button
-                        android:id="@+id/button509"
+                        android:id="@+id/buttonHelpSoat"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="@drawable/success_circle"
-                        android:onClick="OnClickHelpSoat"
+                        android:onClick="OnClickHelp"
                         android:text="@string/help" />
 
                 </LinearLayout>
@@ -409,21 +408,21 @@
                     android:padding="5dp">
 
                     <ImageButton
-                        android:id="@+id/imageButton3366"
+                        android:id="@+id/imageButtonPhotoTecno"
                         android:layout_width="match_parent"
                         android:layout_height="50dp"
                         android:layout_marginBottom="4dp"
                         android:background="@drawable/success_circle"
-                        android:onClick="OnclickPhotoTecno"
+                        android:onClick="OnClickCamera"
                         app:srcCompat="@drawable/ic_camera_black"
                         tools:ignore="VectorDrawableCompat" />
 
                     <Button
-                        android:id="@+id/button5098"
+                        android:id="@+id/buttonHelpTecno"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="@drawable/success_circle"
-                        android:onClick="OnClickHelpTecno"
+                        android:onClick="OnClickHelp"
                         android:text="@string/help" />
 
                 </LinearLayout>

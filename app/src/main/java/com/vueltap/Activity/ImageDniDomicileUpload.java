@@ -101,7 +101,8 @@ public class ImageDniDomicileUpload extends AppCompatActivity {
         }
     }
     public void OnClickHelp(View view){
-        int id=view.getId();
+        helpMessenger(view.getId());
+        /*int id=view.getId();
         switch (id){
             case R.id.buttonHelpPhotoFront:
                 helpMessenger(id);
@@ -112,7 +113,7 @@ public class ImageDniDomicileUpload extends AppCompatActivity {
             case R.id.buttonHelpPhotoAddress:
                 helpMessenger(id);
                 break;
-        }
+        }*/
     }
     public void OnClickRegister(View view) {
         if (urlDniFront.isEmpty()) {
@@ -173,8 +174,8 @@ public class ImageDniDomicileUpload extends AppCompatActivity {
         return image;
     }
 
-    private void dispatchTakePictureIntent(Intent intent, String dni,int identify) {
-        photoFile = createImageFile(dni);
+    private void dispatchTakePictureIntent(Intent intent, String fileName,int identify) {
+        photoFile = createImageFile(fileName);
         if(photoFile!=null){
             Uri photoURI = FileProvider.getUriForFile(this,
                     BuildConfig.APPLICATION_ID + FILE_PROVIDER,

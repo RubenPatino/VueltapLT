@@ -6,6 +6,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.support.v4.content.FileProvider;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -19,6 +20,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.karan.churi.PermissionManager.PermissionManager;
 import com.vueltap.Api.ApiAdapter;
+import com.vueltap.BuildConfig;
 import com.vueltap.Models.ImageUpload;
 import com.vueltap.R;
 import com.vueltap.System.SessionManager;
@@ -43,6 +45,11 @@ import static com.vueltap.System.Constant.ADDRESS;
 import static com.vueltap.System.Constant.DNI_NUMBER;
 import static com.vueltap.System.Constant.DRIVER_LICENSE;
 import static com.vueltap.System.Constant.EMAIL;
+import static com.vueltap.System.Constant.FILE_PROVIDER;
+import static com.vueltap.System.Constant.IDENTIFY_LYCENCE;
+import static com.vueltap.System.Constant.IDENTIFY_PROPERTY;
+import static com.vueltap.System.Constant.IDENTIFY_SOAT;
+import static com.vueltap.System.Constant.IDENTIFY_TECNO;
 import static com.vueltap.System.Constant.LAST_NAME;
 import static com.vueltap.System.Constant.NAMES;
 import static com.vueltap.System.Constant.PHONE;
@@ -73,6 +80,7 @@ public class ViewTransport extends AppCompatActivity {
     private ImageView checkProperty,checkLicence,checkSoat,checkTecno;
     private FirebaseAuth firebaseAuth;
     private FirebaseUser user;
+    private File photoFile;
 
 
     @Override
@@ -174,55 +182,90 @@ public class ViewTransport extends AppCompatActivity {
 
     }
 
-    public void OnclickPhotoSoat(View view) {
+    public void OnClickCamera(View view){
         if (permissionManager.checkAndRequestPermissions(this)) {
             Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-            startActivityForResult(intent,_SOAT);
+            if(intent.resolveActivity(getPackageManager())!=null) {
+                int id = view.getId();
+                switch (id) {
+                    case R.id.imageButtonPhotoLicence:
+                        dispatchTakePictureIntent(intent,DRIVER_LICENSE,IDENTIFY_LYCENCE);
+                        break;
+                    case R.id.imageButtonPhotoProperty:
+                        dispatchTakePictureIntent(intent,PROPERTY_CARD,IDENTIFY_PROPERTY);
+                        break;
+                    case R.id.imageButtonPhotoSoat:
+                        dispatchTakePictureIntent(intent,SOAT,IDENTIFY_SOAT);
+                        break;
+                    case R.id.imageButtonPhotoTecno:
+                        dispatchTakePictureIntent(intent,TECNOMECANICA,IDENTIFY_TECNO);
+                        break;
+                }
+            }
         }
     }
-    public void OnclickPhotoTecno(View view) {
-        if (permissionManager.checkAndRequestPermissions(this)) {
-            Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-            startActivityForResult(intent,_TECNO);
+    private void dispatchTakePictureIntent(Intent intent, String fileName,int identify) {
+        photoFile = createImageFile(fileName);
+        if(photoFile!=null){
+            Uri photoURI = FileProvider.getUriForFile(this,
+                    BuildConfig.APPLICATION_ID + FILE_PROVIDER,
+                    photoFile);
+            intent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
+            startActivityForResult(intent, identify);
         }
     }
-    public void OnclickPhotoLicence(View view){
-        if (permissionManager.checkAndRequestPermissions(this)) {
-            Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-            startActivityForResult(intent,_LYCENCE);
+    private File createImageFile(String imageFileName){
+        String prefix = imageFileName+"_";
+        File storageDir = getExternalFilesDir(Environment.DIRECTORY_PICTURES);
+        File image = null;
+        try {
+            image = File.createTempFile(
+                    prefix,  /* prefix */
+                    ".jpg",         /* suffix */
+                    storageDir      /* directory */
+            );
+        } catch (IOException e) {
+            e.printStackTrace();
         }
+        return image;
     }
-    public void OnclickPhotoProperty(View view) {
-        if (permissionManager.checkAndRequestPermissions(this)) {
-            Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-            startActivityForResult(intent,_PROPERTY);
+
+
+    public void OnClickHelp(View view){
+        helpMessenger(view.getId());
+    }
+
+    public void helpMessenger(int id){
+        switch (id){
+            case R.id.buttonHelpLicence:
+                SweetAlert("Toma una foto a tu licencia de conducir.<b>Si partes de" +
+                        " la imagen están borrosas o no están claras, no" +
+                        " podremos comprobar la validez de tu identificación.");
+                break;
+            case R.id.buttonHelpProperty:
+                SweetAlert("Toma una foto a tu tarjeta de propidad.<b>Si partes de" +
+                        " la imagen están borrosas o no están claras, no" +
+                        " podremos comprobar la validez de tu identificación.");
+                break;
+            case R.id.buttonHelpSoat:
+                SweetAlert("Tomale una foto a tu SOAP.<b>Si partes de" +
+                        " la imagen están borrosas o no están claras, no" +
+                        " podremos comprobar la validez de tu identificación.");
+                break;
+            case R.id.buttonHelpTecno:
+                SweetAlert("Toma una foto a la Revisión Técnico mecánica.<b>Si partes de" +
+                        " la imagen están borrosas o no están claras, no" +
+                        " podremos comprobar la validez de tu identificación.");
+                break;
         }
     }
 
-    //HELP
-
-    public void OnClickHelpSoat(View view) {
+    public void SweetAlert(String msg){
         dialog = new SweetAlertDialog(this, SweetAlertDialog.WARNING_TYPE);
-        dialog.setContentText("Tomale una foto a tu SOAP");
+        dialog.setContentText(msg);
+        dialog.setConfirmText("Aceptar");
         dialog.show();
     }
-    public void OnClickHelpLicence(View view) {
-        dialog = new SweetAlertDialog(this, SweetAlertDialog.WARNING_TYPE);
-        dialog.setContentText("Tomale una foto a tu licencia de conducir");
-        dialog.show();
-
-    }
-    public void OnClickHelpProperty(View view) {
-        dialog = new SweetAlertDialog(this, SweetAlertDialog.WARNING_TYPE);
-        dialog.setContentText("Tomale una foto a tu tarjeta de propidad");
-        dialog.show();
-    }
-    public void OnClickHelpTecno(View view) {
-        dialog = new SweetAlertDialog(this, SweetAlertDialog.WARNING_TYPE);
-        dialog.setContentText("Tomale una foto a la Revisión Técnico mecánica");
-        dialog.show();
-    }
-
 
     public void OnClickRegister(View view) {
 
