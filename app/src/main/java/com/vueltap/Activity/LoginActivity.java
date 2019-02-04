@@ -163,7 +163,9 @@ public class LoginActivity extends AppCompatActivity {
                     }
                 } else {
                     dialog.changeAlertType(SweetAlertDialog.ERROR_TYPE);
-                    dialog.setContentText(response.body().getMessage());
+                    dialog.setTitleText("Tareas de mantenimiento");
+                    dialog.setContentText("Regresamos pronto.<br>"+response.message());
+                    firebaseAuth.signOut();
                 }
             }
 
@@ -171,6 +173,7 @@ public class LoginActivity extends AppCompatActivity {
             public void onFailure(Call<JsonResponse> call, Throwable t) {
                 dialog.changeAlertType(SweetAlertDialog.ERROR_TYPE);
                 dialog.setContentText(t.getMessage());
+                firebaseAuth.signOut();
             }
         });
     }

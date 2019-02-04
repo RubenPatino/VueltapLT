@@ -92,9 +92,8 @@ public class ViewTransport extends AppCompatActivity {
     private void loadControls() {
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
         manager=new SessionManager(getApplicationContext());
-       // firebaseAuth = FirebaseAuth.getInstance();
-        //user = firebaseAuth.getCurrentUser();
-        email="rpm8530@gmail.com";
+        firebaseAuth = FirebaseAuth.getInstance();
+        user = firebaseAuth.getCurrentUser();
         permissionManager = new PermissionManager() {};
         etPlaca = findViewById(R.id.TextInputPlaca);
         ivLicence=findViewById(R.id.imageViewLicence);
@@ -108,8 +107,6 @@ public class ViewTransport extends AppCompatActivity {
         linearLayout = findViewById(R.id.LinearLayoutTransport);
         rbClicla = findViewById(R.id.radioButtonCicla);
         rbMoto = findViewById(R.id.radioButtonMoto);
-
-
         rbClicla.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {

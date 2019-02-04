@@ -19,12 +19,13 @@ import retrofit2.http.Path;
 public interface ApiService {
     //user
 
-    @GET("http://msaq.vueltap.com.co/api_1.0/Messengers/Check/Exist/{email}")
+   // @GET("http://msaq.vueltap.com.co/api_1.0/Messengers/Check/Exist/{email}")
+    @GET("user/check/{email}")
     Call<JsonResponse> EMAIL_CHECK(
             @Path("email") String email
     );
 
-    @POST("https://vueltap.herokuapp.com/user/add/cicla")
+    @POST("user/add")
     @FormUrlEncoded
     Call<JsonResponse>USER_ADD_CICLA(
             @Field("uid") String uid,
@@ -40,7 +41,7 @@ public interface ApiService {
             @Field("typeTransport") int type
             );
 
-    @POST("https://vueltap.herokuapp.com/user/add/moto")
+    @POST("user/add")
     @FormUrlEncoded
     Call<JsonResponse>USER_ADD_MOTO(
             @Field("uid") String uid,
@@ -62,7 +63,7 @@ public interface ApiService {
     );
 
     @Multipart
-    @PUT("Messengers/Add/Image")
+    @PUT("http://msau.vueltap.com.co/api_1.0/Messengers/Add/Image")
     Call<ImageUpload> UPLOAD_IMAGE(
             @Part("email") RequestBody email,
             @Part("type") RequestBody type,

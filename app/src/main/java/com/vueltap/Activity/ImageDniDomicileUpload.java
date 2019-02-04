@@ -115,7 +115,7 @@ public class ImageDniDomicileUpload extends AppCompatActivity {
                 break;
         }*/
     }
-    public void OnClickRegister(View view) {
+    public void OnClickNext(View view) {
         if (urlDniFront.isEmpty()) {
             helpMessenger(R.id.buttonHelpPhotoFront);
         } else if (urlDniBack.isEmpty()) {
@@ -123,9 +123,8 @@ public class ImageDniDomicileUpload extends AppCompatActivity {
         } else if (urlAddress.isEmpty()) {
             helpMessenger(R.id.buttonHelpPhotoAddress);
         } else {
-            Log.d("OK","OK");
-            // manager.setUrlInformation(urlDniFront, urlDniBack, urlAddress);
-            // startActivity(new Intent().setClass(getApplicationContext(), ViewTransport.class));
+             manager.setUrlInformation(urlDniFront, urlDniBack, urlAddress);
+             startActivity(new Intent().setClass(getApplicationContext(), ViewTransport.class));
         }
     }
 
