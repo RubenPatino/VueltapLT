@@ -24,9 +24,10 @@ public interface ApiService {
             @Path("email") String email
     );
 
-    @POST("user/add")
+    @POST("user/add/cicla")
     @FormUrlEncoded
-    Call<JsonResponse>USER_ADD(
+    Call<JsonResponse>USER_ADD_CICLA(
+            @Field("uid") String uid,
             @Field("email") String email,
             @Field("dniNumber") String dniNumber,
             @Field("name") String name,
@@ -35,8 +36,30 @@ public interface ApiService {
             @Field("phone") String phone,
             @Field("urlDniFront") String urlDniFront,
             @Field("urlDniBack") String urlDniBack,
-            @Field("urlAddress") String urlAddress
+            @Field("urlAddress") String urlAddress,
+            @Field("typeTransport") String type
             );
+
+    @POST("user/add/moto")
+    @FormUrlEncoded
+    Call<JsonResponse>USER_ADD_MOTO(
+            @Field("uid") String uid,
+            @Field("email") String email,
+            @Field("dniNumber") String dniNumber,
+            @Field("name") String name,
+            @Field("lastName") String lastName,
+            @Field("address") String address,
+            @Field("phone") String phone,
+            @Field("urlDniFront") String urlDniFront,
+            @Field("urlDniBack") String urlDniBack,
+            @Field("urlAddress") String urlAddress,
+            @Field("typeTransport") String type,
+            @Field("placa") String placa,
+            @Field("urlLicence") String urlLicence,
+            @Field("urlProperty") String urlProperty,
+            @Field("urlSoat") String urlSoat,
+            @Field("urlTecno") String urlTecno
+    );
 
     @Multipart
     @PUT("Messengers/Add/Image")

@@ -89,9 +89,9 @@ public class ViewTransport extends AppCompatActivity {
     private void loadControls() {
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
         manager=new SessionManager(getApplicationContext());
-        firebaseAuth = FirebaseAuth.getInstance();
-        user = firebaseAuth.getCurrentUser();
-        //email="rpm8530@gmail.com";
+       // firebaseAuth = FirebaseAuth.getInstance();
+        //user = firebaseAuth.getCurrentUser();
+        email="rpm8530@gmail.com";
         permissionManager = new PermissionManager() {};
         etPlaca = findViewById(R.id.TextInputPlaca);
         ivLicence=findViewById(R.id.imageViewLicence);
@@ -106,16 +106,15 @@ public class ViewTransport extends AppCompatActivity {
         rbClicla = findViewById(R.id.radioButtonCicla);
         rbMoto = findViewById(R.id.radioButtonMoto);
 
+
         rbClicla.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                linearLayout.setVisibility(View.GONE);
-            }
-        });
-        rbMoto.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                linearLayout.setVisibility(View.VISIBLE);
+                if(rbClicla.isChecked())
+                    linearLayout.setVisibility(View.GONE);
+                else
+                    linearLayout.setVisibility(View.VISIBLE);
+
             }
         });
 
@@ -219,24 +218,24 @@ public class ViewTransport extends AppCompatActivity {
     public void helpMessenger(int id){
         switch (id){
             case R.id.buttonHelpLicence:
-                SweetAlert("Toma una foto a tu licencia de conducir.<b>Si partes de" +
+                SweetAlert("Toma una foto a tu licencia de conducir. <b>Si partes de" +
                         " la imagen están borrosas o no están claras, no" +
-                        " podremos comprobar la validez de tu identificación.");
+                        " podremos comprobar la validez de tu documento.");
                 break;
             case R.id.buttonHelpProperty:
-                SweetAlert("Toma una foto a tu tarjeta de propidad.<b>Si partes de" +
+                SweetAlert("Toma una foto a tu tarjeta de propidad. <b>Si partes de" +
                         " la imagen están borrosas o no están claras, no" +
-                        " podremos comprobar la validez de tu identificación.");
+                        " podremos comprobar la validez de tu documento.");
                 break;
             case R.id.buttonHelpSoat:
-                SweetAlert("Tomale una foto a tu SOAP.<b>Si partes de" +
+                SweetAlert("Tomale una foto a tu SOAP. <b>Si partes de" +
                         " la imagen están borrosas o no están claras, no" +
-                        " podremos comprobar la validez de tu identificación.");
+                        " podremos comprobar la validez de tu documento.");
                 break;
             case R.id.buttonHelpTecno:
-                SweetAlert("Toma una foto a la Revisión Técnico mecánica.<b>Si partes de" +
+                SweetAlert("Toma una foto a la Revisión Técnico mecánica. <b>Si partes de" +
                         " la imagen están borrosas o no están claras, no" +
-                        " podremos comprobar la validez de tu identificación.");
+                        " podremos comprobar la validez de tu documento.");
                 break;
         }
     }
@@ -342,9 +341,9 @@ public class ViewTransport extends AppCompatActivity {
             File tempDir = Environment.getExternalStorageDirectory();
             tempDir = new File(tempDir.getAbsolutePath() + "/.temp/");
             tempDir.mkdir();
-            File tempFile = File.createTempFile(prefix, ".jpg", tempDir);
+            File tempFile = File.createTempFile(prefix+"_", ".jpg", tempDir);
             ByteArrayOutputStream bytes = new ByteArrayOutputStream();
-            bmp.compress(Bitmap.CompressFormat.JPEG, 100, bytes);
+            bmp.compress(Bitmap.CompressFormat.JPEG, 30, bytes);
             byte[] bitmapData = bytes.toByteArray();
             FileOutputStream fos = new FileOutputStream(tempFile);
             // uri = Uri.fromFile(tempFile);
